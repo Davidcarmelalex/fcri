@@ -1,0 +1,16 @@
+[Unit]
+Description=FCRI Next.js web application
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/projects-core/fcri
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/npm run start -- --hostname 127.0.0.1 --port 3001
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/fcri/web.log
+StandardError=append:/var/log/fcri/web-error.log
+
+[Install]
+WantedBy=multi-user.target

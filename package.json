@@ -1,0 +1,35 @@
+{
+  "name": "fcri",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fusion Civilization Research Institute web presence inside the Voltex Network ecosystem.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint eslint.config.mjs next.config.js"
+  },
+  "keywords": [
+    "fcri",
+    "research",
+    "voltex-network"
+  ],
+  "dependencies": {
+    "lucide-react": "^0.577.0",
+    "next": "^16.2.1",
+    "nodemailer": "^8.0.4",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^16.2.1",
+    "@types/node": "^25.5.0",
+    "@types/nodemailer": "^7.0.11",
+    "@types/react": "^19.2.14",
+    "autoprefixer": "^10.4.27",
+    "eslint": "^10.1.0",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3"
+  }
+}
