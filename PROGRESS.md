@@ -4,14 +4,14 @@ Date: 2026-04-02 UTC
 
 ## Estimated Completion
 
-- Overall completion: 88%
-- Site/content surface: 90%
-- Operational deployment readiness: 78%
-- Public release readiness: 80%
+- Overall completion: 95%
+- Site/content surface: 92%
+- Operational deployment readiness: 96%
+- Public release readiness: 92%
 
 ## Current Stage
 
-FCRI has a broad, content-rich institutional site with a successful production build and a deployment model oriented toward static export behind Nginx. The site is substantially further along than a placeholder, but public go-live work is still blocked on deployment validation, domain cutover, and release discipline.
+FCRI is now deployed on the Debian production VPS at `187.124.98.170` behind Nginx with HTTPS enabled for `fcri.science`. The site is materially past pre-launch and is in release-hardening mode rather than raw build-out.
 
 ## Confirmed Progress
 
@@ -22,6 +22,12 @@ FCRI has a broad, content-rich institutional site with a successful production b
 - Deployment configuration exists under `deploy/`.
 - Operations and content model documentation already exist.
 - Deployment model is now aligned to a real Next.js server runtime so inquiry submission can work in production.
+- Course and fellowship routes now submit structured intake requests instead of placeholder content.
+- Production deployment has been executed on `187.124.98.170`.
+- `fcri-web.service` is active under systemd on the production host.
+- Nginx is active on the production host and serves the app successfully.
+- HTTPS is active for `https://fcri.science`.
+- Public inquiry submission has been verified live against `https://fcri.science/api/inquiries`.
 
 ## Working Baseline
 
@@ -29,37 +35,39 @@ FCRI has a broad, content-rich institutional site with a successful production b
 - Research and academic sections are already scaffolded into dedicated routes.
 - Contact/intake handling exists through `/api/inquiries`.
 - Metadata is already aligned to `https://fcri.science`.
+- Live host-header and public HTTPS smoke tests have passed on the production VPS.
 
 ## Remaining Gaps
 
-- Git has not been initialized or attached to the intended remote in this migrated repo.
-- Public deployment to `fcri.science` has not been validated in this update.
-- DNS, Nginx activation, and TLS issuance still need operational confirmation.
-- Content quality, editorial consistency, and route-by-route polish still need release review.
+- SMTP credentials are still not configured, so inquiry emails are stored but notifications are not delivered.
+- Public treasury wallet addresses for crypto donations are still pending final cutover.
+- Final editorial consistency and route-by-route polish still need a release review pass.
+- Ongoing content, governance, and institutional copy refinement can continue after launch.
 
 ## What Is Left
 
-- Decide the final deployment mode around `/api/inquiries`.
-- Initialize Git or connect the repo to its intended remote.
-- Do a route-by-route editorial and UX release pass.
-- Validate Debian deployment, Nginx wiring, and target web root.
-- Confirm DNS and HTTPS cutover for `fcri.science`.
+- Configure production SMTP so inquiry acknowledgments and internal notifications are delivered.
+- Replace treasury placeholders with the real EVM `USDT` and `USDC` donation addresses.
+- Do a final editorial and UX QA pass across public routes.
+- Add ongoing monitoring and operational alerting if you want stricter release discipline.
 
 ## Build / Repo Snapshot
 
-- Git state: uninitialized repo with all project files uncommitted
+- Git state: synced to GitHub on 2026-04-02
+- GitHub repo: `Davidcarmelalex/fcri`
 - Frontend build: passing
-- Domain deployment: not validated in this update
-- HTTPS status: not validated in this update
+- Production deployment: active on `187.124.98.170`
+- Domain deployment: live on `fcri.science`
+- HTTPS status: active
+- Live intake API: verified
 
 ## Practical Assessment
 
-FCRI is in a strong pre-launch website state. It appears materially closer to public release than VoltexBazar, provided deployment and domain operations are handled cleanly.
+FCRI is now effectively live. The main remaining work is operational polish and final production configuration, not baseline deployment.
 
 ## Next Actions
 
-1. Decide final deployment mode for the inquiry flow and confirm whether pure static export remains the right fit.
-2. Initialize Git or attach the repo to its intended remote.
-3. Review route quality and copy consistency before release.
-4. Validate Debian deployment steps, Nginx config, and target web root.
-5. Confirm DNS for `fcri.science` and complete HTTPS cutover.
+1. Configure SMTP credentials and validate real email delivery.
+2. Publish the final EVM donation wallet addresses.
+3. Run a route-by-route editorial and UX polish pass.
+4. Add release monitoring and backup discipline if desired.

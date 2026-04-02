@@ -7,7 +7,10 @@ function canUseSmtp() {
     process.env.SMTP_HOST &&
       process.env.SMTP_PORT &&
       process.env.SMTP_USER &&
-      process.env.SMTP_PASS,
+      process.env.SMTP_PASS &&
+      process.env.SMTP_HOST !== "smtp.example.com" &&
+      process.env.SMTP_USER !== "example-user" &&
+      process.env.SMTP_PASS !== "example-password",
   );
 }
 

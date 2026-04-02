@@ -4,9 +4,11 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/root/projects-core/fcri
+WorkingDirectory=/var/www/apps/fcri
 Environment=NODE_ENV=production
-ExecStart=/usr/bin/npm run start -- --hostname 127.0.0.1 --port 3001
+Environment=HOSTNAME=127.0.0.1
+Environment=PORT=3001
+ExecStart=/usr/bin/node /var/www/apps/fcri/.next/standalone/server.js
 Restart=always
 RestartSec=5
 StandardOutput=append:/var/log/fcri/web.log

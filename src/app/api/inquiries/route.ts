@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { saveInquiry } from "@/lib/inquiryStore";
 import { sendInquiryNotifications } from "@/lib/mailer";
 
-const allowedTypes = new Set(["donation", "partnership", "fellowship", "general"]);
+const allowedTypes = new Set(["donation", "partnership", "fellowship", "course", "general"]);
 
 export async function POST(request: Request) {
   try {
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
 
     const record = await saveInquiry({
       id: randomUUID(),
-      type: type as "donation" | "partnership" | "fellowship" | "general",
+      type: type as "donation" | "partnership" | "fellowship" | "course" | "general",
       name,
       email,
       organization: organization || undefined,

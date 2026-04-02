@@ -3,7 +3,7 @@ import path from "node:path";
 
 export type InquiryRecord = {
   id: string;
-  type: "donation" | "partnership" | "fellowship" | "general";
+  type: "donation" | "partnership" | "fellowship" | "course" | "general";
   name: string;
   email: string;
   organization?: string;
