@@ -4,10 +4,10 @@ Date: 2026-04-02 UTC
 
 ## Estimated Completion
 
-- Overall completion: 95%
-- Site/content surface: 92%
+- Overall completion: 96%
+- Site/content surface: 94%
 - Operational deployment readiness: 96%
-- Public release readiness: 92%
+- Public release readiness: 94%
 
 ## Current Stage
 
@@ -28,6 +28,7 @@ FCRI is now deployed on the Debian production VPS at `187.124.98.170` behind Ngi
 - Nginx is active on the production host and serves the app successfully.
 - HTTPS is active for `https://fcri.science`.
 - Public inquiry submission has been verified live against `https://fcri.science/api/inquiries`.
+- Public EVM treasury wallet references are now published across the support surface using `0xa8CBFC06285A23E892Fb74c34a63F28988Beb9C6`.
 
 ## Working Baseline
 
@@ -40,14 +41,12 @@ FCRI is now deployed on the Debian production VPS at `187.124.98.170` behind Ngi
 ## Remaining Gaps
 
 - SMTP credentials are still not configured, so inquiry emails are stored but notifications are not delivered.
-- Public treasury wallet addresses for crypto donations are still pending final cutover.
 - Final editorial consistency and route-by-route polish still need a release review pass.
 - Ongoing content, governance, and institutional copy refinement can continue after launch.
 
 ## What Is Left
 
 - Configure production SMTP so inquiry acknowledgments and internal notifications are delivered.
-- Replace treasury placeholders with the real EVM `USDT` and `USDC` donation addresses.
 - Do a final editorial and UX QA pass across public routes.
 - Add ongoing monitoring and operational alerting if you want stricter release discipline.
 
@@ -60,14 +59,14 @@ FCRI is now deployed on the Debian production VPS at `187.124.98.170` behind Ngi
 - Domain deployment: live on `fcri.science`
 - HTTPS status: active
 - Live intake API: verified
+- Active EVM treasury wallet: `0xa8CBFC06285A23E892Fb74c34a63F28988Beb9C6`
 
 ## Practical Assessment
 
-FCRI is now effectively live. The main remaining work is operational polish and final production configuration, not baseline deployment.
+FCRI is now effectively live. The main remaining work is SMTP enablement and final polish, not baseline deployment.
 
 ## Next Actions
 
 1. Configure SMTP credentials and validate real email delivery.
-2. Publish the final EVM donation wallet addresses.
-3. Run a route-by-route editorial and UX polish pass.
-4. Add release monitoring and backup discipline if desired.
+2. Run a route-by-route editorial and UX polish pass.
+3. Add release monitoring and backup discipline if desired.

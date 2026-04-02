@@ -44,6 +44,19 @@ export default function UseOfFundsPage() {
           </div>
         </div>
 
+        <div className="mt-16 rounded-[2rem] border border-gold/15 bg-[rgba(10,10,10,0.78)] p-8">
+          <p className="text-sm uppercase tracking-[0.25em] text-gold">Active Treasury Wallets</p>
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
+            {treasuryConfig.walletReferences.map((wallet) => (
+              <div key={wallet.label} className="rounded-2xl border border-gold/10 bg-black/30 p-5">
+                <h2 className="text-xl font-semibold text-white">{wallet.label}</h2>
+                <p className="mt-3 break-all font-mono text-sm text-gold-light">{wallet.address}</p>
+                <p className="mt-3 text-base leading-7 text-silver">{wallet.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-16 flex flex-col gap-4 sm:flex-row">
           <Link
             href="/support"

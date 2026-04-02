@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { treasuryConfig } from "@/lib/treasury";
 
 const supportLanes = [
   {
@@ -27,6 +28,12 @@ export default function SupportPage() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [feedback, setFeedback] = useState("");
+
+  async function copyWallet(address: string) {
+    await navigator.clipboard.writeText(address);
+    setFeedback("Treasury wallet copied.");
+    setStatus("success");
+  }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -97,6 +104,30 @@ export default function SupportPage() {
               <p className="mt-3 text-base leading-7 text-silver">
                 Current treasury intake is crypto-only: USDT and USDC on EVM-compatible chains. This intake form gives the institute a clean operational pathway before funds are routed.
               </p>
+            </div>
+
+            <div className="mt-6 rounded-[2rem] border border-gold/15 bg-[rgba(10,10,10,0.78)] p-6">
+              <p className="text-sm uppercase tracking-[0.25em] text-gold">Published Treasury Rails</p>
+              <div className="mt-5 grid gap-4">
+                {treasuryConfig.walletReferences.map((wallet) => (
+                  <div key={wallet.label} className="rounded-2xl border border-gold/10 bg-black/30 p-5">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                      <div>
+                        <h2 className="text-base font-semibold text-white">{wallet.label}</h2>
+                        <p className="mt-2 break-all font-mono text-sm text-gold-light">{wallet.address}</p>
+                        <p className="mt-3 text-sm leading-6 text-silver">{wallet.note}</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => copyWallet(wallet.address)}
+                        className="inline-flex items-center justify-center rounded-full border border-gold/20 px-4 py-2 text-xs font-semibold tracking-[0.08em] text-white transition-colors hover:border-gold hover:text-gold-light"
+                      >
+                        Copy
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 

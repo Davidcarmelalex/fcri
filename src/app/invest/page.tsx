@@ -1,6 +1,45 @@
 import Link from 'next/link';
 
 export default function Invest() {
+  const cards = [
+    {
+      href: "/support",
+      icon: "💝",
+      title: "Donations & Patronage",
+      body: "One-time contributions, recurring patronage, and institutional support.",
+    },
+    {
+      href: "/token",
+      icon: "🪙",
+      title: "FCRI Token",
+      body: "Participation layer in the research ecosystem - access, governance, and support.",
+    },
+    {
+      href: "/partnerships",
+      icon: "🏢",
+      title: "Institutional Partnerships",
+      body: "Collaborate with FCRI on research, systems, and deployment initiatives.",
+    },
+    {
+      href: "/ecosystem/invest",
+      icon: "📈",
+      title: "Ecosystem Investment",
+      body: "Direct investment in FCRI systems like VoltexFinance, Fusion Veritas, and more.",
+    },
+    {
+      href: "/grants",
+      icon: "📄",
+      title: "Grants & Funding",
+      body: "Apply for research grants or funding for aligned initiatives.",
+    },
+    {
+      href: "/use-of-funds",
+      icon: "📊",
+      title: "Use of Funds",
+      body: "Transparent allocation of resources across research, systems, and mission.",
+    },
+  ];
+
   return (
     <section className="py-20 bg-black">
       <div className="container mx-auto px-6">
@@ -16,78 +55,21 @@ export default function Invest() {
           </p>
         </div>
         <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Donations */}
-          <Link href="/support">
-            <a className="group flex flex-col items-center p-8 bg-black/50 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors hover:bg-black/70">
+          {cards.map((card) => (
+            <Link
+              key={card.title}
+              href={card.href}
+              className="group flex flex-col items-center rounded-lg border border-gold/20 bg-black/50 p-8 transition-colors hover:border-gold/40 hover:bg-black/70"
+            >
               <div className="flex-shrink-0 w-16 h-16 bg-gold/10 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-gold text-2xl">💝</span>
+                <span className="text-gold text-2xl">{card.icon}</span>
               </div>
-              <h3 className="font-semibold text-white group-hover:text-gold">Donations & Patronage</h3>
+              <h3 className="font-semibold text-white group-hover:text-gold">{card.title}</h3>
               <p className="mt-2 text-silver text-center max-w-sm">
-                One-time contributions, recurring patronage, and institutional support.
+                {card.body}
               </p>
-            </a>
-          </Link>
-          {/* FCRI Token */}
-          <Link href="/token">
-            <a className="group flex flex-col items-center p-8 bg-black/50 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors hover:bg-black/70">
-              <div className="flex-shrink-0 w-16 h-16 bg-gold/10 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-gold text-2xl">🪙</span>
-              </div>
-              <h3 className="font-semibold text-white group-hover:text-gold">FCRI Token</h3>
-              <p className="mt-2 text-silver text-center max-w-sm">
-                Participation layer in the research ecosystem - access, governance, and support.
-              </p>
-            </a>
-          </Link>
-          {/* Institutional Partnerships */}
-          <Link href="/partnerships">
-            <a className="group flex flex-col items-center p-8 bg-black/50 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors hover:bg-black/70">
-              <div className="flex-shrink-0 w-16 h-16 bg-gold/10 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-gold text-2xl">🏢</span>
-              </div>
-              <h3 className="font-semibold text-white group-hover:text-gold">Institutional Partnerships</h3>
-              <p className="mt-2 text-silver text-center max-w-sm">
-                Collaborate with FCRI on research, systems, and deployment initiatives.
-              </p>
-            </a>
-          </Link>
-          {/* Ecosystem Investment */}
-          <Link href="/ecosystem/invest">
-            <a className="group flex flex-col items-center p-8 bg-black/50 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors hover:bg-black/70">
-              <div className="flex-shrink-0 w-16 h-16 bg-gold/10 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-gold text-2xl">📈</span>
-              </div>
-              <h3 className="font-semibold text-white group-hover:text-gold">Ecosystem Investment</h3>
-              <p className="mt-2 text-silver text-center max-w-sm">
-                Direct investment in FCRI systems like VoltexFinance, Fusion Veritas, and more.
-              </p>
-            </a>
-          </Link>
-          {/* Grants & Funding */}
-          <Link href="/grants">
-            <a className="group flex flex-col items-center p-8 bg-black/50 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors hover:bg-black/70">
-              <div className="flex-shrink-0 w-16 h-16 bg-gold/10 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-gold text-2xl">📄</span>
-              </div>
-              <h3 className="font-semibold text-white group-hover:text-gold">Grants & Funding</h3>
-              <p className="mt-2 text-silver text-center max-w-sm">
-                Apply for research grants or funding for aligned initiatives.
-              </p>
-            </a>
-          </Link>
-          {/* Use of Funds */}
-          <Link href="/use-of-funds">
-            <a className="group flex flex-col items-center p-8 bg-black/50 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors hover:bg-black/70">
-              <div className="flex-shrink-0 w-16 h-16 bg-gold/10 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-gold text-2xl">📊</span>
-              </div>
-              <h3 className="font-semibold text-white group-hover:text-gold">Use of Funds</h3>
-              <p className="mt-2 text-silver text-center max-w-sm">
-                Transparent allocation of resources across research, systems, and mission.
-              </p>
-            </a>
-          </Link>
+            </Link>
+          ))}
         </div>
       </div>
     </section>
