@@ -1,8 +1,15 @@
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import FeatureCards from '../components/FeatureCards';
+import Footer from '../components/Footer';
+
 export default function Home() {
   return (
     <main>
-      <h1>NRLink — Wealth Without Friction</h1>
-      <p>Launching soon under FCRI.</p>
+      <Navbar />
+      <Hero />
+      <FeatureCards />
+      <Footer />
     </main>
   );
 }
