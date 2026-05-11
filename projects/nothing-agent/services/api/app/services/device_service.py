@@ -1,7 +1,10 @@
+from app.repositories.device_repository import DeviceRepository
+
 class DeviceService:
+    def __init__(self):
+        self.repo = DeviceRepository()
+
     def register(self, device_id: str, platform: str):
-        return {
-            'device_id': device_id,
-            'platform': platform,
-            'status': 'registered'
-        }
+        device = self.repo.create(device_id, platform)
+        device['status'] = 'registered'
+        return device
