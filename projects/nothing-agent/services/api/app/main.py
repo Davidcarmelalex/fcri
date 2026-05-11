@@ -1,10 +1,13 @@
 from fastapi import FastAPI
 from app.routers import health, tasks, agent, devices, memory
+from app.db import init_db
+
+init_db()
 
 app = FastAPI(
-    title='AETHER Mobile API',
+    title='MR NOTHING API',
     version='0.1.0',
-    description='Agentic mobile computing backend for Nothing Agent concept'
+    description='Agentic mobile execution backend'
 )
 
 app.include_router(health.router, prefix='/health', tags=['health'])
