@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { registerDevice, fetchDevices } from '../lib/api';
 
 export default function DevicesPage() {
-  const [result, setResult] = useState<any>(null);
   const [devices, setDevices] = useState<any[]>([]);
 
   async function refreshDevices() {
@@ -13,8 +12,7 @@ export default function DevicesPage() {
   }
 
   async function handleRegister() {
-    const data = await registerDevice('dashboard-demo-001', 'dashboard');
-    setResult(data);
+    await registerDevice('dashboard-demo-001', 'dashboard');
     refreshDevices();
   }
 
@@ -24,11 +22,27 @@ export default function DevicesPage() {
 
   return (
     <main>
-      <h1>Device Registry</h1>
+      <h1>MR NOTHING Device Registry</h1>
       <button onClick={handleRegister}>Register Demo Device</button>
-      <pre>{JSON.stringify(result, null, 2)}</pre>
       <h2>Connected Devices</h2>
-      <pre>{JSON.stringify(devices, null, 2)}</pre>
+      <table>
+        <thead>
+          <tr>
+            <th>Device ID</th>
+            <th>Platform</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {devices.map((d, i) => (
+            <tr key={i}>
+              <td>{d.device_id}</td>
+              <td>{d.platform}</td>
+              <td>{d.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </main>
   );
 }
