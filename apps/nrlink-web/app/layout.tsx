@@ -1,6 +1,8 @@
+import './globals.css';
+
 export const metadata = {
   title: 'NRLink | Wealth Without Friction',
-  description: 'Premium cross-border liquidity infrastructure.',
+  description: 'Elite premium cross-border liquidity infrastructure.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
