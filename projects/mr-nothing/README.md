@@ -1,27 +1,38 @@
 # MR NOTHING
 
-AI-native mobile execution platform prototype program.
+Open-source Android-native AI agent platform.
+
+**For Hustlers. Dreamers. Builders.**
+
+## Vision
+A tribute to friendship, human trust, technological progress, and open innovation for humanity.
+
+MR NOTHING is an MIT-licensed open-source platform for building installable AI-native Android agent systems.
 
 ## Mission
-Build two flagship prototypes on Nothing Phone (2) using stock Nothing OS, then prepare an OEM partnership proposal.
-
-## Prototype Tracks
-### MR EXECUTOR
-Voice-first AI execution assistant.
-
-### MR COMMAND CENTER
-AI-native launcher and contextual command center.
+Build transparent, extensible, installable mobile AI systems that empower humans.
 
 ## Core Stack
-- Android (Kotlin / Compose)
+- Android (Kotlin / Jetpack Compose)
 - FastAPI backend
 - Next.js dashboard
 - PostgreSQL / Redis / Qdrant
-- Voice + automation runtime
+- voice systems
+- automation runtime
+- contextual memory
 
-## Program Phases
-1. Runtime hardening
-2. Prototype 1 build
-3. Prototype 2 build
-4. Demo polish
-5. OEM proposal to Nothing
+## Install
+See INSTALL.md
+
+## Open Source
+- MIT License
+- community contributions welcome
+- responsible security disclosure
+
+## Roadmap
+- Android MVP
+- execution agent
+- voice intelligence
+- contextual memory
+- launcher experience
+- ecosystem expansion
