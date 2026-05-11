@@ -10,7 +10,7 @@ object DeviceRegistrationService {
         .build()
         .create(ApiService::class.java)
 
-    suspend fun registerDevice(): Any {
+    suspend fun registerDevice(): DeviceRegistrationResponse {
         return api.registerDevice(
             mapOf(
                 "device_id" to "android-demo-001",
