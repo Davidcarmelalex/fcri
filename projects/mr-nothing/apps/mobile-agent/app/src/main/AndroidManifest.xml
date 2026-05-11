@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:label="MR NOTHING"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.MRNothing"
         android:allowBackup="true">
         <activity
             android:name=".MainActivity"
