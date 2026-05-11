@@ -1,7 +1,9 @@
 from fastapi import FastAPI
+from app.models.device_orm import DeviceORM
 from app.routers import health, tasks, agent, devices, memory, device_list, auth
 from app.db import init_db
 
+_ = DeviceORM
 init_db()
 
 app = FastAPI(
