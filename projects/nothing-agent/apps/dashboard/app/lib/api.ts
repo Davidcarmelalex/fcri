@@ -8,3 +8,8 @@ export async function registerDevice(deviceId: string, platform: string) {
   });
   return res.json();
 }
+
+export async function fetchDevices() {
+  const res = await fetch(`${API_BASE}/devices/list`);
+  return res.json();
+}
