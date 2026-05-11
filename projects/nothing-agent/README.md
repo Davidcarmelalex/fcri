@@ -1,19 +1,38 @@
-# AETHER MOBILE / NOTHING AGENT PHONE
+# MR NOTHING
 
-## Executive Concept
-A professional agentic mobile computing platform prototype aligned with the Nothing Agent Phone concept.
+## A Tribute to Brotherhood, Loyalty, and Human Belief
 
-### Vision
-Transform the smartphone from an app launcher into an autonomous execution platform.
+MR NOTHING is more than a technology initiative.
 
-### Core Domains
-- Mobile agent runtime
-- Voice-first interaction
-- Memory systems
-- Workflow orchestration
-- Secure execution
-- Dashboard operations
-- Android integration
+It is a tribute.
+
+Built in honor of two brothers — Monichan and Rappi — known together as MR.
+
+This project stands for friendship, brotherhood, loyalty, resilience, and belief in human potential.
+
+Created during the aftermath of the hardest battles, this initiative represents the people who show up when the world disappears.
+
+For the hustlers.
+For the dreamers.
+For those who dare to push beyond limits.
+For builders who still believe impossible things can become real.
+
+### Core Message
+The greatest investment is not technology.
+The greatest investment is in humans.
+
+Relationships.
+Trust.
+Loyalty.
+Shared struggle.
+Shared vision.
+
+There is no greater empire than one built through people who stand beside you when everything is falling apart.
+
+### Product Direction
+MR NOTHING explores the future of agentic mobile computing.
+
+A platform where devices move from passive tools to active execution partners.
 
 ### Planned Architecture
 ```
@@ -32,7 +51,5 @@ design
 sdk
 ```
 
-### Strategic Positioning
-Potential proposal initiative for collaboration concept with Nothing.
-
-Built under Fusion Civilization Research Institute (FCRI).
+### Stewardship
+Fusion Civilization Research Institute (FCRI)
