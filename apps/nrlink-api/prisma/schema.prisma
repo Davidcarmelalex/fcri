@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String        @id @default(cuid())
+  email            String        @unique
+  passwordHash     String
+  organizationName String
+  role             UserRole      @default(operator)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  quotes           Quote[]
+  transactions     Transaction[]
+  beneficiaries    Beneficiary[]
+}
+
+enum UserRole {
+  operator
+  institution
+  admin
+}
+
+model Quote {
+  id             String      @id @default(cuid())
+  userId         String
+  user           User        @relation(fields: [userId], references: [id])
+  sourceCurrency String
+  targetCurrency String
+  sourceAmount   Float
+  targetAmount   Float
+  exchangeRate   Float
+  fee            Float
+  status         QuoteStatus @default(active)
+  expiresAt      DateTime
+  createdAt      DateTime    @default(now())
+  transaction    Transaction?
+}
+
+enum QuoteStatus {
+  active
+  used
+  expired
+}
+
+model Transaction {
+  id              String            @id @default(cuid())
+  userId          String
+  user            User              @relation(fields: [userId], references: [id])
+  quoteId         String            @unique
+  quote           Quote             @relation(fields: [quoteId], references: [id])
+  beneficiaryId   String
+  beneficiary     Beneficiary       @relation(fields: [beneficiaryId], references: [id])
+  sourceCurrency  String
+  targetCurrency  String
+  sourceAmount    Float
+  targetAmount    Float
+  fee             Float
+  status          TransactionStatus @default(pending)
+  reference       String            @unique @default(cuid())
+  complianceCheck ComplianceStatus  @default(pending)
+  settledAt       DateTime?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+enum TransactionStatus {
+  pending
+  processing
+  settled
+  failed
+  cancelled
+}
+
+enum ComplianceStatus {
+  pending
+  approved
+  flagged
+  rejected
+}
+
+model Beneficiary {
+  id            String        @id @default(cuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id])
+  name          String
+  country       String
+  currency      String
+  bankName      String?
+  accountNumber String?
+  iban          String?
+  swift         String?
+  verified      Boolean       @default(false)
+  createdAt     DateTime      @default(now())
+  transactions  Transaction[]
+}
+
+model WebhookEvent {
+  id          String   @id @default(cuid())
+  eventType   String
+  payload     Json
+  processed   Boolean  @default(false)
+  processedAt DateTime?
+  createdAt   DateTime @default(now())
+}
