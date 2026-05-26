@@ -23,6 +23,7 @@ export default function FAASIPage() {
             <Link href='/faasi/benchmark' className='bg-[var(--gold)] px-8 py-4 text-black font-semibold'>Explore Benchmark</Link>
             <Link href='/faasi/whitepaper' className='border border-white/20 px-8 py-4'>Read Whitepaper</Link>
             <Link href='https://github.com/Davidcarmelalex/fcri-faasi-core' className='border border-[var(--gold)] px-8 py-4 text-[var(--gold-light)]'>GitHub Repository</Link>
+            <Link href='/faasi/docs' className='border border-white/20 px-8 py-4'>Documentation</Link>
           </div>
         </div>
       </section>
@@ -34,6 +35,15 @@ export default function FAASIPage() {
               <h3 className='text-lg font-semibold'>{d}</h3>
             </div>
           ))}
+        </div>
+      </section>
+      <section className='mx-auto max-w-7xl px-6 pb-24'>
+        <div className='border border-white/10 bg-[rgba(15,15,15,0.7)] p-10'>
+          <h2 className='text-3xl font-semibold'>Downloads & Evidence</h2>
+          <div className='mt-6 flex flex-wrap gap-4'>
+            <Link href='https://github.com/Davidcarmelalex/fcri-faasi-core/tree/main/paper' className='border border-[var(--gold)] px-6 py-3 text-[var(--gold-light)]'>Research Package</Link>
+            <Link href='https://github.com/Davidcarmelalex/fcri-faasi-core/tree/main/examples' className='border border-white/20 px-6 py-3'>Benchmark Samples</Link>
+          </div>
         </div>
       </section>
     </main>
