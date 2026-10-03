@@ -1,0 +1,17 @@
+const menu = document.querySelector('.menu');
+const nav = document.querySelector('nav');
+menu.addEventListener('click', () => {const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');}));
+document.getElementById('year').textContent = new Date().getFullYear();
+const topics = {
+ intelligence:['INTELLIGENCE','Autonomous intelligence','FCRI is developing research questions around agent architectures, coordination and evaluation. A central concern is how autonomous systems can remain understandable and accountable as their capabilities expand. Planned outputs include research notes, evaluation approaches and documented prototypes.'],
+ justice:['GOVERNANCE','Computational governance','This direction explores the relationship between structured evidence, digital records and institutional decision-making. Proof-of-Justice and the Singularity-of-Law Engine are developing research concepts. They are not substitutes for qualified legal advice or established judicial processes.'],
+ systems:['SYSTEMS','Civilizational systems','We explore how identity, governance and digital infrastructure interact. The aim is to examine resilience, trust and human agency across interconnected systems through explicit assumptions and testable designs.'],
+ learning:['EDUCATION','Frontier education','Our educational development work aims to connect research with practical learning. Proposed pathways include AI and autonomous systems, digital governance, and research methods. Course launches and institutional partnerships will be announced after confirmation.']
+};
+const dialog=document.getElementById('info-dialog');
+function showInfo(label,title,body){document.getElementById('dialog-label').textContent=label;document.getElementById('dialog-title').textContent=title;const p=document.createElement('p');p.textContent=body;document.getElementById('dialog-body').replaceChildren(p);dialog.showModal();}
+document.querySelectorAll('.detail').forEach(b=>b.addEventListener('click',()=>showInfo(...topics[b.dataset.topic])));
+document.getElementById('close-dialog').addEventListener('click',()=>dialog.close());
+document.getElementById('privacy').addEventListener('click',()=>showInfo('WEBSITE INFORMATION','Privacy & publication status','This website uses no analytics, advertising trackers or cookies. Hosting infrastructure may record standard access logs. Enquiry drafts are prepared locally and opened in your chosen email app, addressed to info@fcri.science. This website does not store form submissions. Your email provider handles the message when you send it. Research descriptions represent developing work unless a published source is linked. Education offerings and collaborations remain proposed until specifically announced.'));
+document.getElementById('enquiry').addEventListener('submit',event=>{event.preventDefault();const data=new FormData(event.target);const content=['FCRI — Collaboration enquiry','',...['name','email','interest','message'].map(key=>key.toUpperCase()+': '+data.get(key))].join('\n\n');window.location.href='mailto:info@fcri.science?subject='+encodeURIComponent('FCRI: '+data.get('interest'))+'&body='+encodeURIComponent(content);document.getElementById('form-status').textContent='Your email app will open a draft to info@fcri.science. Send it there to complete your enquiry. If no app opens, email that address directly.';});
