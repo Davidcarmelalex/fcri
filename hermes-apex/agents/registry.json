@@ -1,0 +1,628 @@
+{
+  "schema_version": "1.0",
+  "status": "design",
+  "default_policy": "deny",
+  "roles": [
+    {
+      "id": "prime",
+      "kind": "orchestrator",
+      "parent": null,
+      "skills": [
+        "mission-planning"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "scholar",
+      "kind": "division",
+      "parent": "prime",
+      "skills": [
+        "scholar-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "scholar-oracle",
+      "kind": "specialist",
+      "parent": "scholar",
+      "skills": [
+        "scholar-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "scholar-axiom",
+      "kind": "specialist",
+      "parent": "scholar",
+      "skills": [
+        "scholar-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "scholar-quantum",
+      "kind": "specialist",
+      "parent": "scholar",
+      "skills": [
+        "scholar-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "scholar-scriptor",
+      "kind": "specialist",
+      "parent": "scholar",
+      "skills": [
+        "scholar-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "scholar-pedagog",
+      "kind": "specialist",
+      "parent": "scholar",
+      "skills": [
+        "scholar-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "scholar-biblion",
+      "kind": "specialist",
+      "parent": "scholar",
+      "skills": [
+        "scholar-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "sentinel",
+      "kind": "division",
+      "parent": "prime",
+      "skills": [
+        "sentinel-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "sentinel-justitia",
+      "kind": "specialist",
+      "parent": "sentinel",
+      "skills": [
+        "sentinel-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "sentinel-forensix",
+      "kind": "specialist",
+      "parent": "sentinel",
+      "skills": [
+        "sentinel-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "sentinel-argus",
+      "kind": "specialist",
+      "parent": "sentinel",
+      "skills": [
+        "sentinel-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "sentinel-evidence",
+      "kind": "specialist",
+      "parent": "sentinel",
+      "skills": [
+        "sentinel-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "sentinel-regulus",
+      "kind": "specialist",
+      "parent": "sentinel",
+      "skills": [
+        "sentinel-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "sentinel-verdict",
+      "kind": "specialist",
+      "parent": "sentinel",
+      "skills": [
+        "sentinel-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "forge",
+      "kind": "division",
+      "parent": "prime",
+      "skills": [
+        "forge-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "forge-architect",
+      "kind": "specialist",
+      "parent": "forge",
+      "skills": [
+        "forge-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "forge-codex",
+      "kind": "specialist",
+      "parent": "forge",
+      "skills": [
+        "forge-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "forge-mobile",
+      "kind": "specialist",
+      "parent": "forge",
+      "skills": [
+        "forge-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "forge-cipher",
+      "kind": "specialist",
+      "parent": "forge",
+      "skills": [
+        "forge-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "forge-deploy",
+      "kind": "specialist",
+      "parent": "forge",
+      "skills": [
+        "forge-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "forge-neural",
+      "kind": "specialist",
+      "parent": "forge",
+      "skills": [
+        "forge-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "ledger",
+      "kind": "division",
+      "parent": "prime",
+      "skills": [
+        "ledger-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "ledger-quant",
+      "kind": "specialist",
+      "parent": "ledger",
+      "skills": [
+        "ledger-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "ledger-treasury",
+      "kind": "specialist",
+      "parent": "ledger",
+      "skills": [
+        "ledger-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "ledger-valor",
+      "kind": "specialist",
+      "parent": "ledger",
+      "skills": [
+        "ledger-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "ledger-risk",
+      "kind": "specialist",
+      "parent": "ledger",
+      "skills": [
+        "ledger-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "ledger-capital",
+      "kind": "specialist",
+      "parent": "ledger",
+      "skills": [
+        "ledger-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "ledger-auditor",
+      "kind": "specialist",
+      "parent": "ledger",
+      "skills": [
+        "ledger-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "signal",
+      "kind": "division",
+      "parent": "prime",
+      "skills": [
+        "signal-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "signal-editor",
+      "kind": "specialist",
+      "parent": "signal",
+      "skills": [
+        "signal-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "signal-visual",
+      "kind": "specialist",
+      "parent": "signal",
+      "skills": [
+        "signal-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "signal-cinema",
+      "kind": "specialist",
+      "parent": "signal",
+      "skills": [
+        "signal-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "signal-vox",
+      "kind": "specialist",
+      "parent": "signal",
+      "skills": [
+        "signal-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "signal-press",
+      "kind": "specialist",
+      "parent": "signal",
+      "skills": [
+        "signal-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "signal-publisher",
+      "kind": "specialist",
+      "parent": "signal",
+      "skills": [
+        "signal-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "nexus",
+      "kind": "division",
+      "parent": "prime",
+      "skills": [
+        "nexus-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "nexus-diplomat",
+      "kind": "specialist",
+      "parent": "nexus",
+      "skills": [
+        "nexus-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "nexus-campus",
+      "kind": "specialist",
+      "parent": "nexus",
+      "skills": [
+        "nexus-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "nexus-market",
+      "kind": "specialist",
+      "parent": "nexus",
+      "skills": [
+        "nexus-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "nexus-venture",
+      "kind": "specialist",
+      "parent": "nexus",
+      "skills": [
+        "nexus-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "nexus-grants",
+      "kind": "specialist",
+      "parent": "nexus",
+      "skills": [
+        "nexus-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "nexus-global",
+      "kind": "specialist",
+      "parent": "nexus",
+      "skills": [
+        "nexus-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "civitas",
+      "kind": "division",
+      "parent": "prime",
+      "skills": [
+        "civitas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "civitas-governor",
+      "kind": "specialist",
+      "parent": "civitas",
+      "skills": [
+        "civitas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "civitas-ethos",
+      "kind": "specialist",
+      "parent": "civitas",
+      "skills": [
+        "civitas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "civitas-policy",
+      "kind": "specialist",
+      "parent": "civitas",
+      "skills": [
+        "civitas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "civitas-impact",
+      "kind": "specialist",
+      "parent": "civitas",
+      "skills": [
+        "civitas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "civitas-people",
+      "kind": "specialist",
+      "parent": "civitas",
+      "skills": [
+        "civitas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "civitas-trust",
+      "kind": "specialist",
+      "parent": "civitas",
+      "skills": [
+        "civitas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "atlas",
+      "kind": "division",
+      "parent": "prime",
+      "skills": [
+        "atlas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "atlas-chief",
+      "kind": "specialist",
+      "parent": "atlas",
+      "skills": [
+        "atlas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "atlas-memory",
+      "kind": "specialist",
+      "parent": "atlas",
+      "skills": [
+        "atlas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "atlas-tempo",
+      "kind": "specialist",
+      "parent": "atlas",
+      "skills": [
+        "atlas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "atlas-logistics",
+      "kind": "specialist",
+      "parent": "atlas",
+      "skills": [
+        "atlas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "atlas-automata",
+      "kind": "specialist",
+      "parent": "atlas",
+      "skills": [
+        "atlas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "atlas-insight",
+      "kind": "specialist",
+      "parent": "atlas",
+      "skills": [
+        "atlas-operations"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-skeptic",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-factcheck",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-redteam",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-security",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-privacy",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-citation",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-reproduce",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-legal-qa",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-finance-qa",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-editor-qa",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-reliability",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    },
+    {
+      "id": "qa-evaluator",
+      "kind": "assurance",
+      "parent": null,
+      "skills": [
+        "independent-verification"
+      ],
+      "risk": "review"
+    }
+  ]
+}
