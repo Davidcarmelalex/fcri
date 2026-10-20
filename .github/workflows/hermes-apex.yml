@@ -1,0 +1,27 @@
+name: Hermes APEX quality gates
+on:
+  push:
+    paths:
+      - 'hermes-apex/**'
+      - '.github/workflows/hermes-apex.yml'
+  pull_request:
+    paths:
+      - 'hermes-apex/**'
+      - '.github/workflows/hermes-apex.yml'
+permissions:
+  contents: read
+jobs:
+  hermes-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: hermes-apex
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate registry
+        run: python -m json.tool agents/registry.json > /dev/null
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
