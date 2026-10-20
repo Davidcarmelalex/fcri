@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "status": "design-only",
+  "agents": [
+    {
+      "id": "prime",
+      "name": "HERMES PRIME",
+      "role": "orchestrator",
+      "skills": [
+        "mission-planning",
+        "task-delegation",
+        "quality-routing"
+      ],
+      "permissions": [
+        "plan",
+        "delegate",
+        "summarize"
+      ]
+    },
+    {
+      "id": "scholar",
+      "name": "HERMES SCHOLAR",
+      "role": "research",
+      "skills": [
+        "source-verification",
+        "research-synthesis",
+        "academic-writing"
+      ],
+      "permissions": [
+        "research",
+        "draft"
+      ]
+    },
+    {
+      "id": "sentinel",
+      "name": "HERMES SENTINEL",
+      "role": "legal-and-investigation-research",
+      "skills": [
+        "evidence-provenance",
+        "public-records",
+        "legal-research"
+      ],
+      "permissions": [
+        "research",
+        "draft"
+      ]
+    },
+    {
+      "id": "forge",
+      "name": "HERMES FORGE",
+      "role": "engineering",
+      "skills": [
+        "architecture",
+        "code-review",
+        "testing"
+      ],
+      "permissions": [
+        "sandbox-code",
+        "draft"
+      ]
+    },
+    {
+      "id": "ledger",
+      "name": "HERMES LEDGER",
+      "role": "financial-analysis",
+      "skills": [
+        "forecasting",
+        "model-audit",
+        "risk-scenarios"
+      ],
+      "permissions": [
+        "analyze",
+        "draft"
+      ]
+    }
+  ]
+}
