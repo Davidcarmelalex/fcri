@@ -1,0 +1,8 @@
+[project]
+name = "fcri-hermes-apex"
+version = "0.1.0"
+requires-python = ">=3.11"
+description = "Human-governed FCRI agent orchestration prototype"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
