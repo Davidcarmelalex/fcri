@@ -2,80 +2,137 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<title>AGENT47 GEOINT | FCRI Research Console</title>
+<meta name="theme-color" content="#090b0e"><meta name="referrer" content="strict-origin-when-cross-origin">
+<title>AGENT47 // RED COMMAND — FCRI Labs</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoZgQXQmKxG8=" crossorigin="">
 <style>
-:root{color-scheme:dark;--bg:#080e17;--panel:#111d2b;--line:#314054;--gold:#d7b779;--text:#ecf2f7;--muted:#a7b7c8}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,Arial}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 22px;border-bottom:1px solid var(--line);background:#0b1522}
-h1{font-size:19px;margin:0;letter-spacing:1.5px;color:var(--gold)}.subtitle{font-size:12px;color:var(--muted)}
-button,select{background:#192b3d;color:var(--text);border:1px solid #455a71;border-radius:7px;padding:10px 13px;cursor:pointer}button:hover{border-color:var(--gold)}button:focus-visible,select:focus-visible{outline:2px solid var(--gold)}
-main{display:grid;grid-template-columns:300px minmax(0,1fr);height:calc(100vh - 72px)}
-aside{background:var(--panel);padding:20px;overflow:auto;border-right:1px solid var(--line)}
-h2{font-size:15px;color:var(--gold);margin:20px 0 9px}.kpi{background:#172536;padding:14px;margin:10px 0;border:1px solid #33475d;border-radius:8px}
-.value{font-size:27px;font-weight:700}.label{font-size:12px;color:var(--muted)}#map{height:100%;min-height:400px;background:#09121e}
-.controls{display:flex;flex-wrap:wrap;gap:8px}.note{color:var(--muted);font-size:12px;line-height:1.6}
-#status{padding:10px;border-left:3px solid var(--gold);background:#182738;line-height:1.5}
-footer{font-size:11px;color:var(--muted);line-height:1.5;margin-top:24px}
-body.presentation main{grid-template-columns:230px minmax(0,1fr)}body.presentation aside{padding:12px}
-@media(max-width:750px){main{display:flex;flex-direction:column;height:auto}aside{order:2}#map{height:62vh;min-height:400px}header{flex-wrap:wrap}}
+:root{color-scheme:dark;--bg:#090b0e;--panel:#101318;--panel2:#171b21;--line:#30363e;--red:#e04449;--redsoft:#8b262b;--gold:#c8a76a;--fg:#f0f0ec;--muted:#9ca6ad;--green:#68c5a5}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{font:14px/1.5 system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--fg)}
+button,select,input{font:inherit}button,select{color:var(--fg);background:#1b2026;border:1px solid #41474d;padding:9px 12px;border-radius:4px;cursor:pointer}button:hover,button.active{border-color:var(--red);color:white;background:#33171b}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button:disabled{opacity:.5;cursor:not-allowed}a{color:var(--gold)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.05em}
+.app{display:grid;grid-template-columns:240px minmax(0,1fr);height:100vh;min-height:650px}.sidebar{border-right:1px solid var(--line);background:#0c0f13;padding:24px 14px;display:flex;flex-direction:column;gap:22px}
+.brand{padding:0 9px 18px;border-bottom:1px solid var(--line)}.brandmark{color:var(--red);font-size:28px;font-weight:900;letter-spacing:4px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}
+.groupname{font-size:10px;color:#8e989f;letter-spacing:2px;margin:0 10px 8px}.nav{display:flex;flex-direction:column;gap:5px}.nav button{text-align:left;background:transparent;border:1px solid transparent;padding:11px 13px;color:#b9c0c6}.nav button.active{color:#fff;background:#2a1418;border-color:#713237}.nav button span{color:var(--red);margin-right:12px}
+.sidebarfoot{margin-top:auto;border-top:1px solid var(--line);padding:15px 9px;color:var(--muted);font-size:11px}.pulse{display:inline-block;background:var(--green);width:7px;height:7px;border-radius:50%;margin-right:8px;box-shadow:0 0 9px #68c5a570}
+.workspace{min-width:0;display:flex;flex-direction:column}.topbar{height:76px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-bottom:1px solid var(--line);gap:12px}.eyebrow{font-size:10px;letter-spacing:2px;color:var(--red);font-weight:700}.topbar h1{font-size:20px;margin:3px 0 0;letter-spacing:1px}.topactions{display:flex;gap:8px;align-items:center}.tag{font-size:10px;padding:6px 9px;border:1px solid #734248;color:#ff9b9e;letter-spacing:1px}
+.content{flex:1;overflow:auto;padding:20px 24px 24px;background-image:linear-gradient(#ffffff04 1px,transparent 1px),linear-gradient(90deg,#ffffff04 1px,transparent 1px);background-size:30px 30px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:15px}.metric{padding:14px 16px;background:#11151ae8;border:1px solid var(--line);border-top:2px solid #6e2b30}.metric .label{font-size:10px;color:var(--muted);letter-spacing:1.3px}.metric .num{font-size:26px;font-weight:750;margin:4px 0}.metric .sub{font-size:11px;color:#adb6bd}
+.panels{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;min-height:470px}.panel{background:#11151aeb;border:1px solid var(--line);min-width:0}.panelhead{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px}.panelhead strong{font-size:12px;letter-spacing:1.6px}.panelhead .meta{font-size:10px;color:var(--muted)}
+#map{height:420px;background:#0c1014;filter:saturate(.55) contrast(1.1)}.maptoolbar{padding:10px;display:flex;flex-wrap:wrap;gap:7px}.maptoolbar button{font-size:11px;padding:6px 10px}.rightstack{display:flex;flex-direction:column;gap:14px}.rightstack .panel{flex:1}.bodypad{padding:15px}.status{font-size:12px;line-height:1.6;color:#c2c8cb;padding:11px;background:#1c2229;border-left:2px solid var(--red);min-height:54px}.field{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #293039;font-size:12px}.field span{color:var(--muted)}.field b{font-weight:600}.tiny{font-size:11px;color:var(--muted);line-height:1.6}.section{margin-top:15px}.section h2{font-size:11px;color:var(--gold);letter-spacing:1.7px;margin:0 0 10px}
+#console{height:110px;overflow:auto;padding:12px;background:#0a0d10;border:1px solid #343a42;font-size:11px;line-height:1.7;color:#b6c2c8;white-space:pre-wrap}.command{display:flex;gap:7px;margin-top:9px}.command input{min-width:0;flex:1;background:#0b1015;color:white;border:1px solid #434a52;border-radius:4px;padding:10px}.command button{background:#4b1e23;border-color:#8b383f}
+.empty{padding:32px;max-width:720px}.empty h2{font-size:23px;margin:0 0 8px}.empty p{color:var(--muted);line-height:1.8}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}.info{padding:17px;background:#13181e;border:1px solid var(--line);border-left:2px solid var(--red)}.info h3{font-size:13px;margin:0 0 8px}.info p{font-size:12px;color:var(--muted);margin:0}.hidden{display:none!important}
+.footerline{margin-top:13px;color:var(--muted);font-size:10px;display:flex;justify-content:space-between;gap:10px}
+body.present .sidebar,body.present .metrics,body.present .rightstack,body.present .footerline{display:none}body.present .app{grid-template-columns:1fr}body.present .panels{grid-template-columns:1fr}body.present #map{height:calc(100vh - 205px);min-height:430px}
+.leaflet-container{font-family:inherit}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#181e25;color:#f0f0ec}
+@media(max-width:1050px){.app{grid-template-columns:185px minmax(0,1fr)}.panels{grid-template-columns:minmax(0,1fr)}.rightstack{display:grid;grid-template-columns:1fr 1fr}.metrics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.app{display:block;height:auto}.sidebar{padding:10px;gap:6px}.brand{padding:0 5px 6px}.brandmark{font-size:20px}.sidebarfoot,.groupname{display:none}.nav{flex-direction:row;overflow-x:auto}.nav button{white-space:nowrap;padding:8px}.topbar{height:auto;flex-wrap:wrap;padding:12px}.content{padding:12px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.rightstack{grid-template-columns:1fr}#map{height:55vh;min-height:340px}.cards{grid-template-columns:1fr}body.present .sidebar{display:none}}
 </style>
 </head>
 <body>
-<header><div><h1>AGENT47 // GEOINT</h1><div class="subtitle">FCRI LABS · RESEARCH & SEMINAR CONSOLE</div></div>
-<div class="controls"><button id="india">India</button><button id="world">World</button><button id="present">Presentation mode</button></div></header>
-<main><aside>
-<h2>RESEARCH LAYER</h2><label for="period" class="label">Earthquake observations</label>
-<select id="period"><option value="day">Past 24 hours</option><option value="week" selected>Past 7 days</option><option value="month">Past 30 days</option></select>
-<div class="controls" style="margin-top:12px"><button id="refresh">Refresh data</button><button id="demo">Demo dataset</button></div>
-<h2>OBSERVATION STATUS</h2><div id="status" role="status" aria-live="polite">Loading USGS earthquake feed…</div>
-<div class="kpi"><div class="value" id="count">—</div><div class="label">Events in selected feed</div></div>
-<div class="kpi"><div class="value" id="largest">—</div><div class="label">Largest reported magnitude</div></div>
-<div class="kpi"><div class="value" id="updated">—</div><div class="label">Feed timestamp (UTC)</div></div>
-<h2>RESEARCH NOTES</h2><p class="note">Select a circle to inspect a reported event. Marker size reflects magnitude; color indicates magnitude band. Coverage, location uncertainty and update delays vary. This is not an earthquake prediction system.</p>
-<footer>Source: USGS Earthquake Hazards Program GeoJSON feeds. Map tiles © OpenStreetMap contributors. Demo mode uses clearly labeled illustrative events. Not for emergency response or safety decisions.</footer>
-</aside><div id="map" aria-label="Interactive global earthquake research map"></div></main>
+<div class="app">
+<aside class="sidebar">
+ <div class="brand"><div class="brandmark mono">AGENT<span style="color:#fff">47</span></div><small>FCRI LABS // RED COMMAND</small></div>
+ <div><div class="groupname mono">COMMAND MODULES</div><nav class="nav" aria-label="Main navigation">
+  <button class="active" data-view="geoint"><span>◈</span> GEOINT / EARTH</button>
+  <button data-view="executive"><span>⌘</span> EXECUTIVE</button>
+  <button data-view="osiris"><span>◎</span> OSIRIS INTEL</button>
+  <button data-view="cyber"><span>⌁</span> CYBER DEFENSE</button>
+  <button data-view="research"><span>◇</span> RESEARCH LAB</button>
+  <button data-view="agents"><span>▣</span> AGENT FLEET</button>
+ </nav></div>
+ <div class="sidebarfoot mono"><span class="pulse"></span>INTERFACE READY<br>DATA: PUBLIC / DEMO<br>PRIVATE ACCESS: DISABLED</div>
+</aside>
+<div class="workspace">
+ <header class="topbar"><div><div class="eyebrow mono">FCRI // INTELLIGENCE OPERATIONS</div><h1 id="viewTitle">GLOBAL SITUATIONAL AWARENESS</h1></div>
+ <div class="topactions"><span class="tag mono">RESEARCH MODE</span><button id="present" aria-pressed="false">⛶ PRESENT</button></div></header>
+ <div class="content">
+ <div id="geoView">
+  <div class="metrics">
+   <div class="metric"><div class="label mono">PUBLIC FEED EVENTS</div><div class="num" id="count">—</div><div class="sub">Selected USGS interval</div></div>
+   <div class="metric"><div class="label mono">MAX MAGNITUDE</div><div class="num" id="largest">—</div><div class="sub">Observed feed maximum</div></div>
+   <div class="metric"><div class="label mono">FEED GENERATED</div><div class="num" style="font-size:17px" id="updated">—</div><div class="sub">UTC · Source metadata</div></div>
+   <div class="metric"><div class="label mono">INTELLIGENCE LAYERS</div><div class="num">01<span style="color:var(--red)">/06</span></div><div class="sub">One live public layer implemented</div></div>
+  </div>
+  <div class="panels">
+   <section class="panel"><div class="panelhead"><strong class="mono">◈ GEOSPATIAL OPERATIONS MAP</strong><span class="meta mono">OPENSTREETMAP / USGS</span></div>
+    <div class="maptoolbar"><button id="india">INDIA</button><button id="world">GLOBAL</button>
+    <select id="period" aria-label="Earthquake observation period"><option value="day">24 HOURS</option><option value="week" selected>7 DAYS</option><option value="month">30 DAYS</option></select>
+    <button id="refresh">↻ REFRESH</button><button id="demo">DEMO DATA</button></div>
+    <div id="map" aria-label="Interactive public earthquake observation map"></div>
+   </section>
+   <div class="rightstack">
+    <section class="panel"><div class="panelhead"><strong class="mono">SIGNAL INTELLIGENCE</strong><span class="meta">READ ONLY</span></div><div class="bodypad">
+      <div id="status" class="status" role="status" aria-live="polite">Initializing public earthquake feed…</div>
+      <div class="field"><span>Provider</span><b>USGS</b></div>
+      <div class="field"><span>Observation type</span><b>Seismic events</b></div>
+      <div class="field"><span>Data authority</span><b>Public feed</b></div>
+      <div class="field"><span>Prediction capability</span><b style="color:var(--red)">NONE</b></div>
+      <p class="tiny">Reported event locations and magnitudes may be revised. This interface is for research and education, not emergency decisions.</p>
+    </div></section>
+    <section class="panel"><div class="panelhead"><strong class="mono">AGENT47 // CONSOLE</strong><span class="meta">LOCAL DEMO</span></div><div class="bodypad">
+      <div id="console" class="mono" aria-live="polite">[BOOT] AGENT47 RED COMMAND UI ready.\n[INFO] This web console is not connected to a private AI backend.\n[INFO] Type HELP for local demo commands.</div>
+      <form id="commandForm" class="command"><input id="cmd" autocomplete="off" maxlength="100" aria-label="Demo command" placeholder="ENTER DEMO COMMAND…" /><button type="submit">EXECUTE</button></form>
+      <p class="tiny">Local commands: HELP, INDIA, WORLD, DEMO, REFRESH, STATUS, PRESENT. No shell commands or remote actions.</p>
+    </div></section>
+   </div>
+  </div>
+ </div>
+ <section id="placeholder" class="panel empty hidden"><div class="eyebrow mono">MODULE // ROADMAP</div><h2 id="placeholderTitle">Module</h2><p id="placeholderDesc"></p><div class="cards" id="placeholderCards"></div><p class="tiny">Preview architecture only. No private company data, active cyber operations or AI tools are connected to this static frontend.</p></section>
+ <div class="footerline mono"><span>AGENT47 // FCRI LABS × AIBI CAMPUS</span><span>PUBLIC DATA • RESEARCH USE • NO PRIVATE INTEGRATIONS</span></div>
+ </div>
+</div></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 "use strict";
-const map=L.map('map',{worldCopyJump:true}).setView([19,78],4);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
-const group=L.layerGroup().addTo(map);
 const el=id=>document.getElementById(id);
-const feeds={day:'all_day',week:'all_week',month:'all_month'};
+const map=L.map('map',{worldCopyJump:true,zoomControl:false}).setView([20,78],4);
+L.control.zoom({position:'bottomright'}).addTo(map);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+const group=L.layerGroup().addTo(map),feeds={day:'all_day',week:'all_week',month:'all_month'};
 const demo=[{geometry:{coordinates:[76.5,11.3,12]},properties:{mag:2.8,place:'Illustrative Kerala region',time:Date.now()-3600000}},{geometry:{coordinates:[84.7,28.1,10]},properties:{mag:4.4,place:'Illustrative Himalayan region',time:Date.now()-7200000}},{geometry:{coordinates:[139.5,36.2,25]},properties:{mag:5.6,place:'Illustrative Japan region',time:Date.now()-10800000}}];
-let generation=0;
-function safeText(v){return String(v??'Unknown').slice(0,180)}
-function render(features,stamp,isDemo){
-group.clearLayers();let max=null;
-for(const f of features){const p=f.properties||{},c=f.geometry?.coordinates||[];
-if(!Number.isFinite(c[0])||!Number.isFinite(c[1])||Math.abs(c[1])>90||Math.abs(c[0])>180)continue;
-const m=Number(p.mag);if(!Number.isFinite(m))continue;max=max===null?m:Math.max(max,m);
-const color=m>=6?'#ef7d76':m>=4?'#eac17e':'#70d3cf';
-const marker=L.circleMarker([c[1],c[0]],{radius:Math.max(4,Math.min(22,4+Math.max(0,m)*2)),color,fillColor:color,fillOpacity:.43,weight:1}).addTo(group);
-const panel=document.createElement('div');const strong=document.createElement('strong');strong.textContent=safeText(p.place);panel.append(strong);
-for(const line of ['Magnitude: '+m.toFixed(1),'UTC: '+(Number.isFinite(p.time)?new Date(p.time).toISOString():'Unknown'),'Depth: '+safeText(c[2])+' km']){const d=document.createElement('div');d.textContent=line;panel.append(d)}
-marker.bindPopup(panel);
-}
-el('count').textContent=String(features.length);el('largest').textContent=max===null?'—':max.toFixed(1);
-el('updated').textContent=stamp?new Date(stamp).toISOString().slice(0,19).replace('T',' ')+' UTC':'—';
-el('status').textContent=isDemo?'DEMO MODE — Illustrative events, not real observations.':'LIVE PUBLIC FEED — USGS observations; not real-time guarantees.';
-}
-async function load(){const id=++generation;el('status').textContent='Loading USGS data…';el('refresh').disabled=true;
-try{const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),14000);
-let response;try{response=await fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/'+feeds[el('period').value]+'.geojson',{signal:controller.signal,cache:'no-store'})}finally{clearTimeout(timeout)}
-if(!response.ok)throw new Error('HTTP '+response.status);
-const json=await response.json();if(id!==generation)return;
-if(!Array.isArray(json.features))throw new Error('Unexpected data format');
-render(json.features,json.metadata?.generated||Date.now(),false);
-}catch(err){if(id===generation){group.clearLayers();el('count').textContent='—';el('largest').textContent='—';el('updated').textContent='—';el('status').textContent='Public feed unavailable. Select Demo dataset for an offline-style illustration.'}}
-finally{if(id===generation)el('refresh').disabled=false}
-}
-el('refresh').onclick=load;el('period').onchange=load;
-el('demo').onclick=()=>{generation++;el('refresh').disabled=false;render(demo,Date.now(),true)};
-el('india').onclick=()=>map.setView([20.5,79],5);
-el('world').onclick=()=>map.setView([20,0],2);
-el('present').onclick=()=>{document.body.classList.toggle('presentation');const b=el('present');b.textContent=document.body.classList.contains('presentation')?'Normal mode':'Presentation mode';setTimeout(()=>map.invalidateSize(),100)};
+let generation=0,mode='geoint';
+function log(s){const node=el('console');node.textContent+='\n'+s;node.scrollTop=node.scrollHeight}
+function render(features,stamp,isDemo){group.clearLayers();let max=null,valid=0;
+for(const f of features){const p=f.properties||{},c=f.geometry?.coordinates||[],m=Number(p.mag);
+if(!Number.isFinite(c[0])||!Number.isFinite(c[1])||Math.abs(c[0])>180||Math.abs(c[1])>90||p.mag===null||!Number.isFinite(m))continue;
+valid++;max=max===null?m:Math.max(max,m);const color=m>=6?'#e04a4e':m>=4?'#e0a46a':'#d4c3a3';
+const marker=L.circleMarker([c[1],c[0]],{radius:Math.max(4,Math.min(20,4+Math.max(0,m)*2)),color,fillColor:color,fillOpacity:.55,weight:1}).addTo(group);
+const panel=document.createElement('div');const strong=document.createElement('strong');strong.textContent=String(p.place??'Unknown location').slice(0,180);panel.append(strong);
+for(const line of ['Magnitude: '+m.toFixed(1),'UTC: '+(Number.isFinite(p.time)?new Date(p.time).toISOString():'Unknown'),'Depth: '+String(c[2]??'Unknown')+' km']){const d=document.createElement('div');d.textContent=line;panel.append(d)}marker.bindPopup(panel)}
+el('count').textContent=String(valid);el('largest').textContent=max===null?'—':max.toFixed(1);
+el('updated').textContent=stamp?new Date(stamp).toISOString().slice(5,16).replace('T',' ')+'Z':'—';
+el('status').textContent=isDemo?'DEMO / SYNTHETIC OBSERVATIONS — not real earthquakes.':'USGS PUBLIC OBSERVATIONS — feed timestamps and coverage may vary.';
+log(isDemo?'[DEMO] Illustrative observations loaded.':'[FEED] '+valid+' public events loaded.')}
+async function load(){const id=++generation;el('status').textContent='Fetching USGS public observations…';el('refresh').disabled=true;
+try{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),14000);let response;
+try{response=await fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/'+feeds[el('period').value]+'.geojson',{signal:controller.signal,cache:'no-store'})}finally{clearTimeout(timer)}
+if(!response.ok)throw Error('Feed unavailable');const data=await response.json();if(id!==generation)return;
+if(!Array.isArray(data.features))throw Error('Invalid feed');render(data.features,data.metadata?.generated||Date.now(),false)}
+catch{if(id===generation){group.clearLayers();el('count').textContent='—';el('largest').textContent='—';el('updated').textContent='—';el('status').textContent='USGS feed unavailable. Select DEMO DATA for illustrative observations.';log('[WARN] Public feed unavailable.')}}
+finally{if(id===generation)el('refresh').disabled=false}}
+function demoLoad(){generation++;el('refresh').disabled=false;render(demo,Date.now(),true)}
+function present(){document.body.classList.toggle('present');el('present').setAttribute('aria-pressed',String(document.body.classList.contains('present')));el('present').textContent=document.body.classList.contains('present')?'EXIT PRESENT':'⛶ PRESENT';setTimeout(()=>map.invalidateSize(),150)}
+const modules={
+executive:['EXECUTIVE COMMAND','Role-scoped operational dashboards for FCRI and AIBI. No company data is connected yet.',[['DIRECTOR BRIEFINGS','Pending data connectors and authorization'],['FINANCE & ADMISSIONS','Restricted; not available in public demo'],['APPROVALS','Future human-in-the-loop workflow'],['MALAYALAM VOICE','Telegram prototype, not wired into web console']]],
+osiris:['OSIRIS INTELLIGENCE','Planned read-only intelligence API and MCP integration. No OSIRIS service is connected to this interface.',[['GLOBAL PUBLIC FEEDS','Research and source provenance'],['ENTITY RELATIONSHIPS','Public-data graph analysis'],['SCENARIO RESEARCH','Forecasts labeled as simulations'],['CYBER INTELLIGENCE','Defensive research only']]],
+cyber:['CYBER DEFENSE','Authorized defensive analysis and research, never covert access or unauthorized scanning.',[['THREAT LANDSCAPE','Public CVE and indicator feeds'],['SECURITY POSTURE','Future permissioned audits'],['INCIDENT RESPONSE','Evidence and timeline workflows'],['ACCESS CONTROL','Deny-by-default skill policies']]],
+research:['FRONTIER RESEARCH LAB','Research workflows, seminar demonstrations and source-verified analytical reports.',[['SPACE & ORBITS','Satellite research module planned'],['CLIMATE & EARTH','Environmental layers planned'],['PAPERS & CITATIONS','Research synthesis planned'],['SEMINAR PRESENTATIONS','Public-safe demonstration views']]],
+agents:['AGENT FLEET','Planned orchestration and evaluation view for AGENT47 specialist agents.',[['SKILL REGISTRY','308 proposed definitions across modules'],['EXECUTION STATUS','Not deployed in this web app'],['APPROVAL GATES','Sensitive actions require explicit approval'],['EVALUATION LAB','Reliability and security testing planned']]]};
+function switchView(view){mode=view;for(const b of document.querySelectorAll('[data-view]')){b.classList.toggle('active',b.dataset.view===view)}
+el('geoView').classList.toggle('hidden',view!=='geoint');el('placeholder').classList.toggle('hidden',view==='geoint');
+if(view==='geoint'){el('viewTitle').textContent='GLOBAL SITUATIONAL AWARENESS';setTimeout(()=>map.invalidateSize(),80);return}
+const [title,desc,cards]=modules[view];el('viewTitle').textContent=title;el('placeholderTitle').textContent=title;el('placeholderDesc').textContent=desc;
+el('placeholderCards').replaceChildren();for(const [name,description] of cards){const card=document.createElement('div');card.className='info';const h=document.createElement('h3');h.textContent=name;const p=document.createElement('p');p.textContent=description;card.append(h,p);el('placeholderCards').append(card)}}
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
+el('present').onclick=()=>{if(mode!=='geoint')switchView('geoint');present()};
+el('india').onclick=()=>map.setView([20.5,79],5);el('world').onclick=()=>map.setView([20,0],2);
+el('refresh').onclick=load;el('period').onchange=load;el('demo').onclick=demoLoad;
+el('commandForm').addEventListener('submit',e=>{e.preventDefault();const cmd=el('cmd').value.trim().toUpperCase();el('cmd').value='';if(!cmd)return;log('> '+cmd);
+switch(cmd){case 'HELP':log('HELP | INDIA | WORLD | DEMO | REFRESH | STATUS | PRESENT');break;
+case 'INDIA':switchView('geoint');map.setView([20.5,79],5);break;case 'WORLD':switchView('geoint');map.setView([20,0],2);break;
+case 'DEMO':switchView('geoint');demoLoad();break;case 'REFRESH':switchView('geoint');load();break;
+case 'STATUS':log('Local frontend only. OSIRIS, AI agents and private data are NOT connected.');break;
+case 'PRESENT':present();break;default:log('Unknown local demo command. Type HELP. No remote execution supported.')}});
 load();
-</script></body></html>
+</script>
+</body></html>
