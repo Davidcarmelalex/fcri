@@ -1,0 +1,31 @@
+name: AGENT47 CI
+on:
+  push:
+    paths:
+      - 'agent47/**'
+      - '.github/workflows/agent47-ci.yml'
+  pull_request:
+    paths:
+      - 'agent47/**'
+      - '.github/workflows/agent47-ci.yml'
+permissions:
+  contents: read
+jobs:
+  python-checks:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r agent47/gateway/requirements.txt
+      - name: Compile Python source
+        run: python -m compileall -q agent47
+      - name: Gateway tests
+        working-directory: agent47
+        run: python -m pytest gateway/tests -q
+      - name: Validate registries and frontend assets
+        run: python agent47/scripts/check_assets.py
