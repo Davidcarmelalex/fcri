@@ -7,6 +7,7 @@ from .dashboard import render_dashboard
 from .registry import AGENTS
 from .runtime import run_agent
 from . import tasks
+from .skills import list_skills
 
 app = FastAPI(title="AGENT 47", version="0.3.0", docs_url=None, redoc_url=None, openapi_url=None)
 
@@ -104,3 +105,8 @@ def execute_task(task_id: str):
         raise HTTPException(status_code=404, detail="Task not found") from exc
     except ValueError as exc:
         raise HTTPException(status_code=409, detail=str(exc)) from exc
+
+
+@app.get("/v1/skills", dependencies=[Depends(require_api_key)])
+def skills_catalog():
+    return list_skills()
