@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 from .dashboard import render_dashboard
 from .registry import AGENTS
 from .runtime import run_agent
-from . import tasks
+from . import tasks, workspace
 from .skills import list_skills
 
 app = FastAPI(title="AGENT 47", version="0.3.0", docs_url=None, redoc_url=None, openapi_url=None)
@@ -110,3 +110,31 @@ def execute_task(task_id: str):
 @app.get("/v1/skills", dependencies=[Depends(require_api_key)])
 def skills_catalog():
     return list_skills()
+
+
+class WorkspaceRead(BaseModel):
+    path: str = Field(min_length=1, max_length=240)
+
+
+class WorkspaceWrite(WorkspaceRead):
+    content: str = Field(max_length=256000)
+
+
+@app.post("/v1/workspace/read", dependencies=[Depends(require_api_key)])
+def workspace_read(body: WorkspaceRead):
+    try:
+        return {"path": body.path, "content": workspace.read_text(body.path)}
+    except (ValueError, UnicodeError) as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="File not found") from exc
+
+
+@app.post("/v1/workspace/write", dependencies=[Depends(require_api_key)], status_code=201)
+def workspace_write(body: WorkspaceWrite):
+    try:
+        return workspace.write_text(body.path, body.content)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except FileExistsError as exc:
+        raise HTTPException(status_code=409, detail="File already exists") from exc
