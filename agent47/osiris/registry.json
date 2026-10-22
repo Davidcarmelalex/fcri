@@ -1,0 +1,561 @@
+{
+  "schema_version": "0.1.0",
+  "module": "agent47-osiris",
+  "status": "specification_only",
+  "upstream": "https://github.com/simplifaisoul/osiris",
+  "docs": "https://osirisai.live/docs",
+  "domains": [
+    {
+      "id": "cyberintel",
+      "skills": [
+        {
+          "id": "cyberintel.cve_feed",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "cyberintel.malware_indicator_feed",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "cyberintel.threat_indicator_context",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "cyberintel.defensive_threat_brief",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "cyberintel.cyber_feed_freshness",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "cyberintel.incident_timeline",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "cyberintel.source_confidence",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "cyberintel.security_research_export",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "digitalosint",
+      "skills": [
+        {
+          "id": "digitalosint.dns_lookup",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "digitalosint.whois_lookup",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "digitalosint.certificate_transparency",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "digitalosint.ip_asn_context",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "digitalosint.bgp_context",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "digitalosint.public_github_metadata",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "digitalosint.public_breach_indicator",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "digitalosint.osint_source_audit",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "geopolitics",
+      "skills": [
+        {
+          "id": "geopolitics.gdelt_event_feed",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geopolitics.country_risk_context",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geopolitics.conflict_reporting_comparison",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geopolitics.regional_dossier",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geopolitics.news_source_bias_review",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geopolitics.geopolitical_timeline",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geopolitics.risk_scenario_brief",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geopolitics.geopolitical_citation",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "economics",
+      "skills": [
+        {
+          "id": "economics.market_overview",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "economics.commodity_context",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "economics.macro_event_monitor",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "economics.market_scenario_analysis",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "economics.prediction_market_context",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "economics.price_history_summary",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "economics.market_source_comparison",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "economics.economic_brief",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "infrastructure",
+      "skills": [
+        {
+          "id": "infrastructure.port_context",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "infrastructure.shipping_chokepoints",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "infrastructure.public_infrastructure_layers",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "infrastructure.supply_chain_context",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "infrastructure.environmental_exposure",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "infrastructure.infrastructure_data_quality",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "infrastructure.regional_logistics_brief",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "infrastructure.infrastructure_source_audit",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "entitygraph",
+      "skills": [
+        {
+          "id": "entitygraph.public_entity_expansion",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "entitygraph.relation_provenance",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "entitygraph.graph_exploration",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "entitygraph.entity_disambiguation",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "entitygraph.relationship_timeline",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "entitygraph.graph_export_draft",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "entitygraph.source_crosscheck",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "entitygraph.graph_research_brief",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "simulation",
+      "skills": [
+        {
+          "id": "simulation.scenario_question_design",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "simulation.actor_model_review",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "simulation.assumption_registry",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "simulation.forecast_run_proposal",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "simulation.forecast_progress_read",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "simulation.scenario_comparison",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "simulation.uncertainty_report",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "simulation.forecast_source_audit",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "briefings",
+      "skills": [
+        {
+          "id": "briefings.cross_feed_summary",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "briefings.research_dossier_draft",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "briefings.source_citation_check",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "briefings.data_freshness_report",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "briefings.executive_brief_draft",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "briefings.seminar_demo_script",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "briefings.malayalam_narration_draft",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "briefings.research_export_draft",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    }
+  ]
+}
