@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>AGENT47 GEOINT | FCRI Research Console</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoZgQXQmKxG8=" crossorigin="">
+<style>
+:root{color-scheme:dark;--bg:#080e17;--panel:#111d2b;--line:#314054;--gold:#d7b779;--text:#ecf2f7;--muted:#a7b7c8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,Arial}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 22px;border-bottom:1px solid var(--line);background:#0b1522}
+h1{font-size:19px;margin:0;letter-spacing:1.5px;color:var(--gold)}.subtitle{font-size:12px;color:var(--muted)}
+button,select{background:#192b3d;color:var(--text);border:1px solid #455a71;border-radius:7px;padding:10px 13px;cursor:pointer}button:hover{border-color:var(--gold)}button:focus-visible,select:focus-visible{outline:2px solid var(--gold)}
+main{display:grid;grid-template-columns:300px minmax(0,1fr);height:calc(100vh - 72px)}
+aside{background:var(--panel);padding:20px;overflow:auto;border-right:1px solid var(--line)}
+h2{font-size:15px;color:var(--gold);margin:20px 0 9px}.kpi{background:#172536;padding:14px;margin:10px 0;border:1px solid #33475d;border-radius:8px}
+.value{font-size:27px;font-weight:700}.label{font-size:12px;color:var(--muted)}#map{height:100%;min-height:400px;background:#09121e}
+.controls{display:flex;flex-wrap:wrap;gap:8px}.note{color:var(--muted);font-size:12px;line-height:1.6}
+#status{padding:10px;border-left:3px solid var(--gold);background:#182738;line-height:1.5}
+footer{font-size:11px;color:var(--muted);line-height:1.5;margin-top:24px}
+body.presentation main{grid-template-columns:230px minmax(0,1fr)}body.presentation aside{padding:12px}
+@media(max-width:750px){main{display:flex;flex-direction:column;height:auto}aside{order:2}#map{height:62vh;min-height:400px}header{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<header><div><h1>AGENT47 // GEOINT</h1><div class="subtitle">FCRI LABS · RESEARCH & SEMINAR CONSOLE</div></div>
+<div class="controls"><button id="india">India</button><button id="world">World</button><button id="present">Presentation mode</button></div></header>
+<main><aside>
+<h2>RESEARCH LAYER</h2><label for="period" class="label">Earthquake observations</label>
+<select id="period"><option value="day">Past 24 hours</option><option value="week" selected>Past 7 days</option><option value="month">Past 30 days</option></select>
+<div class="controls" style="margin-top:12px"><button id="refresh">Refresh data</button><button id="demo">Demo dataset</button></div>
+<h2>OBSERVATION STATUS</h2><div id="status" role="status" aria-live="polite">Loading USGS earthquake feed…</div>
+<div class="kpi"><div class="value" id="count">—</div><div class="label">Events in selected feed</div></div>
+<div class="kpi"><div class="value" id="largest">—</div><div class="label">Largest reported magnitude</div></div>
+<div class="kpi"><div class="value" id="updated">—</div><div class="label">Feed timestamp (UTC)</div></div>
+<h2>RESEARCH NOTES</h2><p class="note">Select a circle to inspect a reported event. Marker size reflects magnitude; color indicates magnitude band. Coverage, location uncertainty and update delays vary. This is not an earthquake prediction system.</p>
+<footer>Source: USGS Earthquake Hazards Program GeoJSON feeds. Map tiles © OpenStreetMap contributors. Demo mode uses clearly labeled illustrative events. Not for emergency response or safety decisions.</footer>
+</aside><div id="map" aria-label="Interactive global earthquake research map"></div></main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+"use strict";
+const map=L.map('map',{worldCopyJump:true}).setView([19,78],4);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+const group=L.layerGroup().addTo(map);
+const el=id=>document.getElementById(id);
+const feeds={day:'all_day',week:'all_week',month:'all_month'};
+const demo=[{geometry:{coordinates:[76.5,11.3,12]},properties:{mag:2.8,place:'Illustrative Kerala region',time:Date.now()-3600000}},{geometry:{coordinates:[84.7,28.1,10]},properties:{mag:4.4,place:'Illustrative Himalayan region',time:Date.now()-7200000}},{geometry:{coordinates:[139.5,36.2,25]},properties:{mag:5.6,place:'Illustrative Japan region',time:Date.now()-10800000}}];
+let generation=0;
+function safeText(v){return String(v??'Unknown').slice(0,180)}
+function render(features,stamp,isDemo){
+group.clearLayers();let max=null;
+for(const f of features){const p=f.properties||{},c=f.geometry?.coordinates||[];
+if(!Number.isFinite(c[0])||!Number.isFinite(c[1])||Math.abs(c[1])>90||Math.abs(c[0])>180)continue;
+const m=Number(p.mag);if(!Number.isFinite(m))continue;max=max===null?m:Math.max(max,m);
+const color=m>=6?'#ef7d76':m>=4?'#eac17e':'#70d3cf';
+const marker=L.circleMarker([c[1],c[0]],{radius:Math.max(4,Math.min(22,4+Math.max(0,m)*2)),color,fillColor:color,fillOpacity:.43,weight:1}).addTo(group);
+const panel=document.createElement('div');const strong=document.createElement('strong');strong.textContent=safeText(p.place);panel.append(strong);
+for(const line of ['Magnitude: '+m.toFixed(1),'UTC: '+(Number.isFinite(p.time)?new Date(p.time).toISOString():'Unknown'),'Depth: '+safeText(c[2])+' km']){const d=document.createElement('div');d.textContent=line;panel.append(d)}
+marker.bindPopup(panel);
+}
+el('count').textContent=String(features.length);el('largest').textContent=max===null?'—':max.toFixed(1);
+el('updated').textContent=stamp?new Date(stamp).toISOString().slice(0,19).replace('T',' ')+' UTC':'—';
+el('status').textContent=isDemo?'DEMO MODE — Illustrative events, not real observations.':'LIVE PUBLIC FEED — USGS observations; not real-time guarantees.';
+}
+async function load(){const id=++generation;el('status').textContent='Loading USGS data…';el('refresh').disabled=true;
+try{const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),14000);
+let response;try{response=await fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/'+feeds[el('period').value]+'.geojson',{signal:controller.signal,cache:'no-store'})}finally{clearTimeout(timeout)}
+if(!response.ok)throw new Error('HTTP '+response.status);
+const json=await response.json();if(id!==generation)return;
+if(!Array.isArray(json.features))throw new Error('Unexpected data format');
+render(json.features,json.metadata?.generated||Date.now(),false);
+}catch(err){if(id===generation){group.clearLayers();el('count').textContent='—';el('largest').textContent='—';el('updated').textContent='—';el('status').textContent='Public feed unavailable. Select Demo dataset for an offline-style illustration.'}}
+finally{if(id===generation)el('refresh').disabled=false}
+}
+el('refresh').onclick=load;el('period').onchange=load;
+el('demo').onclick=()=>{generation++;el('refresh').disabled=false;render(demo,Date.now(),true)};
+el('india').onclick=()=>map.setView([20.5,79],5);
+el('world').onclick=()=>map.setView([20,0],2);
+el('present').onclick=()=>{document.body.classList.toggle('presentation');const b=el('present');b.textContent=document.body.classList.contains('presentation')?'Normal mode':'Presentation mode';setTimeout(()=>map.invalidateSize(),100)};
+load();
+</script></body></html>
