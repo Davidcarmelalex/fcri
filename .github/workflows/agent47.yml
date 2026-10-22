@@ -1,0 +1,25 @@
+name: Agent 47 checks
+on:
+  pull_request:
+    paths:
+      - 'apps/agent47/**'
+      - '.github/workflows/agent47.yml'
+  push:
+    paths:
+      - 'apps/agent47/**'
+      - '.github/workflows/agent47.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/agent47
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pytest -q
+      - run: python -m compileall -q app
+      - run: docker build -t agent47:test .
