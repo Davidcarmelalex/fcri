@@ -1,0 +1,513 @@
+{
+  "schema_version": "0.1.0",
+  "module": "agent47-geoint",
+  "status": "specification_only",
+  "upstream": "https://github.com/bilawalsidhu/gods-eye-view",
+  "integration_mode": "separate_local_service",
+  "domains": [
+    {
+      "id": "space",
+      "name": "Space & Orbital Research",
+      "skills": [
+        {
+          "id": "space.satellite_catalog",
+          "description": "satellite catalog",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "space.satellite_pass_forecast",
+          "description": "satellite pass forecast",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "space.orbital_visualization",
+          "description": "orbital visualization",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "space.space_mission_brief",
+          "description": "space mission brief",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "space.orbital_data_freshness",
+          "description": "orbital data freshness",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "space.launch_event_context",
+          "description": "launch event context",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "space.space_education_scene",
+          "description": "space education scene",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "space.space_source_citation",
+          "description": "space source citation",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "aviation",
+      "name": "Aviation Research",
+      "skills": [
+        {
+          "id": "aviation.flight_feed_overview",
+          "description": "flight feed overview",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "aviation.aircraft_metadata",
+          "description": "aircraft metadata",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "aviation.route_visualization",
+          "description": "route visualization",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "aviation.airport_activity_summary",
+          "description": "airport activity summary",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "aviation.flight_data_freshness",
+          "description": "flight data freshness",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "aviation.aviation_trend_report",
+          "description": "aviation trend report",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "aviation.airspace_context",
+          "description": "airspace context",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "aviation.aviation_source_citation",
+          "description": "aviation source citation",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "maritime",
+      "name": "Maritime & Logistics Research",
+      "skills": [
+        {
+          "id": "maritime.vessel_feed_overview",
+          "description": "vessel feed overview",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "maritime.vessel_metadata",
+          "description": "vessel metadata",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "maritime.shipping_corridor_map",
+          "description": "shipping corridor map",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "maritime.port_activity_summary",
+          "description": "port activity summary",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "maritime.maritime_data_freshness",
+          "description": "maritime data freshness",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "maritime.trade_route_analysis",
+          "description": "trade route analysis",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "maritime.maritime_trend_report",
+          "description": "maritime trend report",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "maritime.maritime_source_citation",
+          "description": "maritime source citation",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "environment",
+      "name": "Climate & Disaster Research",
+      "skills": [
+        {
+          "id": "environment.earthquake_feed",
+          "description": "earthquake feed",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "environment.storm_track_overview",
+          "description": "storm track overview",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "environment.weather_layer_summary",
+          "description": "weather layer summary",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "environment.wildfire_feed",
+          "description": "wildfire feed",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "environment.disaster_timeline",
+          "description": "disaster timeline",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "environment.environmental_trend_report",
+          "description": "environmental trend report",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "environment.feed_staleness_check",
+          "description": "feed staleness check",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "environment.disaster_source_citation",
+          "description": "disaster source citation",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "urban",
+      "name": "Urban & Infrastructure Research",
+      "skills": [
+        {
+          "id": "urban.city_map_context",
+          "description": "city map context",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "urban.infrastructure_layer",
+          "description": "infrastructure layer",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "urban.road_network_overview",
+          "description": "road network overview",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "urban.public_facility_distribution",
+          "description": "public facility distribution",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "urban.urban_change_research",
+          "description": "urban change research",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "urban.geospatial_overlay",
+          "description": "geospatial overlay",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "urban.urban_source_citation",
+          "description": "urban source citation",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "urban.map_data_quality",
+          "description": "map data quality",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "geoint",
+      "name": "Geospatial Research & OSINT",
+      "skills": [
+        {
+          "id": "geoint.scene_link",
+          "description": "scene link",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geoint.coordinate_lookup",
+          "description": "coordinate lookup",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geoint.layer_inventory",
+          "description": "layer inventory",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geoint.geospatial_annotation",
+          "description": "geospatial annotation",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geoint.public_source_correlation",
+          "description": "public source correlation",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geoint.map_research_brief",
+          "description": "map research brief",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geoint.evidence_provenance",
+          "description": "evidence provenance",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geoint.geospatial_export",
+          "description": "geospatial export",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geoint.scene_snapshot",
+          "description": "scene snapshot",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geoint.temporal_comparison",
+          "description": "temporal comparison",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geoint.research_question_planning",
+          "description": "research question planning",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "geoint.data_license_review",
+          "description": "data license review",
+          "status": "specification_only",
+          "default_access": "deny",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    }
+  ]
+}
