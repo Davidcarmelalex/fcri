@@ -6,6 +6,7 @@ services:
     env_file: .env
     environment:
       AGENT47_DB_PATH: /data/agent47.db
+      AGENT47_TASK_DB_PATH: /data/agent47-tasks.db
     ports:
       - "127.0.0.1:8747:8747"
     volumes:
