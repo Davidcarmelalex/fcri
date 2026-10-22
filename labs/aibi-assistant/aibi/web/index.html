@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AIBI · Executive desk</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header><div class="brand">FCRI <span>LABS</span></div><div>AIBI CAMPUS <span class="pill">AGENT47</span></div></header>
+<main>
+<p class="eyebrow">MANAGEMENT INTELLIGENCE</p><h1>Your campus.<br>A clearer view.</h1>
+<p class="intro">Briefings, decisions and follow-through in one executive desk.</p>
+<aside><strong>Demonstration environment</strong> · Synthetic data. Calendar invitations, messages and payments are simulated.</aside>
+<section id="login"><h2>Open your desk</h2><p>Use the private credential file issued by your local administrator. Access is limited by your assigned role.</p><label>Credential file <input id="credential" type="file" accept=".token,text/plain"></label><button id="connect">Connect</button></section>
+<p id="status" role="status" aria-live="polite"></p>
+<div id="desk" hidden>
+<div class="toolbar"><p id="identity"></p><label>Language <select id="language"><option value="en">English</option><option value="ml">മലയാളം</option></select></label><button id="logout" class="secondary">Lock desk</button></div>
+<section><div class="heading"><h2 id="brief-title">Campus briefing</h2><button id="refresh" class="secondary">Refresh</button></div><form id="ask"><label>Ask for a briefing <input id="message" maxlength="2000" value="Give me an executive briefing" required></label><button>Ask assistant</button></form><p id="answer"></p><div id="metrics" class="metrics"></div><div id="sections" class="sections"></div></section>
+<section><h2>Draft an action</h2><p>Calendar, outbound, financial, deletion and retention requests need approval from a different authorized person. Review the exact content before submitting.</p><form id="action-form"><label>Action <select id="operation"><option value="task.create">Create task</option><option value="meeting.record">Record meeting and action items</option><option value="calendar.create">Schedule meeting · simulated</option><option value="outbound.send">Send message · simulated</option><option value="expense.pay">Pay expense · simulated</option><option value="record.delete">Delete record</option><option value="retention.set">Change retention</option></select></label><div id="fields"></div><button>Submit for processing</button></form></section>
+<section><div class="heading"><h2>Decision queue</h2><button id="queue-refresh" class="secondary">Refresh queue</button></div><p>Approvals expire after 24 hours. Execution uses the exact reviewed content.</p><div id="queue"></div></section>
+<section><h2>Audit trail</h2><button id="audit-refresh" class="secondary">Load audit trail</button><div id="audit"></div></section>
+</div>
+<footer>FCRI Labs · AIBI executive assistant · Mock adapters</footer>
+</main></body></html>
