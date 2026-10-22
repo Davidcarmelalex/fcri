@@ -19,9 +19,9 @@ Call `GET /health` without authentication, or `GET /v1/status` with `X-API-Key`.
 
 * No shell, browser, network reconnaissance, or external tool execution.
 * No production integration with Hermes, God’s Eye View, Osiris, or GitHub until APIs and permissions are reviewed.
-* API keys are read from the environment; missing keys prevent startup.
+* API keys are read from the environment; missing keys prevent authenticated API access.
 * This single shared-key prototype is **not** director-level identity or RBAC. Before onboarding directors, add SSO/MFA, per-user permissions, audit logs, and approval-gated actions.
-* Never use the API key in browser client-side code.
+* The prototype dashboard accepts the API key in browser memory (not persistent storage). Only use it over localhost or a trusted private tunnel; never on a publicly exposed HTTP endpoint.
 
 ## Roadmap
 
