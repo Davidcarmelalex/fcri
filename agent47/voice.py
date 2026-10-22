@@ -11,7 +11,8 @@ import tempfile
 from pathlib import Path
 from telegram import Update
 from telegram.ext import ContextTypes
-from openai import AsyncOpenAI\nfrom assistant import answer
+from openai import AsyncOpenAI
+from assistant import answer
 
 MAX_VOICE_BYTES = 10 * 1024 * 1024
 MAX_DURATION = 120
