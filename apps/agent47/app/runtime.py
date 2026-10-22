@@ -9,6 +9,7 @@ import threading
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import httpx
 
@@ -66,8 +67,9 @@ def run_agent(prompt, session=None):
     model = os.getenv("AGENT47_MODEL", "")
     if not token or not base or not model:
         raise RuntimeError("Model provider not configured")
-    if not base.startswith("https://"):
-        raise RuntimeError("Model endpoint must use HTTPS")
+    parsed = urlsplit(base)
+    if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password or parsed.fragment or parsed.query:
+        raise RuntimeError("Model endpoint must be a valid HTTPS base URL")
     session = session or uuid.uuid4().hex
     if len(session) > 100 or not all(c.isalnum() or c in "-_" for c in session):
         raise ValueError("Invalid session")
@@ -79,10 +81,17 @@ def run_agent(prompt, session=None):
         for _ in range(4):
             resp = client.post(url, headers={"Authorization":"Bearer "+token}, json={"model":model,"messages":messages,"tools":TOOLS,"tool_choice":"auto","max_tokens":1500})
             resp.raise_for_status()
-            choice = resp.json()["choices"][0]["message"]
+            try:
+                choice = resp.json()["choices"][0]["message"]
+                if not isinstance(choice, dict):
+                    raise TypeError("Invalid message")
+            except (KeyError, IndexError, TypeError, ValueError) as exc:
+                raise RuntimeError("Invalid model provider response") from exc
             calls = choice.get("tool_calls") or []
             if not calls:
                 answer = choice.get("content") or ""
+                if not isinstance(answer, str):
+                    raise RuntimeError("Invalid assistant response content")
                 remember(session, "user", prompt)
                 remember(session, "assistant", answer)
                 return {"session":session,"answer":answer}
