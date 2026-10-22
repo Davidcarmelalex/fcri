@@ -2,7 +2,7 @@
 import logging
 import os
 from telegram import Update
-from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters\nfrom voice import voice_message
 
 logging.basicConfig(level=logging.INFO)
 ALLOWED = {int(x.strip()) for x in os.environ.get("AGENT47_ALLOWED_USER_IDS", "").split(",") if x.strip().isdigit()}
@@ -52,7 +52,7 @@ def main():
     app=Application.builder().token(token).build()
     for name,fn in [("start",start),("help",start),("briefing",briefing),("tasks",tasks),("admissions",admissions),("finance",finance),("approvals",approvals)]:
         app.add_handler(CommandHandler(name,fn))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND,message))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND,message))\n    app.add_handler(MessageHandler(filters.VOICE, voice_message))
     app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__=="__main__": main()
