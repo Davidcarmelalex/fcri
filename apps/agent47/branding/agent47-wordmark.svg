@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="240" viewBox="0 0 1200 240" role="img" aria-labelledby="title">
+<title id="title">AGENT 47 — FCRI × AIBI</title>
+<rect width="1200" height="240" rx="24" fill="#070B10"/>
+<path d="M72 172 134 56l62 116h-32l-30-61-30 61Z" fill="#DCEFEB"/>
+<path d="M99 158h70" stroke="#070B10" stroke-width="12"/>
+<text x="218" y="154" fill="#E6F4F0" font-family="monospace" font-weight="700" font-size="88" letter-spacing="8">AGENT</text>
+<text x="676" y="154" fill="#6CDDC4" font-family="monospace" font-weight="700" font-size="88" letter-spacing="5">47</text>
+<path d="M219 177h606" stroke="#244A49" stroke-width="2"/>
+<text x="220" y="207" fill="#88A6A2" font-family="monospace" font-size="20" letter-spacing="6">FCRI × AIBI  /  COMMAND SYSTEM</text>
+</svg>
