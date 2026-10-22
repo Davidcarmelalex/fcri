@@ -2,6 +2,7 @@
 import ast
 import json
 import operator
+import math
 import os
 import sqlite3
 import threading
@@ -33,7 +34,7 @@ def history(session):
 
 
 def calculate(expr):
-    if len(expr) > 120:
+    if not isinstance(expr, str) or len(expr) > 120:
         raise ValueError("Expression too long")
     def evaluate(node, depth=0):
         if depth > 12:
@@ -41,13 +42,13 @@ def calculate(expr):
         if isinstance(node, ast.Expression):
             return evaluate(node.body, depth + 1)
         if isinstance(node, ast.Constant) and type(node.value) in (int, float):
-            if abs(node.value) > 1e12:
+            if not math.isfinite(node.value) or abs(node.value) > 1e12:
                 raise ValueError("Number too large")
             return node.value
         if isinstance(node, ast.BinOp) and type(node.op) in OPS:
             a, b = evaluate(node.left, depth + 1), evaluate(node.right, depth + 1)
             result = OPS[type(node.op)](a, b)
-            if abs(result) > 1e15:
+            if not math.isfinite(result) or abs(result) > 1e15:
                 raise ValueError("Result too large")
             return result
         raise ValueError("Unsupported expression")
@@ -86,7 +87,9 @@ def run_agent(prompt, session=None):
                 remember(session, "assistant", answer)
                 return {"session":session,"answer":answer}
             messages.append(choice)
-            for call in calls[:3]:
+            if len(calls) > 3:
+                raise RuntimeError('Model exceeded per-round tool-call limit')
+            for call in calls:
                 fn = call.get("function", {})
                 try:
                     if fn.get("name") != "calculate":
@@ -95,5 +98,7 @@ def run_agent(prompt, session=None):
                     result = str(calculate(args["expression"]))
                 except (ValueError, KeyError, TypeError, ZeroDivisionError, SyntaxError, OverflowError) as exc:
                     result = "Tool error: " + str(exc)
+                if not isinstance(call.get("id"), str):
+                    raise RuntimeError("Provider returned invalid tool-call identifier")
                 messages.append({"role":"tool","tool_call_id":call["id"],"content":result})
     raise RuntimeError("Agent exceeded tool-call limit")
