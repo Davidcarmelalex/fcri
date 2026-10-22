@@ -12,10 +12,7 @@ if [[ ! -f .env ]]; then
   echo "Run: nano .env"
   exit 2
 fi
-set -a
-source .env
-set +a
-if [[ -z "${TELEGRAM_BOT_TOKEN:-}" || "${TELEGRAM_BOT_TOKEN}" == replace_* || -z "${AGENT47_ALLOWED_USER_IDS:-}" || "${AGENT47_ALLOWED_USER_IDS}" == 123456789 ]]; then
+if ! grep -Eq "^TELEGRAM_BOT_TOKEN=[^[:space:]]+" .env || grep -Eq "^TELEGRAM_BOT_TOKEN=replace_" .env || ! grep -Eq "^AGENT47_ALLOWED_USER_IDS=[0-9]+(,[0-9]+)*$" .env || grep -Eq "^AGENT47_ALLOWED_USER_IDS=123456789$" .env; then
   echo "Set valid TELEGRAM_BOT_TOKEN and AGENT47_ALLOWED_USER_IDS in .env first." >&2
   exit 2
 fi
