@@ -11,7 +11,7 @@ import tempfile
 from pathlib import Path
 from telegram import Update
 from telegram.ext import ContextTypes
-from openai import AsyncOpenAI
+from openai import AsyncOpenAI\nfrom assistant import answer
 
 MAX_VOICE_BYTES = 10 * 1024 * 1024
 MAX_DURATION = 120
@@ -25,7 +25,7 @@ async def voice_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not voice or voice.duration > MAX_DURATION or (voice.file_size or 0) > MAX_VOICE_BYTES:
         await update.effective_message.reply_text('Voice notes must be under 2 minutes and 10 MB. / 2 മിനിറ്റിൽ താഴെയുള്ള വോയ്സ് നോട്ട് അയയ്ക്കൂ.')
         return
-    if not os.getenv('OPENAI_API_KEY'):
+    if not os.getenv('OPENAI_API_KEY') or os.getenv('OPENAI_API_KEY','').startswith('replace_'):
         await update.effective_message.reply_text('Voice service is not configured yet. Contact the administrator.')
         return
     client = AsyncOpenAI()
@@ -42,9 +42,7 @@ async def voice_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         text = transcription.text.strip()
         # This first integration is explicitly read-only and has no real management data.
-        reply = ('നിങ്ങളുടെ വോയ്സ് സന്ദേശം ലഭിച്ചു. നിങ്ങൾ പറഞ്ഞത്: ' + text +
-                 '. നിലവിൽ എഐബിഐയുടെ തത്സമയ ഡാറ്റ ബന്ധിപ്പിച്ചിട്ടില്ല. ' +
-                 'അതിനാൽ യഥാർത്ഥ സാമ്പത്തികമോ അഡ്മിഷൻ റിപ്പോർട്ടുകളോ ഇപ്പോൾ നൽകാൻ കഴിയില്ല.')
+        reply = await answer(text)
         # Reply in text too: accessible fallback if synthesis is poor.
         await update.effective_message.reply_text(reply[:3500])
         with tempfile.TemporaryDirectory(prefix='agent47-voice-') as temp:
