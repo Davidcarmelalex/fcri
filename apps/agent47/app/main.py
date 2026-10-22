@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 from .dashboard import render_dashboard
 from .registry import AGENTS
 from .runtime import run_agent
+from . import tasks
 
 app = FastAPI(title="AGENT 47", version="0.3.0", docs_url=None, redoc_url=None, openapi_url=None)
 
@@ -67,3 +68,39 @@ def chat(body: ChatRequest) -> dict[str, str]:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     except Exception as exc:
         raise HTTPException(status_code=502, detail="Model provider request failed") from exc
+
+
+class TaskRequest(BaseModel):
+    agent: str = Field(min_length=1, max_length=32)
+    prompt: str = Field(min_length=1, max_length=8000)
+
+
+@app.post("/v1/tasks", dependencies=[Depends(require_api_key)], status_code=201)
+def create_task(body: TaskRequest):
+    try:
+        return tasks.submit(body.agent, body.prompt)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/v1/tasks", dependencies=[Depends(require_api_key)])
+def list_tasks():
+    return tasks.list_tasks()
+
+
+@app.get("/v1/tasks/{task_id}", dependencies=[Depends(require_api_key)])
+def get_task(task_id: str):
+    try:
+        return tasks.get(task_id)
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail="Task not found") from exc
+
+
+@app.post("/v1/tasks/{task_id}/execute", dependencies=[Depends(require_api_key)])
+def execute_task(task_id: str):
+    try:
+        return tasks.execute(task_id)
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail="Task not found") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
