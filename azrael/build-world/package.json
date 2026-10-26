@@ -1,0 +1,1 @@
+{"name":"azrael-build-world","private":true,"type":"module","scripts":{"start":"node server.mjs","test":"node --test test/*.test.mjs","report":"node report.mjs"},"engines":{"node":">=22"}}

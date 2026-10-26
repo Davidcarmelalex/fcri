@@ -1,0 +1,26 @@
+[Unit]
+Description=AZRAEL pixel build world
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=azrael-world
+Group=azrael-world
+WorkingDirectory=/srv/azrael-build-world
+Environment=HOST=127.0.0.1
+Environment=PORT=3088
+Environment=AZRAEL_ACTIVITY_FILE=/var/lib/azrael-build-world/activity.jsonl
+EnvironmentFile=-/etc/azrael-build-world.env
+ExecStart=/srv/agentrunme/runtime/node-v24.22.1/bin/node /srv/azrael-build-world/server.mjs
+Restart=on-failure
+RestartSec=5
+StateDirectory=azrael-build-world
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+[Install]
+WantedBy=multi-user.target
