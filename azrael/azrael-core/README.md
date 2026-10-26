@@ -1,5 +1,9 @@
 # azrael-core
 
+Agent execution now separates planning from authorization and execution.
+See [the execution contract](docs/authorized-execution.md) for migration,
+the unchanged policy matrix, audit records, and retry limitations.
+
 Core autonomous defense engine for the AZRAEL initiative.
 
 ## Purpose

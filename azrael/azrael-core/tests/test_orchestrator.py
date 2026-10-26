@@ -6,7 +6,7 @@ import asyncio
 from unittest.mock import AsyncMock, MagicMock
 from azrael_core.orchestrator import (
     AzraelOrchestrator, PolicyEngine, ThreatEvent,
-    ThreatLevel, ResponseAction, DefenseResponse
+    ThreatLevel, ResponseAction, ResponsePlan
 )
 
 
@@ -55,19 +55,22 @@ class TestAzraelOrchestrator:
         mock_agent = MagicMock()
         mock_agent.agent_id = "test-agent"
         mock_agent.capabilities = ["quarantine"]
-        mock_agent.handle = AsyncMock(return_value=DefenseResponse(
-            event_id="e1",
+        mock_agent.plan = AsyncMock(side_effect=lambda event: ResponsePlan(
+            event_id=event.id,
             action=ResponseAction.QUARANTINE,
             target="host-1",
             rationale="test",
             policy_ref="test-policy",
         ))
+        mock_agent.execute = AsyncMock(return_value=True)
         orchestrator.register_agent(mock_agent)
         
         low_event = ThreatEvent(event_type="test", severity=ThreatLevel.LOW)
         responses = await orchestrator._process(low_event)
         assert len(responses) == 0  # Quarantine blocked for LOW
+        mock_agent.execute.assert_not_awaited()
         
         critical_event = ThreatEvent(event_type="test", severity=ThreatLevel.CRITICAL)
         responses = await orchestrator._process(critical_event)
         assert len(responses) == 1  # Authorized for CRITICAL
+        mock_agent.execute.assert_awaited_once()

@@ -19,6 +19,8 @@ from .orchestrator import (
     ThreatLevel,
     ResponseAction,
     DefenseResponse,
+    ResponsePlan,
+    AuditRecord,
 )
 from .sense import SenseLayer, EventNormalizer, EventIngester
 from .heal import HealLayer, SystemSnapshot, RecoveryAction
@@ -31,6 +33,8 @@ __all__ = [
     "ThreatLevel",
     "ResponseAction",
     "DefenseResponse",
+    "ResponsePlan",
+    "AuditRecord",
     "SenseLayer",
     "EventNormalizer",
     "EventIngester",
