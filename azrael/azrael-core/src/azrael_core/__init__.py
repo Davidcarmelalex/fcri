@@ -21,6 +21,9 @@ from .orchestrator import (
     DefenseResponse,
     ResponsePlan,
     AuditRecord,
+    AuthorizationMode,
+    ResponseProposal,
+    OperatorApproval,
 )
 from .sense import SenseLayer, EventNormalizer, EventIngester
 from .heal import HealLayer, SystemSnapshot, RecoveryAction
@@ -35,6 +38,9 @@ __all__ = [
     "DefenseResponse",
     "ResponsePlan",
     "AuditRecord",
+    "AuthorizationMode",
+    "ResponseProposal",
+    "OperatorApproval",
     "SenseLayer",
     "EventNormalizer",
     "EventIngester",

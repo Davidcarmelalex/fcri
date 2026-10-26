@@ -6,7 +6,7 @@ import asyncio
 from unittest.mock import AsyncMock, MagicMock
 from azrael_core.orchestrator import (
     AzraelOrchestrator, PolicyEngine, ThreatEvent,
-    ThreatLevel, ResponseAction, ResponsePlan
+    ThreatLevel, ResponseAction, ResponsePlan, AuthorizationMode
 )
 
 
@@ -25,9 +25,10 @@ class TestPolicyEngine:
         policy = PolicyEngine()
         assert not policy.authorize(ResponseAction.QUARANTINE, ThreatLevel.LOW)
     
-    def test_isolate_allowed_for_high_threat(self):
+    def test_isolate_requires_approval_for_high_threat(self):
         policy = PolicyEngine()
-        assert policy.authorize(ResponseAction.ISOLATE, ThreatLevel.HIGH)
+        assert not policy.authorize(ResponseAction.ISOLATE, ThreatLevel.HIGH)
+        assert policy.mode(ResponseAction.ISOLATE, ThreatLevel.HIGH) is AuthorizationMode.APPROVAL_REQUIRED
 
 
 class TestAzraelOrchestrator:

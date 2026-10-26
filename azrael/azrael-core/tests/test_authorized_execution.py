@@ -30,7 +30,8 @@ async def test_denied_actions_never_execute(action, severity):
     assert await core._process(event) == []
     mock.execute.assert_not_awaited()
     assert not event.handled
-    assert [entry.status for entry in core.get_audit_log()] == ["denied"]
+    expected = "denied" if action is ResponseAction.RESTORE else "approval_required"
+    assert [entry.status for entry in core.get_audit_log()] == [expected]
 
 
 @pytest.mark.asyncio

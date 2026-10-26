@@ -12,25 +12,47 @@ required proposal fields are validated. Execution receives the exact proposal
 that passed policy. Planning is a trusted code contract, not a sandbox: a
 malicious Python agent can still perform side effects in `plan()`.
 
-## Existing policy retained
+## Explicit approval policy
 
-| Severity | Automatically authorized by current policy |
-| --- | --- |
-| LOW / MEDIUM | ALERT, REPORT |
-| HIGH | ALERT, REPORT, ISOLATE, BLOCK |
-| CRITICAL | Every ResponseAction, including QUARANTINE and RESTORE |
+| Severity | Automatic | Approval required | Denied |
+| --- | --- | --- | --- |
+| LOW / MEDIUM / HIGH | ALERT, REPORT | ISOLATE, BLOCK, QUARANTINE | RESTORE |
+| CRITICAL (compatibility override enabled) | Every ResponseAction | None | None |
+| CRITICAL (override disabled) | ALERT, REPORT | ISOLATE, BLOCK, QUARANTINE | RESTORE |
 
-This change fixes ordering, not the approval matrix. There is no human approval
-service yet. The names `supervised` and `manual` in the old configuration do not
-implement operator approval. Changing the critical override or adding approval
-tokens is a separate product decision. This is not a production readiness claim.
+The approval milestone interprets configured `supervised` and `manual` actions
+as approval-required. `authorize()` returns true only for automatic actions;
+callers must use the orchestrator's execution boundary to consume an approval.
+The legacy critical override remains enabled by default and can be explicitly
+disabled with `PolicyEngine(critical_override=False)`. Empty configurations and
+empty allowed-role sets are respected, rather than replaced with defaults.
+
+Only proposals and approvals issued by this orchestrator instance are accepted.
+They bind the exact event, incident, action, target, policy version, and expiry.
+Proposals, policy changes, role changes, revocation, and expiry are revalidated
+immediately before claiming execution. Dry-run validates permission but neither
+claims execution nor consumes an approval. Its success means validation passed,
+not that an external action occurred. The audit marks it `execution_dry_run`.
+
+Normal agent processing uses this same execution boundary. Approval-required
+plans remain pending and never invoke the agent executor. A trusted caller can
+inspect `get_pending_proposals()`, issue an approval, and execute the exact
+proposal using a configured Executor. Legacy `handle()` agents remain rejected.
+
+This is an in-process authorization framework, not an authenticated operator
+service. The caller supplies operator identity and role; the future authenticated
+API must establish those values from a trusted identity provider, never request
+body strings. Kill-switch and revocation methods likewise require an authenticated
+control plane before being exposed remotely. No such endpoint is added here.
 
 ## Outcomes and retries
 
 `DefenseResponse.success` reflects the executor's boolean result. Only success
 marks an event handled. Failures, denial, invalid plans, cancellation and
 successful execution are visible through `get_audit_log()` and Python logging.
-The returned audit list is a copy and its records are frozen.
+The returned agent audit list is a copy and its records are frozen. The policy
+milestone's separate `audit.records` sink remains an internal, mutable in-memory
+reference sink. Production requires a durable access-controlled audit service.
 
 Execution is attempted at most once per `(event ID, agent ID)` during the
 orchestrator instance's lifetime, including concurrent duplicate processing.
