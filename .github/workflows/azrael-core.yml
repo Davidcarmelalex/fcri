@@ -4,11 +4,15 @@ on:
   pull_request:
     paths:
       - 'azrael/azrael-core/**'
+      - 'azrael/presentation-demo/**'
+      - 'azrael/build-world/**'
       - '.github/workflows/azrael-core.yml'
   push:
     branches: [main]
     paths:
       - 'azrael/azrael-core/**'
+      - 'azrael/presentation-demo/**'
+      - 'azrael/build-world/**'
       - '.github/workflows/azrael-core.yml'
 
 permissions:
@@ -31,4 +35,13 @@ jobs:
         working-directory: ${{ runner.temp }}
         run: python -c 'import azrael_core; print(azrael_core.__version__)'
       - name: Test authorization and core behavior
-        run: python -m pytest -q azrael/azrael-core/tests
+        run: python -m pytest -q azrael/azrael-core/tests azrael/presentation-demo/tests
+  world:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify live world status handling
+        run: node --test azrael/build-world/test/*.test.mjs

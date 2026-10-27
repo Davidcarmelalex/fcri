@@ -10,7 +10,7 @@ This checklist separates implemented source from verified release evidence.
 - [x] Approval identifiers are single-use within the orchestrator process.
 - [x] Kill switch, timeout, cancellation, and dry-run paths are represented in the core API.
 - [ ] Persist claims and approvals across restart and concurrent workers.
-- [ ] Reproduce the test suite in a supported environment and publish CI evidence.
+- [x] Reproduce the policy suite in a supported environment and publish CI evidence (PR #11, Ubuntu Python 3.11 and 3.12).
 
 ### Integration evidence
 
@@ -23,7 +23,8 @@ The separate policy integration combines that work with the plan-before-execute
 pipeline from PR #9. It preserves the existing regression suite, corrects the
 replay assertion, validates issued proposals/approvals, and routes normal agent
 execution through the kill-switch and policy boundary. The integrated suite
-passes 45 tests on local Python 3.12. Ubuntu CI must also pass before review.
+passes 45 tests on local Python 3.12. Ubuntu CI passed on Python 3.11 and 3.12
+for PR #11 at commit `6d5735ac2eda3e2b0d2022ed3c1ec66d501ae2b9`.
 
 Identity and role strings are currently supplied by trusted in-process callers;
 this is not operator authentication. Durable storage, multi-process claims,

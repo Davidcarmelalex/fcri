@@ -1,0 +1,21 @@
+[Unit]
+Description=Read-only AZRAEL workspace activity observer
+After=azrael-build-world.service
+
+[Service]
+Type=simple
+WorkingDirectory=/srv/azrael-build-world
+Environment=AZRAEL_REPOSITORY=/root/azrael/fcri
+Environment=AZRAEL_ACTIVITY_FILE=/var/lib/azrael-build-world/activity.jsonl
+ExecStart=/srv/agentrunme/runtime/node-v24.22.1/bin/node /srv/azrael-build-world/observe.mjs
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/var/lib/azrael-build-world
+PrivateTmp=true
+RestrictAddressFamilies=AF_UNIX
+
+[Install]
+WantedBy=multi-user.target
