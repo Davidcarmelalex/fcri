@@ -1,0 +1,26 @@
+[Unit]
+Description=AZRAEL isolated presentation demonstration
+After=network.target
+
+[Service]
+Type=simple
+User=azrael-demo
+Group=azrael-demo
+WorkingDirectory=/srv/azrael-presentation-demo
+Environment=HOST=127.0.0.1
+Environment=PORT=3089
+Environment=PYTHONPATH=/srv/azrael-presentation-demo/core
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /srv/azrael-presentation-demo/server.py
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+MemoryMax=256M
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target
