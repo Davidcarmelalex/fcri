@@ -68,26 +68,49 @@ class DefenseAgent(Protocol):
 
 
 class PolicyEngine:
+    """Fail-closed authorization for proposed defensive actions.
+
+    Severity is evidence about a threat, never a permission grant.
+    Disruptive operations require an explicit per-action officer approval,
+    even when an incident is CRITICAL. Execution services must independently
+    verify authorization immediately before applying a change.
     """
-    Authorizes response actions based on configured policies.
-    All automated responses must pass policy authorization.
-    """
-    
+
+    SAFE_ACTIONS = frozenset({ResponseAction.ALERT, ResponseAction.REPORT})
+    SUPERVISED_ACTIONS = frozenset({
+        ResponseAction.ISOLATE, ResponseAction.BLOCK,
+        ResponseAction.QUARANTINE, ResponseAction.RESTORE,
+    })
+
     def __init__(self, policies: dict[str, list[str]] | None = None):
         self._policies = policies or {
-            "auto": [ResponseAction.ALERT.value, ResponseAction.REPORT.value],
-            "supervised": [ResponseAction.ISOLATE.value, ResponseAction.BLOCK.value],
-            "manual": [ResponseAction.QUARANTINE.value],
+            "auto": ["alert", "report"],
+            "supervised": ["isolate", "block", "quarantine", "restore"],
         }
-    
-    def authorize(self, action: ResponseAction, threat_level: ThreatLevel) -> bool:
-        """Returns True if the action is authorized for the given threat level."""
-        if threat_level == ThreatLevel.CRITICAL:
-            # All auto actions allowed for critical threats
-            return True
-        if threat_level == ThreatLevel.HIGH:
-            return action.value in self._policies.get("supervised", []) + self._policies.get("auto", [])
-        return action.value in self._policies.get("auto", [])
+
+    def authorize(
+        self,
+        action: ResponseAction,
+        threat_level: ThreatLevel,
+        *,
+        approved: bool = False,
+        scope_valid: bool = False,
+    ) -> bool:
+        """Approve only explicitly scoped actions; fail closed by default.
+
+        This is a minimal safety fix, not a complete signed-approval system.
+        A production authorization gateway must verify officer identity,
+        target, time-to-live, scope and replay protection server-side.
+        """
+        if action in self.SAFE_ACTIONS:
+            return action.value in self._policies.get("auto", [])
+        if action in self.SUPERVISED_ACTIONS:
+            return (
+                approved
+                and scope_valid
+                and action.value in self._policies.get("supervised", [])
+            )
+        return False
 
 
 class AzraelOrchestrator:
