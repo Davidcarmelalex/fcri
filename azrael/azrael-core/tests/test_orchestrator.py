@@ -16,10 +16,21 @@ class TestPolicyEngine:
         assert policy.authorize(ResponseAction.ALERT, ThreatLevel.LOW)
         assert policy.authorize(ResponseAction.REPORT, ThreatLevel.LOW)
     
-    def test_critical_authorizes_all(self):
+    def test_critical_does_not_bypass_permissions(self):
         policy = PolicyEngine()
-        for action in ResponseAction:
-            assert policy.authorize(action, ThreatLevel.CRITICAL)
+        for action in (
+            ResponseAction.ISOLATE, ResponseAction.BLOCK,
+            ResponseAction.QUARANTINE, ResponseAction.RESTORE,
+        ):
+            assert not policy.authorize(action, ThreatLevel.CRITICAL)
+
+    def test_supervised_requires_both_approval_and_scope(self):
+        policy = PolicyEngine()
+        assert not policy.authorize(ResponseAction.BLOCK, ThreatLevel.CRITICAL, approved=True)
+        assert not policy.authorize(ResponseAction.BLOCK, ThreatLevel.CRITICAL, scope_valid=True)
+        assert policy.authorize(
+            ResponseAction.BLOCK, ThreatLevel.CRITICAL, approved=True, scope_valid=True
+        )
     
     def test_quarantine_blocked_for_low_threat(self):
         policy = PolicyEngine()
@@ -27,7 +38,7 @@ class TestPolicyEngine:
     
     def test_isolate_allowed_for_high_threat(self):
         policy = PolicyEngine()
-        assert policy.authorize(ResponseAction.ISOLATE, ThreatLevel.HIGH)
+        assert not policy.authorize(ResponseAction.ISOLATE, ThreatLevel.HIGH)
 
 
 class TestAzraelOrchestrator:
@@ -70,4 +81,4 @@ class TestAzraelOrchestrator:
         
         critical_event = ThreatEvent(event_type="test", severity=ThreatLevel.CRITICAL)
         responses = await orchestrator._process(critical_event)
-        assert len(responses) == 1  # Authorized for CRITICAL
+        assert len(responses) == 0  # CRITICAL cannot bypass authorization
