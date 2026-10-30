@@ -1,30 +1,17 @@
-# AZRAEL
+# AZRAEL — FCRI institutional project page
 
-## The World's First Self-Healing Autonomous Cyber Defense Stack
+AZRAEL is a sovereign, policy-governed cyber resilience research initiative affiliated with Fusion Civilization Research Institute (FCRI).
 
-**The Guardian You Don't Challenge**
+## Authoritative source of truth
 
-Open. Sovereign. Relentless.
+**All active AZRAEL software development, issue tracking, security fixes, testing, releases, architecture decisions and deployment documentation belong in the private [ProjectAzrael/Azrael repository](https://github.com/ProjectAzrael/Azrael).**
 
-AZRAEL is an open autonomous cyber resilience initiative under FCRI.
+This FCRI monorepo is **not** an authoritative AZRAEL engineering source. Existing AZRAEL code and documents here are retained only as historical research references; they may be incomplete or outdated. Do not deploy them, merge new AZRAEL features here, or infer readiness from old claims.
 
-### Core Principles
-- Self-healing cyber resilience
-- Autonomous defensive agent mesh
-- Sovereign deployability
-- Open governance and auditability
-- Machine-speed detection and response
+For implementation status and the November 4, 2026 controlled synthetic demonstration, consult the destination repository's README, management/STATUS.md, verification scripts, and demo/RUNBOOK.md.
 
-### Planned Ecosystem
-- azrael-core
-- azrael-swarm
-- azrael-sense
-- azrael-response
-- azrael-heal
-- azrael-intel
-- azrael-console
-- azrael-sdk
+## Research positioning
 
-### Brand Manifesto
-Cybersecurity was built for a slower world.
-AZRAEL exists to build adaptive, governed, resilient cyber defense infrastructure for institutions that cannot afford failure.
+AZRAEL studies controlled autonomous defense, incident investigation, auditable security automation, sovereign deployment and evidence integrity. Its current engineering readiness is determined only by revision-specific tests and published evidence in ProjectAzrael/Azrael; historical promotional claims are not substitutes for verification.
+
+Existing license and attribution obligations are preserved.
