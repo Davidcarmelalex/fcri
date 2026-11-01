@@ -25,3 +25,11 @@
 - Hosted GitHub Actions run [41358770281](https://github.com/Davidcarmelalex/fcri/actions/runs/41358770281): **SUCCESS** on Python 3.11 and Python 3.12, executing factory validator, standard-library tests, dependency install and AZRAEL synthetic core pytest. This is independently executed CI, not independent human approval.
 - Final local rerun after fifth factory test: **43 passed** (38 AZRAEL core + 5 factory tests).
 - Supervisor decision: **BLOCKED** pending independent human review and exact-branch merge strategy. All phase ledger statuses remain BLOCKED, verified gate weight remains 0/100.
+
+## 2026-11-02 — M1 bounded factory assurance improvement (separate stacked PR)
+
+- Source of truth remains private `Davidcarmelalex/fcri`. Base: draft PR #25 commit `06e587808e091ba3afded179e34f0a7dff2e7758`; new isolated worktree and branch `codex/universal-factory-m1-check-evidence-20261102`. Existing original checkout and PR #25 branch were not edited.
+- Finding: initial ledger computed progress from entire phase PASS labels and accepted unstructured evidence/supervisor strings. This allowed a false appearance of verified progress without check-level proof. M1 assurance improvement changes the portable ledger to **schema v2** with 22 independently reviewable, weighted AZRAEL acceptance checks.
+- Scope: reusable ledger validator, negative/positive tests, adapter/template/skill guidance, risk register and this verification log. No product source, real connectors, security testing against external systems, legal certificate or deployment.
+- PASS check now requires structured source revision, command, environment, UTC timestamp, outcome and reference plus separate implementer/reviewer and reviewer PASS decision. Phase PASS requires all checks and separate supervisor decision. Schema validation is **not** identity authentication or proof that evidence was independently executed.
+- Local tests and hosted CI results must be recorded after execution. Independent supervisor verdict remains **BLOCKED** until a distinct reviewer validates evidence, code, PR base and actual CI. Weighted verified delta: **0/100 → 0/100**; new criteria increase granularity, not claimed readiness.

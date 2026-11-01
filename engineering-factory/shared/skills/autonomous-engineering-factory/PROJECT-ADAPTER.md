@@ -24,7 +24,7 @@ Copy this template to `engineering-factory/adapters/<PROJECT>.md` (or the host r
 
 ## Engineering plan
 - Milestones M0–M8 with measurable acceptance criteria:
-- Phase weights (sum 100) and evidence ledger path:
+- Phase weights (sum 100), per-check weights/criteria, v2 evidence ledger path, independent reviewer IDs:
 - Product roadmap and dependency order:
 - Skills/roles matrix: actual named workers vs sequential roles:
 - Independent supervisor and conflict-of-interest rule:

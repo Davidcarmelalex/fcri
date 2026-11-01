@@ -10,7 +10,7 @@ Each cycle: (1) identify repository, baseline SHA, branch, working-tree changes 
 
 ## Phase gates
 
-Each project defines weighted, independently verifiable checks under M0–M8. Weights must be nonnegative and sum to 100. Every phase records `PASS`, `FAIL` or `BLOCKED`, evidence references, reviewer identity and decision date. `PASS` requires passing checks and independent supervisor approval; a green local test alone is not a release. A blocked phase does not imply failure or completion. A dependency gate cannot be passed while prerequisite gates fail or are blocked unless a documented, independently approved exception exists.
+Each project defines weighted, independently verifiable **checks** under M0–M8. Phase weights must be positive and sum to 100; each phase's check weights must sum to its phase weight. Every phase records `PASS`, `FAIL` or `BLOCKED`, evidence references, reviewer identity and decision date. `PASS` requires passing checks and independent supervisor approval; a green local test alone is not a release. A blocked phase does not imply failure or completion. A dependency gate cannot be passed while prerequisite gates fail or are blocked unless a documented, independently approved exception exists.
 
 | Gate | Required proof |
 | --- | --- |
@@ -24,7 +24,7 @@ Each project defines weighted, independently verifiable checks under M0–M8. We
 | M7 Packaging/staging | Reproducible artifact, SBOM/provenance, staging rehearsal and deployment controls |
 | M8 Independent readiness | Separate reviewer evidence, final acceptance, owner signoff, truthful demo/release claims |
 
-**Progress metric:** `verified_percentage = sum(weight for checks independently marked PASS) / sum(all check weights) * 100`. Never count started work, generated code, agent messages, local-only assertions, or N/A as verified. If no valid weights or no independent evidence, report `unverified` rather than an invented percentage. Report gate coverage separately from product feature completion.
+**Progress metric:** `verified_percentage = sum(weight for checks with passing evidence and separate reviewer PASS) / sum(all check weights) * 100`. Use the portable **v2** ledger: each phase has stable check IDs, acceptance criteria, weights, PASS/FAIL/BLOCKED, structured evidence (source SHA, command, environment, UTC timestamp, outcome, reference), and a review with distinct implementer/reviewer identities and decision time. A phase is PASS only when all checks PASS and its supervisor independently approves. The schema checker enforces these structural rules but cannot authenticate identities or prove evidence links are genuine. Never count started work, generated code, agent messages, local-only assertions, or N/A as verified. If no valid weights or no independent evidence, report `unverified` rather than an invented percentage. Report gate coverage separately from product feature completion.
 
 ## Reusable engineering playbooks
 
@@ -47,4 +47,4 @@ Work order: `ID | objective | owner/profile | branch | base SHA | allowed paths 
 
 ## Evidence and reporting
 
-Use a machine-readable gate ledger plus human-readable verification log and risk register. Evidence must identify source SHA, exact command, environment, timestamp, outcome and independent reviewer. Never present a CI badge, model opinion, screenshots, or an unchecked PR as proof of production readiness. Report exact commit/PR, tests run, PASS/FAIL/BLOCKED verdict, weighted verified delta, blockers and next safe action. The portable validator in this directory validates ledger structure; it does not itself certify the evidence or independence.
+Use a machine-readable gate ledger plus human-readable verification log and risk register. Evidence must identify source SHA, exact command, environment, timestamp, outcome and independent reviewer. Never present a CI badge, model opinion, screenshots, or an unchecked PR as proof of production readiness. Report exact commit/PR, tests run, PASS/FAIL/BLOCKED verdict, weighted verified delta, blockers and next safe action. The portable validator in this directory validates v2 check-level weights, record structure, and self-review conflicts; it does not authenticate reviewers, execute tests, or independently certify evidence.

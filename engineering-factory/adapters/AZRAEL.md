@@ -44,7 +44,7 @@ Uses the reusable skill at `engineering-factory/shared/skills/autonomous-enginee
 | M7 Packaging | 5 | Signed/reproducible staging artifact, install and rollback rehearsal |
 | M8 Independent readiness | 5 | Independent evidence audit, presenter rehearsal and authorized release/demo signoff |
 
-M0 → M1 → M2 are prerequisites for claiming a working vertical slice. M3–M6 can be developed in bounded parallel scopes after foundations; M7 and M8 require prior applicable gates. **Gate weights measure verified engineering acceptance, not product feature completion.** Current evidence ledger: `engineering-factory/adapters/azrael-gates.json`; initial statuses remain BLOCKED pending independent decisions.
+M0 → M1 → M2 are prerequisites for claiming a working vertical slice. M3–M6 can be developed in bounded parallel scopes after foundations; M7 and M8 require prior applicable gates. **Gate weights measure verified engineering acceptance, not product feature completion.** Current evidence ledger: `engineering-factory/adapters/azrael-gates.json` (schema v2, 22 weighted checks). Each PASS check requires structured source/test evidence and a distinct reviewer; each phase PASS also needs independent supervisor signoff. Initial statuses remain BLOCKED pending independent decisions. No readiness percentage is inferred from local or hosted CI alone.
 
 ## Verification and demonstration
 
@@ -65,3 +65,4 @@ M0 → M1 → M2 are prerequisites for claiming a working vertical slice. M3–M
 | AZ-R5 | Worker quota/rate limits and shared worktree conflicts | Medium | Cooldown, bounded jobs, isolated worktrees, no automatic gate bypass; M0/M3 |
 | AZ-R6 | Malayalam, accessibility, offline and integrations untested | High | Separate evaluations and rehearsal, label PLAN until verified; M4/M5/M7 |
 | AZ-R7 | Python dependency versions are not fully pinned | Medium | Lock and audit dependency graph before M1 PASS |
+| AZ-R8 | Evidence/approval strings can be forged or self-reviewed | High | v2 structured evidence, separate reviewer identities, independent GitHub review and source verification; M0/M8 |
