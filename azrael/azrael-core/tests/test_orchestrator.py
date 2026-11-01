@@ -94,7 +94,7 @@ class TestAzraelOrchestrator:
         executor = AsyncMock()
         executor.execute.return_value = DefenseResponse(event.id, ResponseAction.BLOCK, "host-1", "ok", "1", success=True)
         assert (await orchestrator.execute(proposal, executor, approval=approval)).success
-        with pytest.raises(RuntimeError):
+        with pytest.raises(PermissionError):
             await orchestrator.execute(proposal, executor, approval=approval)
         assert executor.execute.await_count == 1
 
