@@ -73,3 +73,7 @@ Never run destructive response actions or connect to production systems as
 part of preflight. The current chat cannot mount files into a separate cloud VM.
 
 See tasks/AZ-001.md, tasks/AZ-002.md, and CODEX_START.md.
+
+## Portable engineering method (2026-11-02)
+
+The reusable, project-agnostic method is [shared/skills/autonomous-engineering-factory/SKILL.md](shared/skills/autonomous-engineering-factory/SKILL.md), with [adapter template](shared/skills/autonomous-engineering-factory/PROJECT-ADAPTER.md) and the [AZRAEL adapter](adapters/AZRAEL.md). This supplements rather than replaces the existing AZRAEL-specific factory, task definitions and tests. Its machine-readable gate ledger is structural evidence bookkeeping, **not** independent certification or a production-readiness claim.
