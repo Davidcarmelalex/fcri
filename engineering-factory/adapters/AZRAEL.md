@@ -20,6 +20,16 @@ Uses the reusable skill at `engineering-factory/shared/skills/autonomous-enginee
 - **Supervisor:** independent reviewer with veto authority, not the code author. Required for every PASS and for any merge or public demonstration claim. Escalate unresolved approval/authorization and quota walls.
 - **Resource policy:** bounded dispatch, no quota bypass, no uncontrolled retry, no concurrent edits to the same worktree. Use explicit budgets and rate-limit cooldowns.
 
+## Skills and accountability matrix
+
+| Capability | Available profile/tool | This change's execution | Independent approval |
+| --- | --- | --- | --- |
+| Product architecture / coordination | Hermes `default` profile exists | Sequential audit and adapter authoring | Required |
+| Security, privacy, critic/veto | Hermes `azraelsecurity` profile exists | No independent security worker executed in this change | Separate security reviewer required |
+| UX, accessibility, Malayalam | Hermes `azraelux` profile exists | No UX worker executed in this change | Separate accessibility/language evaluation required |
+| Repository engineering and QA | Git + local Python; GitHub Actions | Local implementation, tests; hosted CI executed on PR | CI is independent execution, not human code review |
+| Release, legal and police integrations | No approved integration or reviewer established | Not attempted | Authorized owner, security and legal reviewers required |
+
 ## Acceptance and roadmap
 
 | Gate | Weight | AZRAEL acceptance |
@@ -54,3 +64,4 @@ M0 → M1 → M2 are prerequisites for claiming a working vertical slice. M3–M
 | AZ-R4 | Forensic or BSA admissibility overstated | High | Hash/audit tests and qualified legal review before any certificate claim; M4/M6 |
 | AZ-R5 | Worker quota/rate limits and shared worktree conflicts | Medium | Cooldown, bounded jobs, isolated worktrees, no automatic gate bypass; M0/M3 |
 | AZ-R6 | Malayalam, accessibility, offline and integrations untested | High | Separate evaluations and rehearsal, label PLAN until verified; M4/M5/M7 |
+| AZ-R7 | Python dependency versions are not fully pinned | Medium | Lock and audit dependency graph before M1 PASS |

@@ -18,3 +18,10 @@
 - Corrected isolated-worktree invocation: `PYTHONPATH=azrael/azrael-core/src /root/azrael/venv/bin/python -m pytest -q azrael/azrael-core/tests engineering-factory/shared/skills/autonomous-engineering-factory/test_verify_factory.py` → **42 passed** before adding the fifth factory negative test.
 - Hosted CI is newly proposed in `.github/workflows/azrael-factory-verify.yml`; its outcome is **PENDING** until GitHub executes on the PR. Dependencies are not fully locked; do not claim reproducible builds.
 - Independent supervisor verdict remains **BLOCKED** pending separate review. No product readiness increase is claimed.
+
+### Independent hosted execution evidence
+
+- GitHub draft PR: [FCRI #25](https://github.com/Davidcarmelalex/fcri/pull/25), target `codex/az-001-package`, initial commit `b4cdecc71c9dfb260f834118006a74461315e94f`.
+- Hosted GitHub Actions run [41358770281](https://github.com/Davidcarmelalex/fcri/actions/runs/41358770281): **SUCCESS** on Python 3.11 and Python 3.12, executing factory validator, standard-library tests, dependency install and AZRAEL synthetic core pytest. This is independently executed CI, not independent human approval.
+- Final local rerun after fifth factory test: **43 passed** (38 AZRAEL core + 5 factory tests).
+- Supervisor decision: **BLOCKED** pending independent human review and exact-branch merge strategy. All phase ledger statuses remain BLOCKED, verified gate weight remains 0/100.
