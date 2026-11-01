@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "project": "AZRAEL",
   "canonical_repository": "Davidcarmelalex/fcri",
   "baseline_sha": "caad6a4",
@@ -12,7 +12,33 @@
       "evidence": [],
       "supervisor": null,
       "decision_at": null,
-      "blocker": "Independent evidence review and acceptance pending"
+      "blocker": "Independent evidence review and acceptance pending",
+      "checks": [
+        {
+          "id": "M0-C1",
+          "criterion": "Canonical source and inventory verified",
+          "weight": 3.3333,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M0-C2",
+          "criterion": "Existing work, PRs and CI preserved",
+          "weight": 3.3333,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M0-C3",
+          "criterion": "Scope, licensing and risk boundaries reviewed",
+          "weight": 3.3334,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        }
+      ]
     },
     {
       "id": "M1",
@@ -21,7 +47,33 @@
       "evidence": [],
       "supervisor": null,
       "decision_at": null,
-      "blocker": "Independent evidence review and acceptance pending"
+      "blocker": "Independent evidence review and acceptance pending",
+      "checks": [
+        {
+          "id": "M1-C1",
+          "criterion": "Reproducible environment and dependency provenance",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M1-C2",
+          "criterion": "Baseline tests and CI reproducibly pass",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M1-C3",
+          "criterion": "Repository governance and branch controls reviewed",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        }
+      ]
     },
     {
       "id": "M2",
@@ -30,7 +82,33 @@
       "evidence": [],
       "supervisor": null,
       "decision_at": null,
-      "blocker": "Independent evidence review and acceptance pending"
+      "blocker": "Independent evidence review and acceptance pending",
+      "checks": [
+        {
+          "id": "M2-C1",
+          "criterion": "Synthetic complaint-to-case vertical slice",
+          "weight": 6.6667,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M2-C2",
+          "criterion": "Negative-path authorization and custody checks",
+          "weight": 6.6667,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M2-C3",
+          "criterion": "Deterministic scenario evidence and rollback",
+          "weight": 6.6666,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        }
+      ]
     },
     {
       "id": "M3",
@@ -39,7 +117,25 @@
       "evidence": [],
       "supervisor": null,
       "decision_at": null,
-      "blocker": "Independent evidence review and acceptance pending"
+      "blocker": "Independent evidence review and acceptance pending",
+      "checks": [
+        {
+          "id": "M3-C1",
+          "criterion": "Independent critic/veto and HITL policy tests",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M3-C2",
+          "criterion": "Bounded agent orchestration, audit and replay",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        }
+      ]
     },
     {
       "id": "M4",
@@ -48,7 +144,25 @@
       "evidence": [],
       "supervisor": null,
       "decision_at": null,
-      "blocker": "Independent evidence review and acceptance pending"
+      "blocker": "Independent evidence review and acceptance pending",
+      "checks": [
+        {
+          "id": "M4-C1",
+          "criterion": "Provider and police connector contracts with explicit approval",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M4-C2",
+          "criterion": "Offline and failed-integration fallback verified",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        }
+      ]
     },
     {
       "id": "M5",
@@ -57,7 +171,25 @@
       "evidence": [],
       "supervisor": null,
       "decision_at": null,
-      "blocker": "Independent evidence review and acceptance pending"
+      "blocker": "Independent evidence review and acceptance pending",
+      "checks": [
+        {
+          "id": "M5-C1",
+          "criterion": "Malayalam task journey and accessibility evidence",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M5-C2",
+          "criterion": "Honest live/synthetic visualization and reduced-motion checks",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        }
+      ]
     },
     {
       "id": "M6",
@@ -66,7 +198,33 @@
       "evidence": [],
       "supervisor": null,
       "decision_at": null,
-      "blocker": "Independent evidence review and acceptance pending"
+      "blocker": "Independent evidence review and acceptance pending",
+      "checks": [
+        {
+          "id": "M6-C1",
+          "criterion": "Threat model, privacy and tenant/case isolation",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M6-C2",
+          "criterion": "Malware sandbox and defensive SOC containment",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M6-C3",
+          "criterion": "Recovery, integrity and resilience negative tests",
+          "weight": 5.0,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        }
+      ]
     },
     {
       "id": "M7",
@@ -75,7 +233,25 @@
       "evidence": [],
       "supervisor": null,
       "decision_at": null,
-      "blocker": "Independent evidence review and acceptance pending"
+      "blocker": "Independent evidence review and acceptance pending",
+      "checks": [
+        {
+          "id": "M7-C1",
+          "criterion": "Versioned artifact and supply-chain provenance",
+          "weight": 2.5,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M7-C2",
+          "criterion": "Offline staging rehearsal and safe rollback",
+          "weight": 2.5,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        }
+      ]
     },
     {
       "id": "M8",
@@ -84,7 +260,25 @@
       "evidence": [],
       "supervisor": null,
       "decision_at": null,
-      "blocker": "Independent evidence review and acceptance pending"
+      "blocker": "Independent evidence review and acceptance pending",
+      "checks": [
+        {
+          "id": "M8-C1",
+          "criterion": "Independent safety/product review and demo truth table",
+          "weight": 2.5,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        },
+        {
+          "id": "M8-C2",
+          "criterion": "Presenter rehearsal, approvals and evidence archive",
+          "weight": 2.5,
+          "status": "BLOCKED",
+          "evidence": [],
+          "review": null
+        }
+      ]
     }
   ]
 }
