@@ -33,3 +33,13 @@
 - Scope: reusable ledger validator, negative/positive tests, adapter/template/skill guidance, risk register and this verification log. No product source, real connectors, security testing against external systems, legal certificate or deployment.
 - PASS check now requires structured source revision, command, environment, UTC timestamp, outcome and reference plus separate implementer/reviewer and reviewer PASS decision. Phase PASS requires all checks and separate supervisor decision. Schema validation is **not** identity authentication or proof that evidence was independently executed.
 - Local tests and hosted CI results must be recorded after execution. Independent supervisor verdict remains **BLOCKED** until a distinct reviewer validates evidence, code, PR base and actual CI. Weighted verified delta: **0/100 → 0/100**; new criteria increase granularity, not claimed readiness.
+
+### M1 check-ledger implementation evidence
+
+- Branch commit: `8375611bb34eb696c7b76a880c32bc65aaf35e8c`; draft stacked [FCRI PR #26](https://github.com/Davidcarmelalex/fcri/pull/26) targets draft PR #25 branch (not protected `main`).
+- Local validator: `python3 engineering-factory/shared/skills/autonomous-engineering-factory/verify_factory.py engineering-factory/adapters/azrael-gates.json` → 22 checks, 100 total weight, 0 independently verified weight, structural check PASS.
+- Local regression: `python3 -m unittest discover -s engineering-factory/shared/skills/autonomous-engineering-factory -p 'test_*.py' -q` → **15 PASS**.
+- Local AZRAEL synthetic core + factory: `PYTHONPATH=azrael/azrael-core/src /root/azrael/venv/bin/python -m pytest -q azrael/azrael-core/tests engineering-factory/shared/skills/autonomous-engineering-factory/test_verify_factory.py` → **53 PASS**.
+- `git diff --check` → PASS. Original checkout and unrelated generated caches/manifest modifications left untouched.
+- GitHub-hosted [run 41363124394](https://github.com/Davidcarmelalex/fcri/actions/runs/41363124394) on commit `8375611`: **SUCCESS**, Python 3.11 and 3.12 jobs both completed successfully at 2026-11-01 23:39 UTC. CI provides separate execution, not independent approval of correctness, identity or safety.
+- **Supervisor verdict: BLOCKED** for M1 acceptance pending distinct code reviewer, evidence provenance verification, dependency locking and parent PR #25 review. Weighted milestone change **0/100**. No production or official police readiness claim.
