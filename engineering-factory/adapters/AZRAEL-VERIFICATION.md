@@ -60,3 +60,10 @@
 - `PYTHONPATH=azrael/azrael-core/src /root/azrael/venv/bin/python -m pytest -q azrael/azrael-core/tests engineering-factory/shared/skills/autonomous-engineering-factory/test_verify_factory.py` → **57 PASS**.
 - `git diff --check` → PASS for changed files. Existing line-ending-only `engineering-factory/manifest.json` modification was not staged; generated Python caches were not staged.
 - **Review status:** independent reviewer not assigned; this implementer's local tests are not an independent approval.
+
+
+### Hosted verification on the initial implementation revision
+
+- GitHub Actions [run 41367557299](https://github.com/Davidcarmelalex/fcri/actions/runs/41367557299) completed **SUCCESS** on 2026-11-02 00:31 UTC, head `5218ae0051144bd403793b9b6b0d8df47b24d42c`; both Python 3.11 and 3.12 jobs passed.
+- Draft stacked [PR #27](https://github.com/Davidcarmelalex/fcri/pull/27) targets draft PR #26; draft PR #25 is the parent. CI is independent execution but **not** independent code review, provenance authentication or institutional readiness approval.
+- Final documentation-only revision needs its own CI verification; no M0–M8 check or phase is marked PASS. **Supervisor verdict: BLOCKED** pending separate reviewer and parent PR reconciliation. Verified weighted delta **0/100 → 0/100**.
