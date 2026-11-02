@@ -30,6 +30,15 @@ def approved_check(check, reviewer="qa-independent", implementer="builder"):
     }
 
 
+
+
+def approved_phase(value, index):
+    phase = value["phases"][index]
+    for check in phase["checks"]:
+        approved_check(check)
+    phase.update(status="PASS", supervisor="qa-independent", decision_at="2026-11-02T02:00:00Z")
+
+
 class FactoryLedgerTests(unittest.TestCase):
     def test_azrael_structure(self):
         result = mod.validate(LEDGER)
@@ -156,6 +165,47 @@ class FactoryLedgerTests(unittest.TestCase):
         value = copy.deepcopy(LEDGER)
         value["phases"][2] = "not a gate"
         with self.assertRaisesRegex(ValueError, "M0..M8"):
+            mod.validate(value)
+
+    def test_phase_pass_rejects_blocked_prerequisite(self):
+        value = copy.deepcopy(LEDGER)
+        approved_phase(value, 1)
+        with self.assertRaisesRegex(ValueError, "prerequisite phases not PASS: M0"):
+            mod.validate(value)
+
+    def test_parallel_sibling_gate_can_pass_after_foundation(self):
+        value = copy.deepcopy(LEDGER)
+        approved_phase(value, 0)
+        approved_phase(value, 1)
+        approved_phase(value, 3)
+        result = mod.validate(value)
+        self.assertEqual(result["verified_percentage"], 35)
+        self.assertEqual(value["phases"][2]["status"], "BLOCKED")
+
+    def test_staging_requires_all_declared_prior_gates(self):
+        value = copy.deepcopy(LEDGER)
+        approved_phase(value, 0)
+        approved_phase(value, 1)
+        approved_phase(value, 7)
+        with self.assertRaisesRegex(ValueError, "prerequisite phases not PASS: M2"):
+            mod.validate(value)
+
+    def test_forward_dependency_rejected(self):
+        value = copy.deepcopy(LEDGER)
+        value["phases"][1]["depends_on"] = ["M7"]
+        with self.assertRaisesRegex(ValueError, "earlier known phases"):
+            mod.validate(value)
+
+    def test_duplicate_dependency_rejected(self):
+        value = copy.deepcopy(LEDGER)
+        value["phases"][1]["depends_on"] = ["M0", "M0"]
+        with self.assertRaisesRegex(ValueError, "duplicate prerequisites"):
+            mod.validate(value)
+
+    def test_missing_dependency_declaration_rejected(self):
+        value = copy.deepcopy(LEDGER)
+        del value["phases"][1]["depends_on"]
+        with self.assertRaisesRegex(ValueError, "depends_on"):
             mod.validate(value)
 
     def test_old_schema_fails_closed(self):

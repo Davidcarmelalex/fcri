@@ -74,3 +74,20 @@
 - On 2026-11-02, authenticated GitHub REST request `GET /repos/Davidcarmelalex/fcri/branches/main/protection` returned **HTTP 404: Branch not protected**. This is a concrete M1-C3 blocker; hosted CI does not itself enforce required status checks or reviews before merges.
 - Owner/repository administrator should configure required CI checks, pull-request review rules and branch protections after reviewing the stacked PR strategy. No repository settings were changed by this run.
 - Final documentation/governance revision requires fresh hosted CI; the previous code revision `b1af445748632b93736f180904af53226535fe4a` passed [run 41367724773](https://github.com/Davidcarmelalex/fcri/actions/runs/41367724773) on Python 3.11 and 3.12.
+
+## 2026-11-02 — M1 phase dependency integrity (bounded follow-up)
+
+- Canonical source: private `Davidcarmelalex/fcri`, stacked base PR #27 commit `1aa18fd4a65bda7e698aaf9da60bb88f60664758`. Isolated worktree and new branch `codex/universal-factory-m1-phase-dependencies-20261102`; original checkout and pre-existing line-ending-only `engineering-factory/manifest.json` modifications preserved.
+- Finding: the v2 ledger enforced evidence chronology and independent review but permitted an M7/M8 phase PASS despite blocked prerequisite phases. That could misrepresent release readiness even when a check's own evidence passed.
+- Bounded fix: add explicit `depends_on` DAG declarations to the generic ledger and AZRAEL adapter; validate earlier-only, non-duplicate phase references and require declared prerequisite phases PASS before phase approval. M3–M6 remain parallel siblings after M1, not fictional independent workers.
+- Regression coverage: six new tests (blocked prerequisite, parallel sibling PASS, staging dependencies, forward reference, duplicate reference, missing dependency declaration).
+- Local evidence: portable ledger validator PASS, 22 checks / 100 weight / 0 independently verified; standard-library factory suite **25 PASS**; combined AZRAEL synthetic core + factory pytest **63 PASS** with `PYTHONPATH=azrael/azrael-core/src /root/azrael/venv/bin/python -m pytest -q azrael/azrael-core/tests engineering-factory/shared/skills/autonomous-engineering-factory/test_verify_factory.py`; `git diff --check` PASS on scoped files.
+- No real integrations, production deployment, active defensive actions, court certificates or other project repositories touched. The portable validator is structural, not an independent verifier of reviewer identity or evidence authenticity.
+- **Supervisor verdict: BLOCKED** pending distinct reviewer, parent PR #25–#27 reconciliation and hosted CI for this exact revision. M0–M8 independently verified weight remains **0/100** (delta 0); this does not measure product completion.
+- Commit, PR and hosted CI outcome to be recorded after their actual creation.
+
+### PR and hosted CI evidence for dependency gate
+
+- Implementation commit: `b72483a28ef3d1be2b2e9c9f40749a11646f13b2`; draft stacked [FCRI PR #28](https://github.com/Davidcarmelalex/fcri/pull/28) targets PR #27 branch, not `main`.
+- Independent hosted execution: [GitHub Actions run 41373249927](https://github.com/Davidcarmelalex/fcri/actions/runs/41373249927) completed **SUCCESS** on 2026-11-02 01:35 UTC for that exact commit, with both Python 3.11 and 3.12 jobs passing. This confirms CI execution only, not independent human code review or release readiness.
+- Final documentation-only evidence commit will require fresh hosted CI; no gate has been approved by an independent reviewer. Supervisor verdict remains **BLOCKED** and verified milestone delta **0/100**.
