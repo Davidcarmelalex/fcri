@@ -29,11 +29,14 @@ def _timestamp(value, name):
         raise ValueError(f"{name}: invalid timestamp") from exc
     if parsed.utcoffset() != dt.timedelta(0):
         raise ValueError(f"{name}: timestamp must be UTC")
+    return parsed
 
 
 def _evidence(items, name, *, required):
     if not isinstance(items, list) or (required and not items):
         raise ValueError(f"{name}: evidence list required")
+    timestamps = []
+    source_shas = set()
     for item in items:
         if not isinstance(item, dict):
             raise ValueError(f"{name}: evidence must be structured records")
@@ -42,14 +45,18 @@ def _evidence(items, name, *, required):
                 raise ValueError(f"{name}: evidence missing {field}")
         if not SHA.fullmatch(item["source_sha"]):
             raise ValueError(f"{name}: invalid evidence source_sha")
-        _timestamp(item["timestamp"], name)
+        timestamps.append(_timestamp(item["timestamp"], name))
+        source_shas.add(item["source_sha"].lower())
         if item["outcome"] not in STATES:
             raise ValueError(f"{name}: invalid evidence outcome")
         if required and item["outcome"] != "PASS":
             raise ValueError(f"{name}: PASS requires passing evidence")
+    if required and len(source_shas) != 1:
+        raise ValueError(f"{name}: PASS evidence must bind to one source revision")
+    return max(timestamps) if timestamps else None
 
 
-def _review(check, name):
+def _review(check, name, latest_evidence):
     decision = check.get("review")
     if not isinstance(decision, dict):
         raise ValueError(f"{name}: PASS lacks independent review")
@@ -60,8 +67,10 @@ def _review(check, name):
         raise ValueError(f"{name}: self-review forbidden")
     if decision.get("verdict") != "PASS":
         raise ValueError(f"{name}: PASS requires reviewer PASS verdict")
-    _timestamp(decision.get("decision_at"), name)
-    return implementer.strip().casefold()
+    decision_at = _timestamp(decision.get("decision_at"), name)
+    if latest_evidence is not None and decision_at < latest_evidence:
+        raise ValueError(f"{name}: reviewer decision predates evidence")
+    return implementer.strip().casefold(), decision_at
 
 
 def validate(data):
@@ -85,6 +94,7 @@ def validate(data):
             raise ValueError(f"{phase_id}: nonempty checks required")
         subtotal = 0
         implementers = set()
+        review_dates = []
         for check in checks:
             if not isinstance(check, dict):
                 raise ValueError(f"{phase_id}: invalid check")
@@ -99,9 +109,11 @@ def validate(data):
             status = check.get("status")
             if status not in STATES:
                 raise ValueError(f"{check_id}: invalid check status")
-            _evidence(check.get("evidence"), check_id, required=status == "PASS")
+            latest_evidence = _evidence(check.get("evidence"), check_id, required=status == "PASS")
             if status == "PASS":
-                implementers.add(_review(check, check_id))
+                implementer, reviewed_at = _review(check, check_id, latest_evidence)
+                implementers.add(implementer)
+                review_dates.append(reviewed_at)
                 verified += weight
             elif check.get("review") is not None:
                 raise ValueError(f"{check_id}: non-PASS checks must not carry approval")
@@ -115,7 +127,9 @@ def validate(data):
                 raise ValueError(f"{phase_id}: phase PASS lacks independent supervisor")
             if supervisor.strip().casefold() in implementers:
                 raise ValueError(f"{phase_id}: phase supervisor cannot be check implementer")
-            _timestamp(phase.get("decision_at"), phase_id)
+            phase_decision = _timestamp(phase.get("decision_at"), phase_id)
+            if review_dates and phase_decision < max(review_dates):
+                raise ValueError(f"{phase_id}: supervisor decision predates check review")
         elif phase.get("supervisor") is not None or phase.get("decision_at") is not None:
             raise ValueError(f"{phase_id}: non-PASS phase cannot claim approval")
     if not math.isclose(total, 100, abs_tol=0.000001):

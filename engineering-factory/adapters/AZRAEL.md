@@ -66,3 +66,4 @@ M0 → M1 → M2 are prerequisites for claiming a working vertical slice. M3–M
 | AZ-R6 | Malayalam, accessibility, offline and integrations untested | High | Separate evaluations and rehearsal, label PLAN until verified; M4/M5/M7 |
 | AZ-R7 | Python dependency versions are not fully pinned | Medium | Lock and audit dependency graph before M1 PASS |
 | AZ-R8 | Evidence/approval strings can be forged or self-reviewed | High | v2 structured evidence, separate reviewer identities, independent GitHub review and source verification; M0/M8 |
+| AZ-R9 | Backdated approvals or mixed source revisions can inflate weighted verified readiness | High | Enforce chronological review/phase decisions and single-revision PASS evidence; independently verify external evidence; M1/M8 |

@@ -43,3 +43,20 @@
 - `git diff --check` → PASS. Original checkout and unrelated generated caches/manifest modifications left untouched.
 - GitHub-hosted [run 41363124394](https://github.com/Davidcarmelalex/fcri/actions/runs/41363124394) on commit `8375611`: **SUCCESS**, Python 3.11 and 3.12 jobs both completed successfully at 2026-11-01 23:39 UTC. CI provides separate execution, not independent approval of correctness, identity or safety.
 - **Supervisor verdict: BLOCKED** for M1 acceptance pending distinct code reviewer, evidence provenance verification, dependency locking and parent PR #25 review. Weighted milestone change **0/100**. No production or official police readiness claim.
+
+
+## 2026-11-02 — M1 evidence chronology and source-revision consistency candidate
+
+- Baseline: PR #26 head `649630197afdc5b3b054dc3e540ccf6b368af749` in a **new isolated worktree**, preserving all existing working-tree modifications and untracked files.
+- Risk: v2 ledger accepted reviewer timestamps preceding test execution, supervisor timestamps preceding check approval, and PASS evidence mixing distinct source revisions. These could misrepresent verified progress.
+- Change: enforce chronological approvals and a single source SHA per approved check (case-insensitive SHA normalization); four regression tests cover positive/negative behavior.
+- Structural checks cannot authenticate reviewer identities, source references or timestamps. The new validation is a necessary consistency gate, not independent certification.
+- Verification and PR/CI evidence will be recorded separately after actual execution; phase M0–M8 decisions remain BLOCKED pending independent review. Weighted verified progress unchanged at **0/100**.
+
+### Local verification, evidence chronology change
+
+- `python3 engineering-factory/shared/skills/autonomous-engineering-factory/verify_factory.py engineering-factory/adapters/azrael-gates.json` → **PASS**, 22 checks, 100 weight, 0 verified.
+- `python3 -m unittest discover -s engineering-factory/shared/skills/autonomous-engineering-factory -p 'test_*.py' -q` → **19 PASS**.
+- `PYTHONPATH=azrael/azrael-core/src /root/azrael/venv/bin/python -m pytest -q azrael/azrael-core/tests engineering-factory/shared/skills/autonomous-engineering-factory/test_verify_factory.py` → **57 PASS**.
+- `git diff --check` → PASS for changed files. Existing line-ending-only `engineering-factory/manifest.json` modification was not staged; generated Python caches were not staged.
+- **Review status:** independent reviewer not assigned; this implementer's local tests are not an independent approval.
