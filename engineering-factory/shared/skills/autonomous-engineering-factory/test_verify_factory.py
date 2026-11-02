@@ -26,7 +26,7 @@ def approved_check(check, reviewer="qa-independent", implementer="builder"):
     }]
     check["review"] = {
         "reviewer": reviewer, "implementer": implementer,
-        "decision_at": "2026-11-02T01:00:00Z", "verdict": "PASS",
+        "decision_at": "2026-11-02T01:00:00Z", "verdict": "PASS", "source_sha": SHA,
     }
 
 
@@ -36,7 +36,7 @@ def approved_phase(value, index):
     phase = value["phases"][index]
     for check in phase["checks"]:
         approved_check(check)
-    phase.update(status="PASS", supervisor="qa-independent", decision_at="2026-11-02T02:00:00Z")
+    phase.update(status="PASS", supervisor="qa-independent", decision_at="2026-11-02T02:00:00Z", source_sha=SHA)
 
 
 class FactoryLedgerTests(unittest.TestCase):
@@ -56,7 +56,7 @@ class FactoryLedgerTests(unittest.TestCase):
     def test_phase_pass_requires_all_checks(self):
         value = copy.deepcopy(LEDGER)
         approved_check(value["phases"][0]["checks"][0])
-        value["phases"][0].update(status="PASS", supervisor="qa-independent", decision_at="2026-11-02T01:00:00Z")
+        value["phases"][0].update(status="PASS", supervisor="qa-independent", decision_at="2026-11-02T01:00:00Z", source_sha=SHA)
         with self.assertRaisesRegex(ValueError, "every check PASS"):
             mod.validate(value)
 
@@ -64,7 +64,7 @@ class FactoryLedgerTests(unittest.TestCase):
         value = copy.deepcopy(LEDGER)
         for check in value["phases"][0]["checks"]:
             approved_check(check)
-        value["phases"][0].update(status="PASS", supervisor="qa-independent", decision_at="2026-11-02T02:00:00Z")
+        value["phases"][0].update(status="PASS", supervisor="qa-independent", decision_at="2026-11-02T02:00:00Z", source_sha=SHA)
         self.assertEqual(mod.validate(value)["verified_percentage"], 10)
 
     def test_self_review_rejected(self):
@@ -77,7 +77,7 @@ class FactoryLedgerTests(unittest.TestCase):
         value = copy.deepcopy(LEDGER)
         for check in value["phases"][0]["checks"]:
             approved_check(check)
-        value["phases"][0].update(status="PASS", supervisor="builder", decision_at="2026-11-02T02:00:00Z")
+        value["phases"][0].update(status="PASS", supervisor="builder", decision_at="2026-11-02T02:00:00Z", source_sha=SHA)
         with self.assertRaisesRegex(ValueError, "supervisor cannot"):
             mod.validate(value)
 
@@ -113,7 +113,7 @@ class FactoryLedgerTests(unittest.TestCase):
         value = copy.deepcopy(LEDGER)
         for check in value["phases"][0]["checks"]:
             approved_check(check)
-        value["phases"][0].update(status="PASS", supervisor="qa-independent", decision_at="2026-11-02T00:30:00Z")
+        value["phases"][0].update(status="PASS", supervisor="qa-independent", decision_at="2026-11-02T00:30:00Z", source_sha=SHA)
         with self.assertRaisesRegex(ValueError, "predates check review"):
             mod.validate(value)
 
@@ -135,6 +135,58 @@ class FactoryLedgerTests(unittest.TestCase):
         another["source_sha"] = SHA.upper()
         check["evidence"].append(another)
         self.assertGreater(mod.validate(value)["verified_percentage"], 0)
+
+    def test_reviewer_revision_missing_rejected(self):
+        value = copy.deepcopy(LEDGER)
+        check = value["phases"][0]["checks"][0]
+        approved_check(check)
+        del check["review"]["source_sha"]
+        with self.assertRaisesRegex(ValueError, "reviewer source_sha"):
+            mod.validate(value)
+
+    def test_reviewer_revision_mismatch_rejected(self):
+        value = copy.deepcopy(LEDGER)
+        check = value["phases"][0]["checks"][0]
+        approved_check(check)
+        check["review"]["source_sha"] = "b" * 40
+        with self.assertRaisesRegex(ValueError, "reviewer source_sha"):
+            mod.validate(value)
+
+    def test_phase_supervisor_revision_missing_rejected(self):
+        value = copy.deepcopy(LEDGER)
+        approved_phase(value, 0)
+        del value["phases"][0]["source_sha"]
+        with self.assertRaisesRegex(ValueError, "supervisor source_sha"):
+            mod.validate(value)
+
+    def test_phase_supervisor_revision_mismatch_rejected(self):
+        value = copy.deepcopy(LEDGER)
+        approved_phase(value, 0)
+        value["phases"][0]["source_sha"] = "b" * 40
+        with self.assertRaisesRegex(ValueError, "supervisor source_sha"):
+            mod.validate(value)
+
+    def test_phase_mixed_check_revisions_rejected(self):
+        value = copy.deepcopy(LEDGER)
+        approved_phase(value, 0)
+        other = value["phases"][0]["checks"][1]
+        other["evidence"][0]["source_sha"] = "b" * 40
+        other["review"]["source_sha"] = "b" * 40
+        with self.assertRaisesRegex(ValueError, "share one source revision"):
+            mod.validate(value)
+
+    def test_phase_revision_case_insensitive(self):
+        value = copy.deepcopy(LEDGER)
+        approved_phase(value, 0)
+        value["phases"][0]["source_sha"] = SHA.upper()
+        value["phases"][0]["checks"][0]["review"]["source_sha"] = SHA.upper()
+        self.assertEqual(mod.validate(value)["verified_percentage"], 10)
+
+    def test_non_pass_phase_cannot_claim_revision(self):
+        value = copy.deepcopy(LEDGER)
+        value["phases"][0]["source_sha"] = SHA
+        with self.assertRaisesRegex(ValueError, "cannot claim approval"):
+            mod.validate(value)
 
     def test_bad_review_date_rejected(self):
         value = copy.deepcopy(LEDGER)

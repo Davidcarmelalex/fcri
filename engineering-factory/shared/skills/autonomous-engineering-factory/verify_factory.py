@@ -53,10 +53,10 @@ def _evidence(items, name, *, required):
             raise ValueError(f"{name}: PASS requires passing evidence")
     if required and len(source_shas) != 1:
         raise ValueError(f"{name}: PASS evidence must bind to one source revision")
-    return max(timestamps) if timestamps else None
+    return (max(timestamps) if timestamps else None, next(iter(source_shas)) if len(source_shas) == 1 else None)
 
 
-def _review(check, name, latest_evidence):
+def _review(check, name, latest_evidence, source_sha):
     decision = check.get("review")
     if not isinstance(decision, dict):
         raise ValueError(f"{name}: PASS lacks independent review")
@@ -67,6 +67,9 @@ def _review(check, name, latest_evidence):
         raise ValueError(f"{name}: self-review forbidden")
     if decision.get("verdict") != "PASS":
         raise ValueError(f"{name}: PASS requires reviewer PASS verdict")
+    review_sha = decision.get("source_sha")
+    if not isinstance(review_sha, str) or not SHA.fullmatch(review_sha) or review_sha.lower() != source_sha:
+        raise ValueError(f"{name}: reviewer source_sha must match passing evidence revision")
     decision_at = _timestamp(decision.get("decision_at"), name)
     if latest_evidence is not None and decision_at < latest_evidence:
         raise ValueError(f"{name}: reviewer decision predates evidence")
@@ -103,6 +106,7 @@ def validate(data):
         subtotal = 0
         implementers = set()
         review_dates = []
+        approved_revisions = set()
         for check in checks:
             if not isinstance(check, dict):
                 raise ValueError(f"{phase_id}: invalid check")
@@ -117,9 +121,10 @@ def validate(data):
             status = check.get("status")
             if status not in STATES:
                 raise ValueError(f"{check_id}: invalid check status")
-            latest_evidence = _evidence(check.get("evidence"), check_id, required=status == "PASS")
+            latest_evidence, evidence_sha = _evidence(check.get("evidence"), check_id, required=status == "PASS")
             if status == "PASS":
-                implementer, reviewed_at = _review(check, check_id, latest_evidence)
+                implementer, reviewed_at = _review(check, check_id, latest_evidence, evidence_sha)
+                approved_revisions.add(evidence_sha)
                 implementers.add(implementer)
                 review_dates.append(reviewed_at)
                 verified += weight
@@ -133,6 +138,11 @@ def validate(data):
                 raise ValueError(f"{phase_id}: prerequisite phases not PASS: {', '.join(missing)}")
             if any(c["status"] != "PASS" for c in checks):
                 raise ValueError(f"{phase_id}: phase PASS requires every check PASS")
+            if len(approved_revisions) != 1:
+                raise ValueError(f"{phase_id}: phase PASS checks must share one source revision")
+            phase_sha = phase.get("source_sha")
+            if not isinstance(phase_sha, str) or not SHA.fullmatch(phase_sha) or phase_sha.lower() not in approved_revisions:
+                raise ValueError(f"{phase_id}: supervisor source_sha must match approved check revision")
             supervisor = phase.get("supervisor")
             if not isinstance(supervisor, str) or not supervisor.strip():
                 raise ValueError(f"{phase_id}: phase PASS lacks independent supervisor")
@@ -141,7 +151,7 @@ def validate(data):
             phase_decision = _timestamp(phase.get("decision_at"), phase_id)
             if review_dates and phase_decision < max(review_dates):
                 raise ValueError(f"{phase_id}: supervisor decision predates check review")
-        elif phase.get("supervisor") is not None or phase.get("decision_at") is not None:
+        elif phase.get("supervisor") is not None or phase.get("decision_at") is not None or phase.get("source_sha") is not None:
             raise ValueError(f"{phase_id}: non-PASS phase cannot claim approval")
         prior_phases[phase_id] = phase["status"]
     if not math.isclose(total, 100, abs_tol=0.000001):
