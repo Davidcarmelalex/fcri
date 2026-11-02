@@ -91,3 +91,13 @@
 - Implementation commit: `b72483a28ef3d1be2b2e9c9f40749a11646f13b2`; draft stacked [FCRI PR #28](https://github.com/Davidcarmelalex/fcri/pull/28) targets PR #27 branch, not `main`.
 - Independent hosted execution: [GitHub Actions run 41373249927](https://github.com/Davidcarmelalex/fcri/actions/runs/41373249927) completed **SUCCESS** on 2026-11-02 01:35 UTC for that exact commit, with both Python 3.11 and 3.12 jobs passing. This confirms CI execution only, not independent human code review or release readiness.
 - Final documentation-only evidence commit will require fresh hosted CI; no gate has been approved by an independent reviewer. Supervisor verdict remains **BLOCKED** and verified milestone delta **0/100**.
+
+
+## 2026-11-02 — M1 source-revision-bound approvals (candidate)
+
+- Source of truth: private `Davidcarmelalex/fcri`; isolated worktree based on PR #28 head `945a8620f8b4bafa6ed375ebbe2f7c8180a3fac8`. Original checkout and all pre-existing working modifications remain untouched.
+- Finding: a reviewer could approve evidence for one SHA while citing another or no revision, and a phase supervisor could approve a mixture of individually valid check revisions. Chronology and per-check evidence consistency did not prevent this mismatch.
+- Bounded improvement: require every PASS check review to attest the exact evidence `source_sha`; require all PASS phase checks to share one SHA, with the phase supervisor explicitly attesting that SHA. Non-PASS phases cannot carry a revision approval. Case-insensitive SHA comparison accepts equivalent hexadecimal casing.
+- Added seven positive/negative regression cases. The gate remains structural: it does **not** authenticate reviewer identities, prove that referenced CI actually ran, or replace independent human review.
+- This change affects only the portable factory validator, its tests and existing skill/adapter/verification/risk documents; no live defense, legal filing, external integration or production deployment.
+- Tests, commit, draft PR and hosted CI will be recorded after actual execution. **Supervisor verdict: BLOCKED** until a distinct reviewer checks code and provenance. Independently approved weighted delta remains **0/100 → 0/100**.
