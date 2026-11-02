@@ -93,6 +93,40 @@ class FactoryLedgerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "passing evidence"):
             mod.validate(value)
 
+    def test_review_cannot_predate_evidence(self):
+        value = copy.deepcopy(LEDGER)
+        approved_check(value["phases"][0]["checks"][0])
+        value["phases"][0]["checks"][0]["review"]["decision_at"] = "2026-11-01T23:00:00Z"
+        with self.assertRaisesRegex(ValueError, "predates evidence"):
+            mod.validate(value)
+
+    def test_phase_approval_cannot_predate_check_review(self):
+        value = copy.deepcopy(LEDGER)
+        for check in value["phases"][0]["checks"]:
+            approved_check(check)
+        value["phases"][0].update(status="PASS", supervisor="qa-independent", decision_at="2026-11-02T00:30:00Z")
+        with self.assertRaisesRegex(ValueError, "predates check review"):
+            mod.validate(value)
+
+    def test_pass_evidence_must_share_one_revision(self):
+        value = copy.deepcopy(LEDGER)
+        check = value["phases"][0]["checks"][0]
+        approved_check(check)
+        another = copy.deepcopy(check["evidence"][0])
+        another["source_sha"] = "b" * 40
+        check["evidence"].append(another)
+        with self.assertRaisesRegex(ValueError, "one source revision"):
+            mod.validate(value)
+
+    def test_pass_evidence_same_revision_case_insensitive(self):
+        value = copy.deepcopy(LEDGER)
+        check = value["phases"][0]["checks"][0]
+        approved_check(check)
+        another = copy.deepcopy(check["evidence"][0])
+        another["source_sha"] = SHA.upper()
+        check["evidence"].append(another)
+        self.assertGreater(mod.validate(value)["verified_percentage"], 0)
+
     def test_bad_review_date_rejected(self):
         value = copy.deepcopy(LEDGER)
         approved_check(value["phases"][0]["checks"][0])

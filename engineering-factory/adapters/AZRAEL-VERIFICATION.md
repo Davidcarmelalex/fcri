@@ -43,3 +43,34 @@
 - `git diff --check` → PASS. Original checkout and unrelated generated caches/manifest modifications left untouched.
 - GitHub-hosted [run 41363124394](https://github.com/Davidcarmelalex/fcri/actions/runs/41363124394) on commit `8375611`: **SUCCESS**, Python 3.11 and 3.12 jobs both completed successfully at 2026-11-01 23:39 UTC. CI provides separate execution, not independent approval of correctness, identity or safety.
 - **Supervisor verdict: BLOCKED** for M1 acceptance pending distinct code reviewer, evidence provenance verification, dependency locking and parent PR #25 review. Weighted milestone change **0/100**. No production or official police readiness claim.
+
+
+## 2026-11-02 — M1 evidence chronology and source-revision consistency candidate
+
+- Baseline: PR #26 head `649630197afdc5b3b054dc3e540ccf6b368af749` in a **new isolated worktree**, preserving all existing working-tree modifications and untracked files.
+- Risk: v2 ledger accepted reviewer timestamps preceding test execution, supervisor timestamps preceding check approval, and PASS evidence mixing distinct source revisions. These could misrepresent verified progress.
+- Change: enforce chronological approvals and a single source SHA per approved check (case-insensitive SHA normalization); four regression tests cover positive/negative behavior.
+- Structural checks cannot authenticate reviewer identities, source references or timestamps. The new validation is a necessary consistency gate, not independent certification.
+- Verification and PR/CI evidence will be recorded separately after actual execution; phase M0–M8 decisions remain BLOCKED pending independent review. Weighted verified progress unchanged at **0/100**.
+
+### Local verification, evidence chronology change
+
+- `python3 engineering-factory/shared/skills/autonomous-engineering-factory/verify_factory.py engineering-factory/adapters/azrael-gates.json` → **PASS**, 22 checks, 100 weight, 0 verified.
+- `python3 -m unittest discover -s engineering-factory/shared/skills/autonomous-engineering-factory -p 'test_*.py' -q` → **19 PASS**.
+- `PYTHONPATH=azrael/azrael-core/src /root/azrael/venv/bin/python -m pytest -q azrael/azrael-core/tests engineering-factory/shared/skills/autonomous-engineering-factory/test_verify_factory.py` → **57 PASS**.
+- `git diff --check` → PASS for changed files. Existing line-ending-only `engineering-factory/manifest.json` modification was not staged; generated Python caches were not staged.
+- **Review status:** independent reviewer not assigned; this implementer's local tests are not an independent approval.
+
+
+### Hosted verification on the initial implementation revision
+
+- GitHub Actions [run 41367557299](https://github.com/Davidcarmelalex/fcri/actions/runs/41367557299) completed **SUCCESS** on 2026-11-02 00:31 UTC, head `5218ae0051144bd403793b9b6b0d8df47b24d42c`; both Python 3.11 and 3.12 jobs passed.
+- Draft stacked [PR #27](https://github.com/Davidcarmelalex/fcri/pull/27) targets draft PR #26; draft PR #25 is the parent. CI is independent execution but **not** independent code review, provenance authentication or institutional readiness approval.
+- Final documentation-only revision needs its own CI verification; no M0–M8 check or phase is marked PASS. **Supervisor verdict: BLOCKED** pending separate reviewer and parent PR reconciliation. Verified weighted delta **0/100 → 0/100**.
+
+
+### Repository governance finding
+
+- On 2026-11-02, authenticated GitHub REST request `GET /repos/Davidcarmelalex/fcri/branches/main/protection` returned **HTTP 404: Branch not protected**. This is a concrete M1-C3 blocker; hosted CI does not itself enforce required status checks or reviews before merges.
+- Owner/repository administrator should configure required CI checks, pull-request review rules and branch protections after reviewing the stacked PR strategy. No repository settings were changed by this run.
+- Final documentation/governance revision requires fresh hosted CI; the previous code revision `b1af445748632b93736f180904af53226535fe4a` passed [run 41367724773](https://github.com/Davidcarmelalex/fcri/actions/runs/41367724773) on Python 3.11 and 3.12.
