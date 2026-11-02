@@ -85,3 +85,9 @@
 - No real integrations, production deployment, active defensive actions, court certificates or other project repositories touched. The portable validator is structural, not an independent verifier of reviewer identity or evidence authenticity.
 - **Supervisor verdict: BLOCKED** pending distinct reviewer, parent PR #25–#27 reconciliation and hosted CI for this exact revision. M0–M8 independently verified weight remains **0/100** (delta 0); this does not measure product completion.
 - Commit, PR and hosted CI outcome to be recorded after their actual creation.
+
+### PR and hosted CI evidence for dependency gate
+
+- Implementation commit: `b72483a28ef3d1be2b2e9c9f40749a11646f13b2`; draft stacked [FCRI PR #28](https://github.com/Davidcarmelalex/fcri/pull/28) targets PR #27 branch, not `main`.
+- Independent hosted execution: [GitHub Actions run 41373249927](https://github.com/Davidcarmelalex/fcri/actions/runs/41373249927) completed **SUCCESS** on 2026-11-02 01:35 UTC for that exact commit, with both Python 3.11 and 3.12 jobs passing. This confirms CI execution only, not independent human code review or release readiness.
+- Final documentation-only evidence commit will require fresh hosted CI; no gate has been approved by an independent reviewer. Supervisor verdict remains **BLOCKED** and verified milestone delta **0/100**.
