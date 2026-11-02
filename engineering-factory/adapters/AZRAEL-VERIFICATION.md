@@ -67,3 +67,10 @@
 - GitHub Actions [run 41367557299](https://github.com/Davidcarmelalex/fcri/actions/runs/41367557299) completed **SUCCESS** on 2026-11-02 00:31 UTC, head `5218ae0051144bd403793b9b6b0d8df47b24d42c`; both Python 3.11 and 3.12 jobs passed.
 - Draft stacked [PR #27](https://github.com/Davidcarmelalex/fcri/pull/27) targets draft PR #26; draft PR #25 is the parent. CI is independent execution but **not** independent code review, provenance authentication or institutional readiness approval.
 - Final documentation-only revision needs its own CI verification; no M0–M8 check or phase is marked PASS. **Supervisor verdict: BLOCKED** pending separate reviewer and parent PR reconciliation. Verified weighted delta **0/100 → 0/100**.
+
+
+### Repository governance finding
+
+- On 2026-11-02, authenticated GitHub REST request `GET /repos/Davidcarmelalex/fcri/branches/main/protection` returned **HTTP 404: Branch not protected**. This is a concrete M1-C3 blocker; hosted CI does not itself enforce required status checks or reviews before merges.
+- Owner/repository administrator should configure required CI checks, pull-request review rules and branch protections after reviewing the stacked PR strategy. No repository settings were changed by this run.
+- Final documentation/governance revision requires fresh hosted CI; the previous code revision `b1af445748632b93736f180904af53226535fe4a` passed [run 41367724773](https://github.com/Davidcarmelalex/fcri/actions/runs/41367724773) on Python 3.11 and 3.12.
