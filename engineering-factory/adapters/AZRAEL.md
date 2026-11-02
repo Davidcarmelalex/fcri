@@ -44,7 +44,7 @@ Uses the reusable skill at `engineering-factory/shared/skills/autonomous-enginee
 | M7 Packaging | 5 | Signed/reproducible staging artifact, install and rollback rehearsal |
 | M8 Independent readiness | 5 | Independent evidence audit, presenter rehearsal and authorized release/demo signoff |
 
-M0 → M1 → M2 are prerequisites for claiming a working vertical slice. M3–M6 can be developed in bounded parallel scopes after foundations; M7 and M8 require prior applicable gates. **Gate weights measure verified engineering acceptance, not product feature completion.** Current evidence ledger: `engineering-factory/adapters/azrael-gates.json` (schema v2, 22 weighted checks). Each PASS check requires structured source/test evidence and a distinct reviewer; each phase PASS also needs independent supervisor signoff. Initial statuses remain BLOCKED pending independent decisions. No readiness percentage is inferred from local or hosted CI alone.
+M0 → M1 → M2 are prerequisites for claiming a working vertical slice. The v2 ledger declares M3–M6 as parallel sibling gates after M1, M7 dependent on M2–M6, and M8 dependent on M7. A phase cannot PASS with a blocked prerequisite. No automatic exception or bypass exists. **Gate weights measure verified engineering acceptance, not product feature completion.** Current evidence ledger: `engineering-factory/adapters/azrael-gates.json` (schema v2, 22 weighted checks). Each PASS check requires structured source/test evidence and a distinct reviewer; each phase PASS also needs independent supervisor signoff. Initial statuses remain BLOCKED pending independent decisions. No readiness percentage is inferred from local or hosted CI alone.
 
 ## Verification and demonstration
 
@@ -67,4 +67,5 @@ M0 → M1 → M2 are prerequisites for claiming a working vertical slice. M3–M
 | AZ-R7 | Python dependency versions are not fully pinned | Medium | Lock and audit dependency graph before M1 PASS |
 | AZ-R8 | Evidence/approval strings can be forged or self-reviewed | High | v2 structured evidence, separate reviewer identities, independent GitHub review and source verification; M0/M8 |
 | AZ-R9 | Backdated approvals or mixed source revisions can inflate weighted verified readiness | High | Enforce chronological review/phase decisions and single-revision PASS evidence; independently verify external evidence; M1/M8 |
+| AZ-R11 | Gate approvals could ignore blocked prerequisite phases and misstate release readiness | High | Enforce explicit DAG prerequisites and reject PASS on blocked dependencies; M1/M8 |
 | AZ-R10 | Canonical FCRI main branch lacks verified branch protection | High | GitHub branch protection API returned HTTP 404 (2026-11-02); require admin-configured review and CI gates before M1-C3 PASS; M1/M8 |

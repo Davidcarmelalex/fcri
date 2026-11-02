@@ -83,8 +83,16 @@ def validate(data):
         raise ValueError("M0..M8 required in order")
     total = verified = 0
     checked_ids = set()
+    prior_phases = {}
     for phase in phases:
         phase_id = phase["id"]
+        dependencies = phase.get("depends_on")
+        if not isinstance(dependencies, list) or any(not isinstance(x, str) for x in dependencies):
+            raise ValueError(f"{phase_id}: depends_on must be a list of phase IDs")
+        if len(set(dependencies)) != len(dependencies):
+            raise ValueError(f"{phase_id}: duplicate prerequisites")
+        if any(x not in prior_phases for x in dependencies):
+            raise ValueError(f"{phase_id}: prerequisites must be earlier known phases")
         phase_weight = _weight(phase.get("weight"), phase_id)
         total += phase_weight
         if phase.get("status") not in STATES:
@@ -120,6 +128,9 @@ def validate(data):
         if not math.isclose(subtotal, phase_weight, abs_tol=0.000001):
             raise ValueError(f"{phase_id}: check weights must sum to phase weight")
         if phase["status"] == "PASS":
+            missing = [x for x in dependencies if prior_phases[x] != "PASS"]
+            if missing:
+                raise ValueError(f"{phase_id}: prerequisite phases not PASS: {', '.join(missing)}")
             if any(c["status"] != "PASS" for c in checks):
                 raise ValueError(f"{phase_id}: phase PASS requires every check PASS")
             supervisor = phase.get("supervisor")
@@ -132,6 +143,7 @@ def validate(data):
                 raise ValueError(f"{phase_id}: supervisor decision predates check review")
         elif phase.get("supervisor") is not None or phase.get("decision_at") is not None:
             raise ValueError(f"{phase_id}: non-PASS phase cannot claim approval")
+        prior_phases[phase_id] = phase["status"]
     if not math.isclose(total, 100, abs_tol=0.000001):
         raise ValueError(f"phase weights must sum to 100, got {total}")
     return {

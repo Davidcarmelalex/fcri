@@ -38,7 +38,8 @@
           "evidence": [],
           "review": null
         }
-      ]
+      ],
+      "depends_on": []
     },
     {
       "id": "M1",
@@ -73,6 +74,9 @@
           "evidence": [],
           "review": null
         }
+      ],
+      "depends_on": [
+        "M0"
       ]
     },
     {
@@ -108,6 +112,9 @@
           "evidence": [],
           "review": null
         }
+      ],
+      "depends_on": [
+        "M1"
       ]
     },
     {
@@ -135,6 +142,9 @@
           "evidence": [],
           "review": null
         }
+      ],
+      "depends_on": [
+        "M1"
       ]
     },
     {
@@ -162,6 +172,9 @@
           "evidence": [],
           "review": null
         }
+      ],
+      "depends_on": [
+        "M1"
       ]
     },
     {
@@ -189,6 +202,9 @@
           "evidence": [],
           "review": null
         }
+      ],
+      "depends_on": [
+        "M1"
       ]
     },
     {
@@ -224,6 +240,9 @@
           "evidence": [],
           "review": null
         }
+      ],
+      "depends_on": [
+        "M1"
       ]
     },
     {
@@ -251,6 +270,13 @@
           "evidence": [],
           "review": null
         }
+      ],
+      "depends_on": [
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6"
       ]
     },
     {
@@ -278,6 +304,9 @@
           "evidence": [],
           "review": null
         }
+      ],
+      "depends_on": [
+        "M7"
       ]
     }
   ]
