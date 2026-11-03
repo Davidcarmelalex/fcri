@@ -22,6 +22,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Forks and repositories without Datadog secrets must not fail CI.
+    if: ${{ secrets.DD_API_KEY != '' && secrets.DD_APP_KEY != '' }}
 
     steps:
     - uses: actions/checkout@v4
