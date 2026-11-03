@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "project": "AZRAEL",
+  "canonical_repository": "Davidcarmelalex/fcri",
+  "baseline_sha": "caad6a4",
+  "review_policy": "independent-supervisor-required",
+  "phases": [
+    {
+      "id": "M0",
+      "weight": 10,
+      "status": "BLOCKED",
+      "evidence": [],
+      "supervisor": null,
+      "decision_at": null,
+      "blocker": "Independent evidence review and acceptance pending"
+    },
+    {
+      "id": "M1",
+      "weight": 15,
+      "status": "BLOCKED",
+      "evidence": [],
+      "supervisor": null,
+      "decision_at": null,
+      "blocker": "Independent evidence review and acceptance pending"
+    },
+    {
+      "id": "M2",
+      "weight": 20,
+      "status": "BLOCKED",
+      "evidence": [],
+      "supervisor": null,
+      "decision_at": null,
+      "blocker": "Independent evidence review and acceptance pending"
+    },
+    {
+      "id": "M3",
+      "weight": 10,
+      "status": "BLOCKED",
+      "evidence": [],
+      "supervisor": null,
+      "decision_at": null,
+      "blocker": "Independent evidence review and acceptance pending"
+    },
+    {
+      "id": "M4",
+      "weight": 10,
+      "status": "BLOCKED",
+      "evidence": [],
+      "supervisor": null,
+      "decision_at": null,
+      "blocker": "Independent evidence review and acceptance pending"
+    },
+    {
+      "id": "M5",
+      "weight": 10,
+      "status": "BLOCKED",
+      "evidence": [],
+      "supervisor": null,
+      "decision_at": null,
+      "blocker": "Independent evidence review and acceptance pending"
+    },
+    {
+      "id": "M6",
+      "weight": 15,
+      "status": "BLOCKED",
+      "evidence": [],
+      "supervisor": null,
+      "decision_at": null,
+      "blocker": "Independent evidence review and acceptance pending"
+    },
+    {
+      "id": "M7",
+      "weight": 5,
+      "status": "BLOCKED",
+      "evidence": [],
+      "supervisor": null,
+      "decision_at": null,
+      "blocker": "Independent evidence review and acceptance pending"
+    },
+    {
+      "id": "M8",
+      "weight": 5,
+      "status": "BLOCKED",
+      "evidence": [],
+      "supervisor": null,
+      "decision_at": null,
+      "blocker": "Independent evidence review and acceptance pending"
+    }
+  ]
+}
