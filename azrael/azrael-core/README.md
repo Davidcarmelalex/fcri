@@ -10,12 +10,11 @@ Core autonomous defense engine for the AZRAEL initiative.
 
 ```
 azrael-core/
-├── src/
-│   ├── orchestrator/     Agent coordination and task routing
-│   ├── detector/         Threat detection interfaces
-│   ├── responder/        Automated response primitives
-│   ├── healer/           Self-healing and recovery modules
-│   └── comms/            Secure inter-agent communication
+├── pyproject.toml        Installable package metadata
+├── src/azrael_core/      Importable Python package
+│   ├── orchestrator.py   Agent coordination and task routing
+│   ├── sense.py          Threat detection and event normalization
+│   └── heal.py           Self-healing and recovery modules
 ├── config/               Default policy configs
 ├── tests/                Unit and integration tests
 └── docs/                 Architecture and API docs
@@ -31,6 +30,22 @@ azrael-core/
 ## Status
 
 🚧 **Pre-alpha** — Architecture phase. Implementation begins Q3 2026.
+
+## Installation and preflight
+
+Create an isolated environment, install the runtime and test dependencies, and
+install the package in editable mode:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m pip install --editable .
+bash scripts/preflight.sh
+```
+
+The editable install makes `azrael_core` importable from any working
+directory while changes to `src/azrael_core` remain immediately available.
 
 ## Contributing
 
