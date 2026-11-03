@@ -1,0 +1,2263 @@
+{
+  "schema_version": "0.1.0",
+  "product": "AGENT47",
+  "status": "proposed_registry_not_live_integrations",
+  "domains": [
+    {
+      "id": "executive",
+      "name": "Executive Command",
+      "skills": [
+        {
+          "id": "executive.daily_briefing",
+          "description": "daily briefing",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "executive.board_reporting",
+          "description": "board reporting",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "executive.delegate_tasks",
+          "description": "delegate tasks",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "executive.decision_register",
+          "description": "decision register",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "executive.priority_triage",
+          "description": "priority triage",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "executive.meeting_actions",
+          "description": "meeting actions",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "executive.goal_tracking",
+          "description": "goal tracking",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "executive.cross_department_review",
+          "description": "cross department review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "strategy",
+      "name": "Strategic Intelligence",
+      "skills": [
+        {
+          "id": "strategy.strategic_plan",
+          "description": "strategic plan",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "strategy.scenario_analysis",
+          "description": "scenario analysis",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "strategy.market_mapping",
+          "description": "market mapping",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "strategy.competitor_analysis",
+          "description": "competitor analysis",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "strategy.risk_opportunity_matrix",
+          "description": "risk opportunity matrix",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "strategy.kpi_design",
+          "description": "kpi design",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "strategy.portfolio_review",
+          "description": "portfolio review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "strategy.strategy_memo",
+          "description": "strategy memo",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "admissions",
+      "name": "Admissions & CRM",
+      "skills": [
+        {
+          "id": "admissions.lead_capture",
+          "description": "lead capture",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "admissions.lead_scoring",
+          "description": "lead scoring",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "admissions.lead_assignment",
+          "description": "lead assignment",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "admissions.lead_followup_draft",
+          "description": "lead followup draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "admissions.admission_pipeline",
+          "description": "admission pipeline",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "admissions.enrollment_report",
+          "description": "enrollment report",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "admissions.student_onboarding",
+          "description": "student onboarding",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "admissions.conversion_analysis",
+          "description": "conversion analysis",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "academic",
+      "name": "Academic Operations",
+      "skills": [
+        {
+          "id": "academic.course_catalog",
+          "description": "course catalog",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "academic.batch_planning",
+          "description": "batch planning",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "academic.faculty_schedule",
+          "description": "faculty schedule",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "academic.attendance_reporting",
+          "description": "attendance reporting",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "academic.assessment_design",
+          "description": "assessment design",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "academic.learning_progress",
+          "description": "learning progress",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "academic.certificate_review",
+          "description": "certificate review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "academic.academic_quality",
+          "description": "academic quality",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "finance",
+      "name": "Finance & Accounting",
+      "skills": [
+        {
+          "id": "finance.budget_review",
+          "description": "budget review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "finance.cashflow_forecast",
+          "description": "cashflow forecast",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "finance.expense_analysis",
+          "description": "expense analysis",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "finance.fee_collection_report",
+          "description": "fee collection report",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "finance.invoice_draft",
+          "description": "invoice draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "finance.vendor_payment_review",
+          "description": "vendor payment review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "finance.reconciliation_review",
+          "description": "reconciliation review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "finance.financial_dashboard",
+          "description": "financial dashboard",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "hr",
+      "name": "HR & Workforce",
+      "skills": [
+        {
+          "id": "hr.recruitment_pipeline",
+          "description": "recruitment pipeline",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "hr.candidate_screening_support",
+          "description": "candidate screening support",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "hr.leave_requests",
+          "description": "leave requests",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "hr.staff_roster",
+          "description": "staff roster",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "hr.workload_analysis",
+          "description": "workload analysis",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "hr.performance_summary",
+          "description": "performance summary",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "hr.policy_lookup",
+          "description": "policy lookup",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "hr.staff_onboarding",
+          "description": "staff onboarding",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "sales",
+      "name": "Sales & Partnerships",
+      "skills": [
+        {
+          "id": "sales.partner_prospecting",
+          "description": "partner prospecting",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "sales.outreach_draft",
+          "description": "outreach draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "sales.proposal_builder",
+          "description": "proposal builder",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "sales.deal_pipeline",
+          "description": "deal pipeline",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "sales.partner_due_diligence",
+          "description": "partner due diligence",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "sales.contract_handoff",
+          "description": "contract handoff",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "sales.renewal_tracking",
+          "description": "renewal tracking",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "sales.institutional_reporting",
+          "description": "institutional reporting",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing & Growth",
+      "skills": [
+        {
+          "id": "marketing.campaign_brief",
+          "description": "campaign brief",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "marketing.copywriting",
+          "description": "copywriting",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "marketing.social_calendar",
+          "description": "social calendar",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "marketing.creative_review",
+          "description": "creative review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "marketing.lead_attribution",
+          "description": "lead attribution",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "marketing.seo_audit",
+          "description": "seo audit",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "marketing.campaign_analytics",
+          "description": "campaign analytics",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "marketing.brand_monitoring",
+          "description": "brand monitoring",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "communications",
+      "name": "Communications",
+      "skills": [
+        {
+          "id": "communications.email_draft",
+          "description": "email draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "communications.message_draft",
+          "description": "message draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "communications.meeting_schedule",
+          "description": "meeting schedule",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "communications.meeting_minutes",
+          "description": "meeting minutes",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "communications.voice_transcription",
+          "description": "voice transcription",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "communications.malayalam_voice_reply",
+          "description": "malayalam voice reply",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "communications.notification_routing",
+          "description": "notification routing",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "communications.communication_archive",
+          "description": "communication archive",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "name": "Research Intelligence",
+      "skills": [
+        {
+          "id": "research.literature_search",
+          "description": "literature search",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "research.source_validation",
+          "description": "source validation",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "research.research_synthesis",
+          "description": "research synthesis",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "research.hypothesis_design",
+          "description": "hypothesis design",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "research.experiment_plan",
+          "description": "experiment plan",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "research.citation_check",
+          "description": "citation check",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "research.paper_outline",
+          "description": "paper outline",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "research.research_registry",
+          "description": "research registry",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "engineering",
+      "name": "Software Engineering",
+      "skills": [
+        {
+          "id": "engineering.repo_inspection",
+          "description": "repo inspection",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "engineering.code_review",
+          "description": "code review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "engineering.issue_triage",
+          "description": "issue triage",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "engineering.implementation_plan",
+          "description": "implementation plan",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "engineering.test_generation",
+          "description": "test generation",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "engineering.build_validation",
+          "description": "build validation",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "engineering.pull_request_draft",
+          "description": "pull request draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "engineering.release_notes",
+          "description": "release notes",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "devops",
+      "name": "Infrastructure & DevOps",
+      "skills": [
+        {
+          "id": "devops.service_health",
+          "description": "service health",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "devops.log_summary",
+          "description": "log summary",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "devops.uptime_reporting",
+          "description": "uptime reporting",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "devops.capacity_planning",
+          "description": "capacity planning",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "devops.backup_verification",
+          "description": "backup verification",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "devops.deployment_plan",
+          "description": "deployment plan",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "devops.incident_triage",
+          "description": "incident triage",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "devops.cost_monitoring",
+          "description": "cost monitoring",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Cybersecurity",
+      "skills": [
+        {
+          "id": "security.security_posture_review",
+          "description": "security posture review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "security.vulnerability_triage",
+          "description": "vulnerability triage",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "security.access_audit",
+          "description": "access audit",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "security.secret_exposure_check",
+          "description": "secret exposure check",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "security.phishing_analysis",
+          "description": "phishing analysis",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "security.incident_documentation",
+          "description": "incident documentation",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "security.dependency_review",
+          "description": "dependency review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "security.defensive_threat_model",
+          "description": "defensive threat model",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "legal",
+      "name": "Legal & Compliance",
+      "skills": [
+        {
+          "id": "legal.contract_summary",
+          "description": "contract summary",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "legal.policy_checklist",
+          "description": "policy checklist",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "legal.regulatory_research",
+          "description": "regulatory research",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "legal.compliance_calendar",
+          "description": "compliance calendar",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "legal.evidence_index",
+          "description": "evidence index",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "legal.legal_document_draft",
+          "description": "legal document draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "legal.risk_flagging",
+          "description": "risk flagging",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "legal.counsel_handoff",
+          "description": "counsel handoff",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": true,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "analytics",
+      "name": "Data Analytics",
+      "skills": [
+        {
+          "id": "analytics.data_quality_review",
+          "description": "data quality review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "analytics.dashboard_spec",
+          "description": "dashboard spec",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "analytics.trend_analysis",
+          "description": "trend analysis",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "analytics.cohort_analysis",
+          "description": "cohort analysis",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "analytics.forecast_model",
+          "description": "forecast model",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "analytics.metric_definition",
+          "description": "metric definition",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "analytics.variance_analysis",
+          "description": "variance analysis",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "analytics.report_explanation",
+          "description": "report explanation",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "name": "AI & Agent Engineering",
+      "skills": [
+        {
+          "id": "agents.agent_manifest",
+          "description": "agent manifest",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "agents.skill_validation",
+          "description": "skill validation",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "agents.workflow_design",
+          "description": "workflow design",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "agents.tool_permission_review",
+          "description": "tool permission review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "agents.agent_evaluation",
+          "description": "agent evaluation",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "agents.failure_recovery_test",
+          "description": "failure recovery test",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "agents.prompt_injection_test",
+          "description": "prompt injection test",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "agents.agent_observability",
+          "description": "agent observability",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "knowledge",
+      "name": "Knowledge Management",
+      "skills": [
+        {
+          "id": "knowledge.document_ingestion",
+          "description": "document ingestion",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "knowledge.semantic_search",
+          "description": "semantic search",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "knowledge.knowledge_citation",
+          "description": "knowledge citation",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "knowledge.version_tracking",
+          "description": "version tracking",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "knowledge.policy_retrieval",
+          "description": "policy retrieval",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "knowledge.decision_memory",
+          "description": "decision memory",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "knowledge.knowledge_gap_review",
+          "description": "knowledge gap review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "knowledge.retention_review",
+          "description": "retention review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "procurement",
+      "name": "Procurement & Assets",
+      "skills": [
+        {
+          "id": "procurement.purchase_request",
+          "description": "purchase request",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "procurement.vendor_comparison",
+          "description": "vendor comparison",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "procurement.quote_review",
+          "description": "quote review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "procurement.inventory_status",
+          "description": "inventory status",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "procurement.asset_register",
+          "description": "asset register",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "procurement.supplier_followup_draft",
+          "description": "supplier followup draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "procurement.purchase_order_draft",
+          "description": "purchase order draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "procurement.delivery_tracking",
+          "description": "delivery tracking",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Events & Campus Operations",
+      "skills": [
+        {
+          "id": "events.event_plan",
+          "description": "event plan",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "events.campus_schedule",
+          "description": "campus schedule",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "events.speaker_coordination",
+          "description": "speaker coordination",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "events.registration_tracking",
+          "description": "registration tracking",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "events.attendance_summary",
+          "description": "attendance summary",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "events.logistics_checklist",
+          "description": "logistics checklist",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "events.event_budget",
+          "description": "event budget",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "events.post_event_report",
+          "description": "post event report",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "media",
+      "name": "Media & Publishing",
+      "skills": [
+        {
+          "id": "media.press_release_draft",
+          "description": "press release draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "media.editorial_calendar",
+          "description": "editorial calendar",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "media.fact_check",
+          "description": "fact check",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "media.interview_brief",
+          "description": "interview brief",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "media.publication_review",
+          "description": "publication review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "media.media_outreach_draft",
+          "description": "media outreach draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "media.content_localization",
+          "description": "content localization",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "media.publication_analytics",
+          "description": "publication analytics",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "creative",
+      "name": "Design & Creative Production",
+      "skills": [
+        {
+          "id": "creative.creative_brief",
+          "description": "creative brief",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "creative.poster_copy",
+          "description": "poster copy",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "creative.presentation_outline",
+          "description": "presentation outline",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "creative.brand_guideline_check",
+          "description": "brand guideline check",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "creative.video_script",
+          "description": "video script",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "creative.design_review",
+          "description": "design review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "creative.asset_catalog",
+          "description": "asset catalog",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "creative.localization_review",
+          "description": "localization review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "support",
+      "name": "Customer & Student Support",
+      "skills": [
+        {
+          "id": "support.faq_answer",
+          "description": "faq answer",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "support.ticket_classification",
+          "description": "ticket classification",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "support.ticket_routing",
+          "description": "ticket routing",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "support.complaint_summary",
+          "description": "complaint summary",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "support.escalation_request",
+          "description": "escalation request",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "support.service_quality_report",
+          "description": "service quality report",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "support.student_guidance",
+          "description": "student guidance",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "support.support_knowledge_update",
+          "description": "support knowledge update",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "quality",
+      "name": "Quality & Risk Management",
+      "skills": [
+        {
+          "id": "quality.risk_register",
+          "description": "risk register",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "quality.control_review",
+          "description": "control review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "quality.incident_report",
+          "description": "incident report",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "quality.audit_checklist",
+          "description": "audit checklist",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "quality.root_cause_analysis",
+          "description": "root cause analysis",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "quality.corrective_action_tracking",
+          "description": "corrective action tracking",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "quality.quality_scorecard",
+          "description": "quality scorecard",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "quality.business_continuity_review",
+          "description": "business continuity review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "name": "Personal Executive Assistant",
+      "skills": [
+        {
+          "id": "personal.personal_briefing",
+          "description": "personal briefing",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "personal.calendar_review",
+          "description": "calendar review",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "personal.reminder_draft",
+          "description": "reminder draft",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "personal.travel_research",
+          "description": "travel research",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "personal.meeting_preparation",
+          "description": "meeting preparation",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "personal.note_capture",
+          "description": "note capture",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "read_or_draft",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "personal.personal_task_list",
+          "description": "personal task list",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        },
+        {
+          "id": "personal.daily_recap",
+          "description": "daily recap",
+          "default_access": "deny",
+          "status": "specification_only",
+          "requires_authenticated_identity": true,
+          "requires_tenant_scope": true,
+          "execution_mode": "approval_required",
+          "sensitive_domain": false,
+          "external_side_effects_allowed": false
+        }
+      ]
+    }
+  ]
+}
