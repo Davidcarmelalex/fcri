@@ -2,71 +2,44 @@
 
 ## GitHub Actions CI Pipeline
 
-The CI workflow file has been prepared. To activate it, follow these steps:
+The repository currently has a CI design, but no committed workflow. Before
+activating one, AZ-001 must first be integrated: the current main branch stores
+the AZRAEL modules directly under `azrael/azrael-core/src`, while the tests
+import `azrael_core`. A workflow that claims AZRAEL coverage before that package
+boundary is repaired would fail at collection and would not be useful evidence.
 
-### Option A: Copy via GitHub UI
+The next safe implementation should use one least-privilege workflow job on
+pushes and pull requests targeting `main`. It should install the locked Node
+dependencies and declared Python test dependencies, then run lint, TypeScript
+checking, the Next build, and the AZRAEL unit tests only after the package is
+importable in a clean environment.
 
-1. Go to your repo → **Add file** → **Create new file**
-2. Name it: `.github/workflows/ci.yml`
-3. Paste the content below and commit to `main`
+The evidence receipt should be generated only after every required check exits
+successfully. Its minimum fields are:
 
-### CI Workflow Content
-
-```yaml
-name: CI
-
-on:
-  push:
-    branches: ["**"]
-  pull_request:
-    branches: [main]
-
-jobs:
-  build:
-    name: Build & Type Check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Type check
-        run: npx tsc --noEmit
-
-      - name: Build
-        run: npm run build
-
-  security:
-    name: Dependency Audit
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
-      - run: npm ci
-      - run: npm audit --audit-level=high
+```json
+{
+  "schema": "fcri.ci-evidence/v1",
+  "status": "passed",
+  "revision": "<git commit SHA>",
+  "repository": "<owner>/<repo>",
+  "run": "<hosted run ID>",
+  "generated_at": "<UTC timestamp>",
+  "checks": ["npm run lint", "npx tsc --noEmit", "npm run build", "pytest azrael/azrael-core/tests"]
+}
 ```
 
-### Option B: Clone and push locally
+GitHub should upload that file as a run artifact. The receipt is evidence of
+the checks in that run; it is not a deployment approval or a secrets record.
+
+### Local verification after AZ-001
 
 ```bash
 git clone https://github.com/Davidcarmelalex/fcri
 cd fcri
-mkdir -p .github/workflows
-# paste the yaml above into .github/workflows/ci.yml
-git add .github/workflows/ci.yml
-git commit -m "ci: add GitHub Actions CI pipeline"
-git push origin main
+python -m pip install -r azrael/azrael-core/requirements.txt
+python -m pip install --editable azrael/azrael-core
+python -m pytest -q azrael/azrael-core/tests
 ```
 
 ## Branch Protection

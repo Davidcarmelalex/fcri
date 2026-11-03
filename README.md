@@ -240,6 +240,7 @@ npm run dev       # http://localhost:4100
 # AZRAEL tests
 cd azrael/azrael-core
 pip install -r requirements.txt
+pip install --editable .
 pytest --cov=src --cov-report=html
 ```
 
