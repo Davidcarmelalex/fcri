@@ -1,0 +1,15 @@
+{
+  "format_version": 1,
+  "created": "2026-10-27",
+  "provenance": "new replacement; original unavailable",
+  "repository": "Davidcarmelalex/fcri",
+  "baseline_commit": "b96ec825423d6984e008f9717866967729d8593c",
+  "files": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "CODEX_START.md": "d3b2941f4fbc7603fe6eda5c72e3251289429d26149fe3fa36cdac0cfac6991e",
+    "README.md": "7fa196cf37b45c1b18e2a59c3d8dd8e0499fcfe72cf48cf2205754a1f1565291",
+    "scripts/preflight.sh": "0cc2db6bb94b9f915e7fa27ca5584c588cbde28b5abc55b3035f395247abaf06",
+    "tasks/AZ-001.md": "d4c9aa49f95328c5a5078d2f5434ec6f87b94a42e07a76b8e9b622787f29c059",
+    "tasks/AZ-002.md": "761036b76edca0662d36be1861684bcc7fec771edc73711bcac1434bb50019bc"
+  }
+}
