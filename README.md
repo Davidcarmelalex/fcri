@@ -63,6 +63,7 @@ This is a **research monorepo** containing multiple FCRI initiatives:
 | **FAASI Core** | `fcri-faasi-core/` | Framework for Autonomous Agent Systematic Integrity evaluation | 🔬 Research |
 | **MR NOTHING** | `projects/mr-nothing/` | Android-native AI agent platform | 📋 Planned |
 | **NR Agent** | `projects/nothing-agent/` | Agentic computing research initiative | 📋 Planned |
+| **AIBI Executive Desk** | `labs/aibi-assistant/` | Agent47 management assistant with permissions, approvals and bilingual briefings | Local pilot · mock integrations |
 
 ---
 

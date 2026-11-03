@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "id": "fcri.aibi.executive-desk",
+  "runtime": "python -m aibi serve",
+  "base_agent": "Agent47",
+  "upstream_repository": "Davidcarmelalex/automation",
+  "upstream_blob": "615c2013337aa412e34a4939106c2064b0efabc9",
+  "dispatcher": "aibi.core.ScopedAgent47",
+  "adapter_mode": "mock-only",
+  "languages": ["en", "ml"],
+  "inference": "deterministic bilingual briefing; no LLM provider configured",
+  "identity": "local operator-issued hashed expiring bearer credentials",
+  "tenant_source": "server credential lookup only",
+  "raw_commands": false,
+  "skills": ["task.create", "meeting.record", "calendar.create", "outbound.send", "expense.pay", "record.delete", "retention.set"],
+  "separate_human_approval": ["calendar.create", "outbound.send", "expense.pay", "record.delete", "retention.set"],
+  "approval_ttl_seconds": 86400,
+  "registered_with_live_fleet": false
+}
