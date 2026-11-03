@@ -1,0 +1,26 @@
+services:
+  agent47:
+    build: .
+    restart: unless-stopped
+    init: true
+    env_file: .env
+    environment:
+      AGENT47_DB_PATH: /data/agent47.db
+      AGENT47_TASK_DB_PATH: /data/agent47-tasks.db
+      AGENT47_WORKSPACE: /data/workspace
+    ports:
+      - "127.0.0.1:8747:8747"
+    volumes:
+      - agent47-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 100
+    mem_limit: 512m
+    cpus: 1.0
+volumes:
+  agent47-data:
